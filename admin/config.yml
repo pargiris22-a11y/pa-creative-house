@@ -1,25 +1,13 @@
 backend:
-  name: github
-  repo: pargiris22-a11y/pa-creative-house
+  name: git-gateway
   branch: main
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-collections:
-  - name: "settings"
-    label: "⚙️ Ρυθμίσεις Site"
-    files:
-      - name: "general"
-        label: "Γενικά Στοιχεία"
-        file: "cms_data/general.json"
-        fields:
-          - {label: "Τηλέφωνο", name: "phone", widget: "string", default: "27210 90509"}
-          - {label: "Κινητό / WhatsApp", name: "mobile", widget: "string", default: "6987034064"}
-          - {label: "Email", name: "email", widget: "string", default: "info@creativehouse.gr"}
-          - {label: "Διεύθυνση", name: "address", widget: "string", default: "Φαρών 155, Καλαμάτα 24100"}
-          - {label: "Ώρες Λειτουργίας", name: "hours", widget: "string", default: "Δε–Πα 09:00–17:00"}
+locale: 'el'
 
+collections:
   - name: "services"
     label: "🔧 Υπηρεσίες"
     folder: "cms_data/services"
@@ -54,16 +42,18 @@ collections:
          field: {label: "Φωτογραφία", name: "image", widget: "image"}}
       - {label: "Σειρά", name: "order", widget: "number", default: 1}
 
-  - name: "testimonials"
-    label: "⭐ Κριτικές Πελατών"
-    folder: "cms_data/testimonials"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Όνομα Πελάτη", name: "name", widget: "string"}
-      - {label: "Περιοχή", name: "location", widget: "string"}
-      - {label: "Κείμενο Κριτικής", name: "quote", widget: "text"}
-      - {label: "Αστέρια (1-5)", name: "stars", widget: "number", default: 5}
+  - name: "settings"
+    label: "⚙️ Στοιχεία Επικοινωνίας"
+    files:
+      - name: "contact"
+        label: "Επικοινωνία"
+        file: "cms_data/contact.json"
+        fields:
+          - {label: "Τηλέφωνο", name: "phone", widget: "string", default: "27210 90509"}
+          - {label: "Κινητό / WhatsApp", name: "mobile", widget: "string", default: "6987034064"}
+          - {label: "Email", name: "email", widget: "string", default: "info@creativehouse.gr"}
+          - {label: "Διεύθυνση", name: "address", widget: "string", default: "Φαρών 155, Καλαμάτα 24100"}
+          - {label: "Ώρες", name: "hours", widget: "string", default: "Δε–Πα 09:00–17:00"}
 
   - name: "faq"
     label: "❓ Συχνές Ερωτήσεις"
