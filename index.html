@@ -1845,8 +1845,8 @@ function pjUpdateImg(){const img=document.getElementById('pjLbImg');img.style.op
 function pjUpdateThumbs(){document.getElementById('pjLbThumbs').innerHTML=pjCurrent.imgs.map((src,i)=>`<img class="pj-lb-thumb ${i===pjImgIdx?'active':''}" src="${src}" onclick="pjGoTo(${i})" loading="lazy">`).join('');}
 function pjGoTo(i){pjImgIdx=i;pjUpdateImg();pjUpdateThumbs();}
 document.addEventListener('keydown',e=>{if(!document.getElementById('pjLb').classList.contains('open'))return;if(e.key==='ArrowRight')pjNav(1);if(e.key==='ArrowLeft')pjNav(-1);if(e.key==='Escape')pjCloseLb();});
-document.getElementById('pjLb').addEventListener('click',e=>{if(e.target===document.getElementById('pjLb'))pjCloseLb();});
-pfRender('all');
+var pjLbEl=document.getElementById('pjLb'); if(pjLbEl) pjLbEl.addEventListener('click',e=>{if(e.target===pjLbEl)pjCloseLb();});
+document.addEventListener('DOMContentLoaded', function(){ pfRender('all'); });
 /* ══ /PORTFOLIO v2 ══ */
 
 </script>
