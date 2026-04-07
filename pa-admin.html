@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PA Creative House — Admin</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05060a;color:#f4f1ea;font-family:'Segoe UI',sans-serif;min-height:100vh}
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:#0e1318;border:1px solid rgba(197,160,89,.2);padding:48px;width:360px}
+.login-logo{font-size:1.4rem;letter-spacing:4px;color:#c5a059;font-weight:700;margin-bottom:8px}
+.login-sub{font-size:.75rem;letter-spacing:2px;color:rgba(244,241,234,.4);margin-bottom:36px}
+.login-box input{width:100%;background:#141c24;border:1px solid rgba(197,160,89,.2);color:#f4f1ea;padding:12px 16px;font-size:.9rem;outline:none;margin-bottom:12px}
+.login-box input:focus{border-color:#c5a059}
+.login-btn{width:100%;background:#c5a059;color:#05060a;border:none;padding:13px;font-weight:700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+.login-btn:hover{background:#e2c28a}
+.err{color:#e57373;font-size:.8rem;margin-top:8px;display:none}
+
+/* ADMIN PANEL */
+#adminPanel{display:none}
+.topbar{background:#0e1318;border-bottom:2px solid #c5a059;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.topbar-logo{font-size:1rem;letter-spacing:3px;color:#c5a059;font-weight:700}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.logout-btn{background:none;border:1px solid rgba(197,160,89,.3);color:rgba(244,241,234,.6);padding:6px 14px;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+.logout-btn:hover{border-color:#c5a059;color:#c5a059}
+.save-all-btn{background:#c5a059;color:#05060a;border:none;padding:8px 20px;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:700}
+.save-all-btn:hover{background:#e2c28a}
+
+.admin-body{display:flex;min-height:calc(100vh - 56px)}
+.sidebar{width:220px;background:#0b0f16;border-right:1px solid rgba(197,160,89,.1);flex-shrink:0;padding:24px 0}
+.sidebar-item{padding:12px 24px;cursor:pointer;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:rgba(244,241,234,.5);transition:all .2s;border-left:2px solid transparent}
+.sidebar-item:hover{color:#c5a059;background:rgba(197,160,89,.05)}
+.sidebar-item.active{color:#c5a059;border-left-color:#c5a059;background:rgba(197,160,89,.08)}
+.sidebar-section{padding:8px 24px 4px;font-size:.6rem;letter-spacing:3px;color:rgba(197,160,89,.3);margin-top:16px}
+
+.content{flex:1;padding:32px;overflow-y:auto;max-height:calc(100vh - 56px)}
+.section{display:none}
+.section.active{display:block}
+.section-title{font-size:1.1rem;font-weight:700;color:#c5a059;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid rgba(197,160,89,.15)}
+
+/* Fields */
+.field-group{background:#0e1318;border:1px solid rgba(197,160,89,.1);padding:24px;margin-bottom:16px}
+.field-group h3{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:rgba(197,160,89,.7);margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(244,241,234,.4);margin-bottom:6px}
+.field input,.field textarea,.field select{width:100%;background:#141c24;border:1px solid rgba(197,160,89,.2);color:#f4f1ea;padding:10px 14px;font-size:.88rem;outline:none;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#c5a059}
+.field textarea{min-height:100px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.save-btn{background:#c5a059;color:#05060a;border:none;padding:10px 24px;font-weight:700;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:8px}
+.save-btn:hover{background:#e2c28a}
+
+.status-msg{font-size:.75rem;color:#5dba82;margin-left:12px;display:none}
+
+/* Service cards */
+.svc-card{background:#0e1318;border:1px solid rgba(197,160,89,.1);padding:20px;margin-bottom:12px;cursor:pointer;transition:border-color .2s}
+.svc-card:hover{border-color:rgba(197,160,89,.3)}
+.svc-card-header{display:flex;align-items:center;justify-content:space-between}
+.svc-card-num{font-size:.7rem;color:rgba(197,160,89,.5);letter-spacing:2px}
+.svc-card-title{font-size:.95rem;font-weight:700;color:#c5a059}
+.svc-card-body{display:none;margin-top:16px;padding-top:16px;border-top:1px solid rgba(197,160,89,.1)}
+.svc-card.open .svc-card-body{display:block}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <div class="login-logo">PA Creative House</div>
+    <div class="login-sub">Admin Panel</div>
+    <input type="password" id="pwInput" placeholder="Κωδικός" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Είσοδος</button>
+    <div class="err" id="loginErr">Λάθος κωδικός</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <div class="topbar">
+    <div class="topbar-logo">PA Creative House — Admin</div>
+    <div class="topbar-right">
+      <span class="status-msg" id="globalStatus">✓ Αποθηκεύτηκε!</span>
+      <button class="logout-btn" onclick="doLogout()">Έξοδος</button>
+    </div>
+  </div>
+  <div class="admin-body">
+    <div class="sidebar">
+      <div class="sidebar-section">Γενικά</div>
+      <div class="sidebar-item active" onclick="showSection('contact')">📞 Επικοινωνία</div>
+      <div class="sidebar-item" onclick="showSection('hero')">🏠 Hero Section</div>
+      <div class="sidebar-section">Περιεχόμενο</div>
+      <div class="sidebar-item" onclick="showSection('services')">🔧 Υπηρεσίες</div>
+      <div class="sidebar-item" onclick="showSection('why')">⭐ Γιατί Εμάς</div>
+      <div class="sidebar-item" onclick="showSection('faq')">❓ FAQ</div>
+      <div class="sidebar-section">Site</div>
+      <div class="sidebar-item" onclick="window.open('https://pacreativehouse.netlify.app','_blank')">🌐 Προβολή Site</div>
+    </div>
+    <div class="content">
+
+      <!-- ΕΠΙΚΟΙΝΩΝΙΑ -->
+      <div class="section active" id="sec-contact">
+        <div class="section-title">📞 Στοιχεία Επικοινωνίας</div>
+        <div class="field-group">
+          <h3>Τηλέφωνα & Email</h3>
+          <div class="field-row">
+            <div class="field"><label>Τηλέφωνο Γραφείου</label><input type="text" id="c-phone" value="27210 90509"></div>
+            <div class="field"><label>Κινητό / WhatsApp</label><input type="text" id="c-mobile" value="6987034064"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Email</label><input type="text" id="c-email" value="info@creativehouse.gr"></div>
+            <div class="field"><label>Website</label><input type="text" id="c-web" value="creativehouse.gr"></div>
+          </div>
+          <div class="field"><label>Διεύθυνση</label><input type="text" id="c-addr" value="Φαρών 155, Καλαμάτα 24100"></div>
+          <div class="field-row">
+            <div class="field"><label>Ώρες Λειτουργίας</label><input type="text" id="c-hours" value="Δευτέρα–Παρασκευή 09:00–17:00"></div>
+            <div class="field"><label>Περιοχές</label><input type="text" id="c-areas" value="Καλαμάτα, Μεσσηνία"></div>
+          </div>
+        </div>
+        <button class="save-btn" onclick="saveSection('contact')">💾 Αποθήκευση</button>
+        <span class="status-msg" id="status-contact">✓ Αποθηκεύτηκε!</span>
+      </div>
+
+      <!-- HERO -->
+      <div class="section" id="sec-hero">
+        <div class="section-title">🏠 Hero Section</div>
+        <div class="field-group">
+          <h3>Κύριο Slogan</h3>
+          <div class="field"><label>Γραμμή 1</label><input type="text" id="h-line1" value="Η περιουσία σας."></div>
+          <div class="field"><label>Γραμμή 2</label><input type="text" id="h-line2" value="Ευθύνη μας."></div>
+          <div class="field"><label>Υπότιτλος</label><textarea id="h-sub">Παναγιώτης Αργύρης — Πολιτικός Μηχανικός ΤΕ με 500+ ολοκληρωμένα έργα στη Μεσσηνία από το 2020.</textarea></div>
+        </div>
+        <div class="field-group">
+          <h3>Στατιστικά</h3>
+          <div class="field-row">
+            <div class="field"><label>Αριθμός 1</label><input type="text" id="h-stat1-num" value="500+"></div>
+            <div class="field"><label>Ετικέτα 1</label><input type="text" id="h-stat1-lbl" value="ΕΡΓΑ & ΜΕΛΕΤΕΣ"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Αριθμός 2</label><input type="text" id="h-stat2-num" value="12+"></div>
+            <div class="field"><label>Ετικέτα 2</label><input type="text" id="h-stat2-lbl" value="ΥΠΗΡΕΣΙΕΣ"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Αριθμός 3</label><input type="text" id="h-stat3-num" value="5+"></div>
+            <div class="field"><label>Ετικέτα 3</label><input type="text" id="h-stat3-lbl" value="ΧΡΟΝΙΑ ΕΜΠΕΙΡΙΑΣ"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Αριθμός 4</label><input type="text" id="h-stat4-num" value="24h"></div>
+            <div class="field"><label>Ετικέτα 4</label><input type="text" id="h-stat4-lbl" value="ΧΡΟΝΟΣ ΑΠΟΚΡΙΣΗΣ"></div>
+          </div>
+        </div>
+        <button class="save-btn" onclick="saveSection('hero')">💾 Αποθήκευση</button>
+        <span class="status-msg" id="status-hero">✓ Αποθηκεύτηκε!</span>
+      </div>
+
+      <!-- ΥΠΗΡΕΣΙΕΣ -->
+      <div class="section" id="sec-services">
+        <div class="section-title">🔧 Υπηρεσίες</div>
+        <div id="svcList"></div>
+        <button class="save-btn" onclick="saveSection('services')">💾 Αποθήκευση Υπηρεσιών</button>
+        <span class="status-msg" id="status-services">✓ Αποθηκεύτηκε!</span>
+      </div>
+
+      <!-- ΓΙΑΤΙ ΕΜΑΣ -->
+      <div class="section" id="sec-why">
+        <div class="section-title">⭐ Γιατί Εμάς</div>
+        <div class="field-group">
+          <h3>Κύριο κείμενο</h3>
+          <div class="field"><label>Τίτλος</label><input type="text" id="w-title" value="Η εμπιστοσύνη δεν υπόσχεται. Αποδεικνύεται."></div>
+          <div class="field"><label>Υπότιτλος</label><input type="text" id="w-sub" value="500+ Ολοκληρωμένα Έργα. Μια αδιάλειπτη διαδρομή τεχνικής αρτιότητας και εμπιστοσύνης στη Μεσσηνία."></div>
+        </div>
+        <div class="field-group">
+          <h3>Σημεία Διαφοροποίησης</h3>
+          <div class="field"><label>Σημείο 1 — Τίτλος</label><input type="text" id="w1-t" value="Πλήρης Υπηρεσία"></div>
+          <div class="field"><label>Σημείο 1 — Κείμενο</label><textarea id="w1-b">Από τη μελέτη έως την παράδοση — αναλαμβάνουμε κάθε στάδιο.</textarea></div>
+          <div class="field"><label>Σημείο 2 — Τίτλος</label><input type="text" id="w2-t" value="Εμπειρία & Αξιοπιστία"></div>
+          <div class="field"><label>Σημείο 2 — Κείμενο</label><textarea id="w2-b">500+ ολοκληρωμένα έργα στη Μεσσηνία από το 2020.</textarea></div>
+          <div class="field"><label>Σημείο 3 — Τίτλος</label><input type="text" id="w3-t" value="Άμεση Ανταπόκριση"></div>
+          <div class="field"><label>Σημείο 3 — Κείμενο</label><textarea id="w3-b">Απαντάμε εντός 24 ωρών σε κάθε αίτημα.</textarea></div>
+          <div class="field"><label>Σημείο 4 — Τίτλος</label><input type="text" id="w4-t" value="Διαφάνεια"></div>
+          <div class="field"><label>Σημείο 4 — Κείμενο</label><textarea id="w4-b">Γραπτή προσφορά πριν ξεκινήσουμε — χωρίς κρυφές χρεώσεις.</textarea></div>
+        </div>
+        <button class="save-btn" onclick="saveSection('why')">💾 Αποθήκευση</button>
+        <span class="status-msg" id="status-why">✓ Αποθηκεύτηκε!</span>
+      </div>
+
+      <!-- FAQ -->
+      <div class="section" id="sec-faq">
+        <div class="section-title">❓ Συχνές Ερωτήσεις</div>
+        <div id="faqList"></div>
+        <button class="save-btn" onclick="saveSection('faq')">💾 Αποθήκευση FAQ</button>
+        <span class="status-msg" id="status-faq">✓ Αποθηκεύτηκε!</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const PASS = 'PCH2020!';
+
+// Services data
+const services = [
+  {num:'01', title:'Οικοδομικές Άδειες & Μελέτες Δόμησης', tagline:'Σχεδιάζουμε το μέλλον με απόλυτη ασφάλεια.', body:'Αναλαμβάνουμε την πλήρη μελέτη και έκδοση οικοδομικών αδειών για κατοικίες και επαγγελματικά κτίρια.'},
+  {num:'02', title:'Τακτοποίηση Αυθαιρέτων (Ν. 4495/2017)', tagline:'Νομική θωράκιση για το ακίνητό σας.', body:'Εντοπίζουμε και επιλύουμε κάθε πολεοδομική εκκρεμότητα.'},
+  {num:'03', title:'Ηλεκτρονική Ταυτότητα Κτιρίου', tagline:'Η ψηφιακή οργάνωση του ακινήτου σας.', body:'Συλλέγουμε και ψηφιοποιούμε το σύνολο του αρχείου της ιδιοκτησίας σας.'},
+  {num:'04', title:'Εγκρίσεις Εργασιών Μικρής Κλίμακας', tagline:'Νομιμότητα σε κάθε παρέμβαση.', body:'Εκδίδουμε άμεσα άδειες για ανακαινίσεις, θερμομονώσεις και διαρρυθμίσεις.'},
+  {num:'05', title:"Τοπογραφικά Διαγράμματα (ΕΓΣΑ '87)", tagline:'Ακρίβεια στο επίπεδο του χιλιοστού.', body:'Με χρήση σύγχρονου γεωδαιτικού εξοπλισμού GPS/Total Station.'},
+  {num:'06', title:'Ενεργειακές Επιθεωρήσεις (ΠΕΑ)', tagline:'Η ενεργειακή ακτινογραφία του χώρου σας.', body:'Εκδίδουμε Πιστοποιητικά Ενεργειακής Απόδοσης (ΠΕΑ).'},
+  {num:'07', title:'Πρόγραμμα «Εξοικονομώ»', tagline:'Μηδενίστε το ενεργειακό κόστος.', body:'Επιδότηση έως 75% για ενεργειακή αναβάθμιση. Πλήρης διαχείριση φακέλου.'},
+  {num:'08', title:'Τεχνικός Ασφάλειας', tagline:'Πρόληψη και επαγγελματική ευθύνη.', body:'Παρέχουμε συμβουλευτικές υπηρεσίες ασφάλειας για εργοτάξια και επιχειρήσεις.'},
+  {num:'09', title:'Interior Design', tagline:'Αρχιτεκτονική Εσωτερικών Χώρων.', body:'Μετατρέπουμε τη λειτουργικότητα σε τέχνη, δίνοντας ζωή και χαρακτήρα σε κάθε τετραγωνικό.'},
+  {num:'10', title:'Ολική & Μερική Ανακαίνιση', tagline:'Η τέχνη της μεταμόρφωσης.', body:'Από τον πρώτο τοίχο μέχρι την τελευταία λεπτομέρεια.'},
+  {num:'11', title:'Κατασκευές & Επίβλεψη Έργων', tagline:'Από το χαρτί στην πραγματικότητα.', body:'Επίβλεψη κάθε σταδίου με σχολαστικότητα και υψηλότερα standards.'},
+  {num:'12', title:'Άδειες Λειτουργίας Επιχειρήσεων', tagline:'Η επιχείρησή σας σε γερές βάσεις.', body:'Μελέτες πυρασφάλειας και λειτουργίας για καταστήματα και γραφεία.'},
+];
+
+const faqs = [
+  {q:'Πόσο κοστίζει μια οικοδομική άδεια;', a:'Εξαρτάται από τον τύπο και το μέγεθος του έργου. Δίνουμε πάντα γραπτή προσφορά πριν ξεκινήσουμε — χωρίς κρυφές χρεώσεις. Διασφαλίζουμε την ταχύτερη δυνατή έκδοση μέσω e-Άδειες.'},
+  {q:'Πόσο χρόνο παίρνει η τακτοποίηση αυθαιρέτου;', a:'Συνήθως 1–3 μήνες ανάλογα την πολυπλοκότητα. Γίνεται ηλεκτρονικά μέσω e-Άδειες.'},
+  {q:'Χρειάζομαι ΠΕΑ για να πουλήσω το σπίτι μου;', a:'Ναι, είναι υποχρεωτικό για κάθε αγοραπωλησία ή μίσθωση. Το εκδίδουμε σε 3–5 εργάσιμες ημέρες.'},
+  {q:'Τι είναι η Ηλεκτρονική Ταυτότητα Κτιρίου;', a:'Αποτελεί πλέον το απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη μεταβίβαση. Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη.'},
+  {q:'Πώς λειτουργεί το πρόγραμμα Εξοικονομώ;', a:'Επιδοτεί έως 75% του κόστους ενεργειακής αναβάθμισης. Αναλαμβάνουμε ολόκληρο τον φάκελο.'},
+  {q:'Εξυπηρετείτε εκτός Καλαμάτας;', a:'Ναι, εξυπηρετούμε ολόκληρη τη Μεσσηνία — Καλαμάτα, Μεσσήνη, Κυπαρισσία, Πύλο και γύρω περιοχές.'},
+  {q:'Τι έγγραφα χρειάζονται για τοπογραφικό;', a:'Τίτλος ιδιοκτησίας και συμβόλαιο αγοράς. Παραδίδουμε σε 3–7 εργάσιμες ημέρες.'},
+  {q:'Μπορώ να νομιμοποιήσω αυθαίρετο για να πουλήσω;', a:'Ναι. Με τον Ν.4495/2017 μπορείτε να τακτοποιήσετε αυθαίρετες κατασκευές και να αποκτήσετε πλήρη νομιμότητα.'},
+];
+
+function doLogin(){
+  const pw = document.getElementById('pwInput').value;
+  if(pw === PASS){
+    document.getElementById('loginWrap').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    renderServices();
+    renderFAQ();
+    sessionStorage.setItem('pa_admin', '1');
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+  }
+}
+
+function doLogout(){
+  sessionStorage.removeItem('pa_admin');
+  location.reload();
+}
+
+function showSection(name){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function renderServices(){
+  const list = document.getElementById('svcList');
+  list.innerHTML = services.map((s,i)=>`
+    <div class="svc-card" id="svc-card-${i}" onclick="toggleSvc(${i})">
+      <div class="svc-card-header">
+        <span class="svc-card-num">${s.num}</span>
+        <span class="svc-card-title">${s.title}</span>
+        <span style="color:rgba(197,160,89,.4);font-size:.8rem">▼</span>
+      </div>
+      <div class="svc-card-body">
+        <div class="field"><label>Τίτλος</label><input type="text" id="svc-${i}-title" value="${s.title}"></div>
+        <div class="field"><label>Tagline</label><input type="text" id="svc-${i}-tagline" value="${s.tagline}"></div>
+        <div class="field"><label>Αναλυτική Περιγραφή</label><textarea id="svc-${i}-body">${s.body}</textarea></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleSvc(i){
+  const card = document.getElementById('svc-card-'+i);
+  card.classList.toggle('open');
+}
+
+function renderFAQ(){
+  const list = document.getElementById('faqList');
+  list.innerHTML = faqs.map((f,i)=>`
+    <div class="field-group" style="margin-bottom:12px">
+      <div class="field"><label>Ερώτηση ${i+1}</label><input type="text" id="faq-${i}-q" value="${f.q}"></div>
+      <div class="field"><label>Απάντηση</label><textarea id="faq-${i}-a">${f.a}</textarea></div>
+    </div>
+  `).join('');
+}
+
+function saveSection(sec){
+  const status = document.getElementById('status-'+sec);
+  status.style.display = 'inline';
+  // Εδώ θα γινόταν save στο GitHub API
+  // Για τώρα δείχνει το μήνυμα επιτυχίας
+  setTimeout(()=>status.style.display='none', 3000);
+
+  // Copy instructions
+  const data = collectData(sec);
+  console.log('Δεδομένα για αποθήκευση:', JSON.stringify(data, null, 2));
+}
+
+function collectData(sec){
+  if(sec==='contact') return {
+    phone: document.getElementById('c-phone').value,
+    mobile: document.getElementById('c-mobile').value,
+    email: document.getElementById('c-email').value,
+    address: document.getElementById('c-addr').value,
+    hours: document.getElementById('c-hours').value,
+  };
+  if(sec==='services') return services.map((s,i)=>({
+    title: document.getElementById('svc-'+i+'-title')?.value || s.title,
+    tagline: document.getElementById('svc-'+i+'-tagline')?.value || s.tagline,
+    body: document.getElementById('svc-'+i+'-body')?.value || s.body,
+  }));
+  return {};
+}
+
+// Auto-login check
+if(sessionStorage.getItem('pa_admin')==='1'){
+  document.getElementById('loginWrap').style.display='none';
+  document.getElementById('adminPanel').style.display='block';
+  renderServices();
+  renderFAQ();
+}
+</script>
+</body>
+</html>
