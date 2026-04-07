@@ -1,0 +1,76 @@
+backend:
+  name: github
+  repo: pargiris22-a11y/pa-creative-house
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "⚙️ Ρυθμίσεις Site"
+    files:
+      - name: "general"
+        label: "Γενικά Στοιχεία"
+        file: "cms_data/general.json"
+        fields:
+          - {label: "Τηλέφωνο", name: "phone", widget: "string", default: "27210 90509"}
+          - {label: "Κινητό / WhatsApp", name: "mobile", widget: "string", default: "6987034064"}
+          - {label: "Email", name: "email", widget: "string", default: "info@creativehouse.gr"}
+          - {label: "Διεύθυνση", name: "address", widget: "string", default: "Φαρών 155, Καλαμάτα 24100"}
+          - {label: "Ώρες Λειτουργίας", name: "hours", widget: "string", default: "Δε–Πα 09:00–17:00"}
+
+  - name: "services"
+    label: "🔧 Υπηρεσίες"
+    folder: "cms_data/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Τίτλος", name: "title", widget: "string"}
+      - {label: "Κατηγορία", name: "category", widget: "select",
+         options: ["Μελέτη & Αδειοδότηση", "Ενέργεια & Βιωσιμότητα", "Design & Κατασκευή"]}
+      - {label: "Tagline", name: "tagline", widget: "string"}
+      - {label: "Σύντομη Περιγραφή", name: "description", widget: "text"}
+      - {label: "Αναλυτική Περιγραφή", name: "body", widget: "text"}
+      - {label: "Σειρά (1-12)", name: "order", widget: "number", default: 1}
+
+  - name: "portfolio"
+    label: "🖼️ Portfolio — Έργα"
+    folder: "cms_data/portfolio"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Τίτλος Έργου", name: "title", widget: "string"}
+      - {label: "Κατηγορία", name: "category", widget: "select",
+         options: [
+           {label: "Κατοικία", value: "katoikia"},
+           {label: "Ανακαίνιση", value: "anakainisi"},
+           {label: "Επαγγελματικό", value: "epaggelmatiko"},
+           {label: "Interior Design", value: "interior"}
+         ]}
+      - {label: "Υπότιτλος (π.χ. Καλαμάτα, 2023)", name: "subtitle", widget: "string"}
+      - {label: "Cover Φωτογραφία", name: "cover", widget: "image"}
+      - {label: "Φωτογραφίες Έργου", name: "images", widget: "list",
+         field: {label: "Φωτογραφία", name: "image", widget: "image"}}
+      - {label: "Σειρά", name: "order", widget: "number", default: 1}
+
+  - name: "testimonials"
+    label: "⭐ Κριτικές Πελατών"
+    folder: "cms_data/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Όνομα Πελάτη", name: "name", widget: "string"}
+      - {label: "Περιοχή", name: "location", widget: "string"}
+      - {label: "Κείμενο Κριτικής", name: "quote", widget: "text"}
+      - {label: "Αστέρια (1-5)", name: "stars", widget: "number", default: 5}
+
+  - name: "faq"
+    label: "❓ Συχνές Ερωτήσεις"
+    folder: "cms_data/faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Ερώτηση", name: "question", widget: "string"}
+      - {label: "Απάντηση", name: "answer", widget: "text"}
+      - {label: "Σειρά", name: "order", widget: "number", default: 1}
