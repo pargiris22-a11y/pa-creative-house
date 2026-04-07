@@ -1243,6 +1243,9 @@ const aiKB=[
   {keys:['γραφείο','ώρ','ανοιχτ','πού','διεύθυν'],text:'Φαρών 155, Καλαμάτα. Δευτέρα–Παρασκευή 09:00–17:00. Και μέσω WhatsApp!',actions:[{text:'Google Maps',href:'https://maps.google.com/?q=Φαρών+155,+Καλαμάτα',target:'_blank'},{text:'WhatsApp',href:'https://wa.me/306987034064'}]},
 ];
 
+
+// Portfolio init
+if(document.getElementById('pfGrid')) pfRender('all');
 </script>
 
 
@@ -1368,6 +1371,8 @@ body.pa-edit-mode nav{top:120px!important}
   .svc-monolith{grid-template-columns:1fr!important}
   .svc-row{border-right:none!important}
 }
+
+.ai-float{position:fixed;bottom:88px;right:20px;z-index:800;width:54px;height:54px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(197,160,89,.4);cursor:pointer;transition:transform .3s;border:none}
 </style>
 
 <div id="pa-editor">
@@ -1846,7 +1851,6 @@ function pjUpdateThumbs(){document.getElementById('pjLbThumbs').innerHTML=pjCurr
 function pjGoTo(i){pjImgIdx=i;pjUpdateImg();pjUpdateThumbs();}
 document.addEventListener('keydown',e=>{if(!document.getElementById('pjLb').classList.contains('open'))return;if(e.key==='ArrowRight')pjNav(1);if(e.key==='ArrowLeft')pjNav(-1);if(e.key==='Escape')pjCloseLb();});
 var pjLbEl=document.getElementById('pjLb'); if(pjLbEl) pjLbEl.addEventListener('click',e=>{if(e.target===pjLbEl)pjCloseLb();});
-document.addEventListener('DOMContentLoaded', function(){ pfRender('all'); });
 /* ══ /PORTFOLIO v2 ══ */
 
 </script>
