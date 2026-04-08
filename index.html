@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v6.2 | 20260408 -->
+<!-- PA Creative House v6.3 | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -622,24 +622,17 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   .portfolio-cta::before{width:100%;height:3px;top:0;left:0}
 }
 
-/* ══ PORTFOLIO v3 — Masonry Grid + Detail Modal ══ */
+/* ══ PORTFOLIO v3 — Square Grid + Detail Modal ══ */
 .pf-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  grid-auto-rows:155px;
-  gap:3px;
+  gap:4px;
   margin-top:8px;
 }
-/* Tall cards span 2 rows */
-.pf-card.tall{ grid-row:span 2; }
-
 .pf-card{
   position:relative;overflow:hidden;cursor:pointer;
   background:var(--ink3);
-  height:155px; /* explicit height - grid-auto-rows alone isn't enough */
-}
-.pf-card.tall{
-  height:313px; /* 2 × 155px + 3px gap */
+  aspect-ratio:1/1; /* τετράγωνο */
 }
 .pf-card img{
   position:absolute;inset:0;
@@ -647,17 +640,17 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   filter:brightness(.82);
   transition:transform .55s var(--ease),filter .55s;
 }
-.pf-card:hover img{transform:scale(1.06);filter:brightness(.45)}
+.pf-card:hover img{transform:scale(1.06);filter:brightness(.4)}
 
-/* Always-visible bottom label */
+/* Label πάντα ορατό */
 .pf-card-label{
   position:absolute;bottom:0;left:0;right:0;
-  padding:6px 10px 8px;
+  padding:20px 12px 10px;
   background:linear-gradient(to top,rgba(5,6,10,.88) 0%,transparent 100%);
   transition:opacity .3s;
 }
 .pf-card-label-title{
-  font-family:'Exo 2',sans-serif;font-size:.7rem;font-weight:700;
+  font-family:'Exo 2',sans-serif;font-size:.78rem;font-weight:700;
   color:#fff;letter-spacing:.03em;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
@@ -666,32 +659,35 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 .pf-card-hover{
   position:absolute;inset:0;
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:12px 10px;
+  padding:14px 12px;
   opacity:0;
   transform:translateY(8px);
   transition:opacity .3s var(--ease),transform .3s var(--ease);
   pointer-events:none;
+  background:linear-gradient(to top,rgba(5,6,10,.92) 0%,rgba(5,6,10,.3) 60%,transparent 100%);
 }
 .pf-card:hover .pf-card-hover{opacity:1;transform:none}
 .pf-card:hover .pf-card-label{opacity:0}
 .pf-card-hover-cat{
-  font-size:.52rem;letter-spacing:2.5px;text-transform:uppercase;
-  color:var(--gold);font-weight:700;margin-bottom:3px;
+  font-size:.55rem;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;margin-bottom:4px;
 }
 .pf-card-hover-title{
-  font-family:'Exo 2',sans-serif;font-size:.82rem;font-weight:700;
-  color:#fff;line-height:1.2;margin-bottom:2px;
+  font-family:'Exo 2',sans-serif;font-size:.88rem;font-weight:700;
+  color:#fff;line-height:1.2;margin-bottom:3px;
 }
 .pf-card-hover-sub{
-  font-size:.65rem;color:rgba(244,241,234,.6);font-weight:300;margin-bottom:8px;
+  font-size:.68rem;color:rgba(244,241,234,.6);font-weight:300;margin-bottom:10px;
 }
 .pf-card-hover-cta{
   display:inline-flex;align-items:center;gap:5px;
-  font-size:.58rem;letter-spacing:2px;text-transform:uppercase;
+  font-size:.6rem;letter-spacing:2px;text-transform:uppercase;
   color:var(--gold);font-weight:700;
-  border-bottom:1px solid rgba(197,160,89,.45);
+  border-bottom:1px solid rgba(197,160,89,.5);
   padding-bottom:2px;width:fit-content;
 }
+@media(max-width:900px){.pf-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.pf-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* ── PROJECT DETAIL MODAL ── */
 .pjd-overlay{
@@ -2199,24 +2195,42 @@ let pjdImgViewList = [];
 function pfRender(filter){
   const grid = document.getElementById('pfGrid');
   if(!grid) return;
+
+  // Force grid layout via inline styles — bypasses all CSS cache issues
+  grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:8px;';
+
   const list = filter === 'all' ? pfProjects : pfProjects.filter(p => p.cat === filter);
-  grid.innerHTML = list.map(p => `
-    <div class="pf-card${p.tall ? ' tall' : ''}" onclick="openPjd(${p.id})">
-      <img src="${p.cover}" alt="${p.title}" loading="lazy">
-      <div class="pf-card-label">
-        <div class="pf-card-label-title">${p.title}</div>
+  const ROW = 260; // px per row — square-ish cards at 4 cols
+
+  grid.innerHTML = list.map(p => {
+    const h = p.tall ? (ROW * 2 + 3) : ROW;
+    const cardStyle = `position:relative;overflow:hidden;cursor:pointer;background:#0b0f16;height:${h}px;${p.tall ? 'grid-row:span 2;' : ''}`;
+    const imgStyle = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.82);transition:transform .5s,filter .5s;';
+    const labelStyle = 'position:absolute;bottom:0;left:0;right:0;padding:6px 10px 8px;background:linear-gradient(to top,rgba(5,6,10,.88),transparent);transition:opacity .3s;';
+    const hoverStyle = 'position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:12px 10px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none;';
+    return `
+    <div style="${cardStyle}"
+      onmouseenter="this.querySelector('img').style.cssText='${imgStyle}transform:scale(1.06);filter:brightness(.45);';this.querySelector('.pfc-label').style.opacity='0';this.querySelector('.pfc-hover').style.cssText='${hoverStyle}opacity:1;transform:none;'"
+      onmouseleave="this.querySelector('img').style.cssText='${imgStyle}';this.querySelector('.pfc-label').style.opacity='1';this.querySelector('.pfc-hover').style.cssText='${hoverStyle}'"
+      onclick="openPjd(${p.id})">
+      <img src="${p.cover}" alt="${p.title}" loading="lazy" style="${imgStyle}">
+      <div class="pfc-label" style="${labelStyle}">
+        <div style="font-family:'Exo 2',sans-serif;font-size:.75rem;font-weight:700;color:#fff;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.title}</div>
       </div>
-      <div class="pf-card-hover">
-        <div class="pf-card-hover-cat">${p.catLabel}</div>
-        <div class="pf-card-hover-title">${p.title}</div>
-        <div class="pf-card-hover-sub">${p.location} · ${p.year}</div>
-        <div class="pf-card-hover-cta">Δείτε το έργο →</div>
+      <div class="pfc-hover" style="${hoverStyle}">
+        <div style="font-size:.52rem;letter-spacing:2.5px;text-transform:uppercase;color:#c5a059;font-weight:700;margin-bottom:3px;">${p.catLabel}</div>
+        <div style="font-family:'Exo 2',sans-serif;font-size:.85rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:2px;">${p.title}</div>
+        <div style="font-size:.65rem;color:rgba(244,241,234,.6);font-weight:300;margin-bottom:8px;">${p.location} · ${p.year}</div>
+        <div style="font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:#c5a059;font-weight:700;border-bottom:1px solid rgba(197,160,89,.45);padding-bottom:2px;display:inline-block;">Δείτε το έργο →</div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
+
+  // Fade in
   setTimeout(() => {
-    grid.querySelectorAll('.pf-card').forEach((c, i) => {
-      c.style.opacity = '0'; c.style.transition = 'opacity .4s';
-      setTimeout(() => { c.style.opacity = '1'; }, i * 40);
+    grid.querySelectorAll('div[style*="overflow:hidden"]').forEach((c, i) => {
+      c.style.opacity = '0';
+      setTimeout(() => { c.style.opacity = '1'; c.style.transition = 'opacity .4s'; }, i * 40);
     });
   }, 20);
 }
