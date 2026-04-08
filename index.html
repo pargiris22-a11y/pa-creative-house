@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v6.1 | 20260408 -->
+<!-- PA Creative House v6.2 | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -636,8 +636,13 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 .pf-card{
   position:relative;overflow:hidden;cursor:pointer;
   background:var(--ink3);
+  height:155px; /* explicit height - grid-auto-rows alone isn't enough */
+}
+.pf-card.tall{
+  height:313px; /* 2 × 155px + 3px gap */
 }
 .pf-card img{
+  position:absolute;inset:0;
   width:100%;height:100%;object-fit:cover;
   filter:brightness(.82);
   transition:transform .55s var(--ease),filter .55s;
