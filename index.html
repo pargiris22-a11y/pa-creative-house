@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v6.4-i18n | 20260408 -->
+<!-- PA Creative House v6.5-i18n | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -394,15 +394,22 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 
 /* ── LANGUAGE SWITCHER ── */
 .lang-switcher{
-  display:flex;align-items:center;gap:3px;margin-right:12px;
+  display:flex;align-items:center;gap:0;margin-right:16px;
+  border:1px solid var(--line);padding:4px 8px;
 }
 .lang-btn{
   background:none;border:none;cursor:pointer;
-  font-size:1.1rem;padding:4px 5px;border-radius:4px;
-  opacity:.5;transition:opacity .2s,background .2s;line-height:1;
+  font-family:'Exo 2',sans-serif;
+  font-size:.62rem;font-weight:700;letter-spacing:1.5px;
+  color:var(--cream3);padding:3px 6px;
+  transition:color .2s;line-height:1;
 }
-.lang-btn:hover{opacity:.85;background:rgba(197,160,89,.1)}
-.lang-btn.active{opacity:1;background:rgba(197,160,89,.15)}
+.lang-btn:hover{color:var(--cream)}
+.lang-btn.active{color:var(--gold)}
+.lang-sep{
+  color:var(--line);font-size:.65rem;
+  user-select:none;pointer-events:none;
+}
 
 /* Chinese font override */
 :lang(zh) body,
@@ -880,12 +887,17 @@ html[dir="rtl"] body{font-family:'Noto Sans SC','Jost',sans-serif}
     <li><a href="#contact"   data-i18n="nav_contact">Επικοινωνία</a></li>
   </ul>
   <div class="lang-switcher" id="langSwitcher">
-    <button class="lang-btn active" data-lang="el" onclick="setLang('el')" title="Ελληνικά">🇬🇷</button>
-    <button class="lang-btn" data-lang="en" onclick="setLang('en')" title="English">🇬🇧</button>
-    <button class="lang-btn" data-lang="fr" onclick="setLang('fr')" title="Français">🇫🇷</button>
-    <button class="lang-btn" data-lang="de" onclick="setLang('de')" title="Deutsch">🇩🇪</button>
-    <button class="lang-btn" data-lang="he" onclick="setLang('he')" title="עברית">🇮🇱</button>
-    <button class="lang-btn" data-lang="zh" onclick="setLang('zh')" title="中文">🇨🇳</button>
+    <button class="lang-btn active" data-lang="el" onclick="setLang('el')" title="Ελληνικά">ΕΛ</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')" title="English">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="fr" onclick="setLang('fr')" title="Français">FR</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="de" onclick="setLang('de')" title="Deutsch">DE</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="he" onclick="setLang('he')" title="עברית">HE</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="zh" onclick="setLang('zh')" title="中文">ZH</button>
   </div>
   <a href="tel:+302721090509" class="nav-cta">27210 90509</a>
   <div class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
