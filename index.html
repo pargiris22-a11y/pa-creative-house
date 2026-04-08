@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v5.9 | 20260408 -->
+<!-- PA Creative House v6.0 | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -622,34 +622,39 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   .portfolio-cta::before{width:100%;height:3px;top:0;left:0}
 }
 
-/* ══ PORTFOLIO v3 — Project Cards + Detail Modal ══ */
+/* ══ PORTFOLIO v3 — Masonry Grid + Detail Modal ══ */
 .pf-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:3px;margin-top:8px;
+  grid-auto-rows:190px;
+  gap:3px;
+  margin-top:8px;
 }
+/* Tall cards span 2 rows */
+.pf-card.tall{ grid-row:span 2; }
+
 .pf-card{
   position:relative;overflow:hidden;cursor:pointer;
   background:var(--ink3);
-  aspect-ratio:3/2;
+  min-height:190px;
 }
 .pf-card img{
   width:100%;height:100%;object-fit:cover;
-  filter:brightness(.85);
+  filter:brightness(.82);
   transition:transform .55s var(--ease),filter .55s;
 }
-.pf-card:hover img{transform:scale(1.07);filter:brightness(.45)}
+.pf-card:hover img{transform:scale(1.06);filter:brightness(.45)}
 
 /* Always-visible bottom label */
 .pf-card-label{
   position:absolute;bottom:0;left:0;right:0;
-  padding:10px 14px;
-  background:linear-gradient(to top,rgba(5,6,10,.82) 0%,transparent 100%);
-  transition:opacity .35s;
+  padding:8px 12px 10px;
+  background:linear-gradient(to top,rgba(5,6,10,.85) 0%,transparent 100%);
+  transition:opacity .3s;
 }
 .pf-card-label-title{
-  font-family:'Exo 2',sans-serif;font-size:.82rem;font-weight:700;
-  color:#fff;letter-spacing:.02em;
+  font-family:'Exo 2',sans-serif;font-size:.78rem;font-weight:700;
+  color:#fff;letter-spacing:.03em;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 
@@ -657,34 +662,32 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 .pf-card-hover{
   position:absolute;inset:0;
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:18px 16px;
+  padding:16px 14px;
   opacity:0;
-  transform:translateY(12px);
-  transition:opacity .35s var(--ease),transform .35s var(--ease);
+  transform:translateY(10px);
+  transition:opacity .32s var(--ease),transform .32s var(--ease);
   pointer-events:none;
 }
 .pf-card:hover .pf-card-hover{opacity:1;transform:none}
 .pf-card:hover .pf-card-label{opacity:0}
 .pf-card-hover-cat{
-  font-size:.58rem;letter-spacing:3px;text-transform:uppercase;
-  color:var(--gold);font-weight:700;margin-bottom:5px;
+  font-size:.55rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;margin-bottom:4px;
 }
 .pf-card-hover-title{
-  font-family:'Exo 2',sans-serif;font-size:.95rem;font-weight:700;
-  color:#fff;line-height:1.2;margin-bottom:4px;
+  font-family:'Exo 2',sans-serif;font-size:.9rem;font-weight:700;
+  color:#fff;line-height:1.2;margin-bottom:3px;
 }
 .pf-card-hover-sub{
-  font-size:.7rem;color:rgba(244,241,234,.6);font-weight:300;margin-bottom:12px;
+  font-size:.68rem;color:rgba(244,241,234,.6);font-weight:300;margin-bottom:10px;
 }
 .pf-card-hover-cta{
-  display:inline-flex;align-items:center;gap:7px;
-  font-size:.62rem;letter-spacing:2px;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.6rem;letter-spacing:2px;text-transform:uppercase;
   color:var(--gold);font-weight:700;
-  border-bottom:1px solid rgba(197,160,89,.4);
+  border-bottom:1px solid rgba(197,160,89,.45);
   padding-bottom:2px;width:fit-content;
-  transition:border-color .3s;
 }
-.pf-card:hover .pf-card-hover-cta{border-color:var(--gold)}
 
 /* ── PROJECT DETAIL MODAL ── */
 .pjd-overlay{
@@ -2093,7 +2096,7 @@ body.pa-edit-mode nav{top:120px!important}
 /* ══ PORTFOLIO v3 ══ */
 const pfProjects = [
   {
-    id:1, cat:'katoikia', catLabel:'Κατοικία',
+    id:1, cat:'katoikia', catLabel:'Κατοικία', tall:false,
     title:'Βίλα με Πισίνα',
     location:'Καλαμάτα', year:'2023',
     type:'Μελέτη – Κατασκευή – Επίβλεψη – Interior Design',
@@ -2102,7 +2105,7 @@ const pfProjects = [
     imgs:['Image_3__style_transfer01.png','Image_4__upscale01.png','Image_12__style_transfer02.png','Image_2_.png','7.png']
   },
   {
-    id:2, cat:'interior', catLabel:'Interior Design',
+    id:2, cat:'interior', catLabel:'Interior Design', tall:false,
     title:'Open Plan Διαμέρισμα',
     location:'Καλαμάτα', year:'2023',
     type:'Interior Design – Διακόσμηση – 3D Visualization',
@@ -2111,7 +2114,7 @@ const pfProjects = [
     imgs:['3.png','4.png','9.png','Image_2_.png','12.png']
   },
   {
-    id:3, cat:'interior', catLabel:'Interior Design',
+    id:3, cat:'interior', catLabel:'Interior Design', tall:true,
     title:'Πολυτελές Διαμέρισμα',
     location:'Μεσσήνη', year:'2022',
     type:'Interior Design – Custom Έπιπλα – Φωτισμός',
@@ -2120,7 +2123,7 @@ const pfProjects = [
     imgs:['4.png','3.png','12.png','9.png']
   },
   {
-    id:4, cat:'katoikia', catLabel:'Κατοικία',
+    id:4, cat:'katoikia', catLabel:'Κατοικία', tall:true,
     title:'Διώροφη Κατοικία',
     location:'Μεσσηνία', year:'2023',
     type:'Αρχιτεκτονική Μελέτη – Οικοδομική Άδεια – Επίβλεψη',
@@ -2129,7 +2132,7 @@ const pfProjects = [
     imgs:['Image_4__upscale01.png','Image_3__style_transfer01.png','7.png']
   },
   {
-    id:5, cat:'epaggelmatiko', catLabel:'Επαγγελματικό',
+    id:5, cat:'epaggelmatiko', catLabel:'Επαγγελματικό', tall:false,
     title:'3όροφο Κτίριο Γραφείων',
     location:'Καλαμάτα', year:'2022',
     type:'Αρχιτεκτονική Μελέτη – Στατική – Άδεια – Επίβλεψη',
@@ -2138,7 +2141,7 @@ const pfProjects = [
     imgs:['7.png','Image_4__upscale01.png','Image_3__style_transfer01.png']
   },
   {
-    id:6, cat:'interior', catLabel:'Interior Design',
+    id:6, cat:'interior', catLabel:'Interior Design', tall:false,
     title:'Master Bedroom Suite',
     location:'Βίλα Καλαμάτας', year:'2023',
     type:'Interior Design – Custom Furniture – Φωτισμός',
@@ -2147,38 +2150,38 @@ const pfProjects = [
     imgs:['Image_12__style_transfer02.png','Image_3_.png','9.png','Image_2_.png']
   },
   {
-    id:7, cat:'interior', catLabel:'Interior Design',
+    id:7, cat:'interior', catLabel:'Interior Design', tall:false,
     title:'Living & Dining Premium',
     location:'Καλαμάτα', year:'2022',
     type:'Interior Design – 3D Visualization – Διακόσμηση',
-    desc:'Ολοκληρωμένος σχεδιασμός χώρου καθημερινότητας σε premium διαμέρισμα. Ο ανοιχτός χώρος αξιοποιεί πλήρως τη θέα και τον φυσικό φωτισμό. Custom τραπεζαρία από μασίφ ξύλο βελανιδιάς, σε συνδυασμό με σύγχρονα σκαμπό και καρέκλες ιταλικής κατασκευής. Η σύνθεση φωτιστικών — pendant επάνω από τη τραπεζαρία — αποτελεί focal point του χώρου.',
+    desc:'Ολοκληρωμένος σχεδιασμός χώρου καθημερινότητας σε premium διαμέρισμα. Ο ανοιχτός χώρος αξιοποιεί πλήρως τη θέα και τον φυσικό φωτισμό. Custom τραπεζαρία από μασίφ ξύλο βελανιδιάς, σε συνδυασμό με σύγχρονα σκαμπό και καρέκλες ιταλικής κατασκευής.',
     cover:'Image_2_.png',
     imgs:['Image_2_.png','4.png','12.png','3.png']
   },
   {
-    id:8, cat:'anakainisi', catLabel:'Ανακαίνιση',
+    id:8, cat:'anakainisi', catLabel:'Ανακαίνιση', tall:false,
     title:'Σύγχρονη Κουζίνα',
     location:'Καλαμάτα', year:'2023',
     type:'Ανακαίνιση – Custom Κουζίνα – Επίβλεψη',
-    desc:'Ολική ανακαίνιση κουζίνας και χώρου τραπεζαρίας σε κατοικία της Καλαμάτας. Αναλάβαμε τη μελέτη, την κατεδάφιση παλιών επιφανειών, νέες H/M εγκαταστάσεις, custom ντουλάπια και νησίδα. Πλήρης αναμόρφωση σε 18 μέρες χωρίς άλλες καθυστερήσεις. Επιλογή χωνευτών συσκευών Bosch και επιφάνειών από compact panel Fenix.',
+    desc:'Ολική ανακαίνιση κουζίνας και χώρου τραπεζαρίας σε κατοικία της Καλαμάτας. Αναλάβαμε τη μελέτη, την κατεδάφιση παλιών επιφανειών, νέες H/M εγκαταστάσεις, custom ντουλάπια και νησίδα. Πλήρης αναμόρφωση σε 18 μέρες. Επιλογή χωνευτών συσκευών Bosch και επιφανειών από compact panel Fenix.',
     cover:'12.png',
     imgs:['12.png','Image_2_.png','9.png']
   },
   {
-    id:9, cat:'interior', catLabel:'Interior Design',
+    id:9, cat:'interior', catLabel:'Interior Design', tall:true,
     title:'Ελληνική Αισθητική',
     location:'Κατοικία Μεσσηνίας', year:'2023',
     type:'Interior Design – Διακόσμηση – Styling',
-    desc:'Σχεδιασμός εσωτερικού χώρου εμπνευσμένος από την ελληνική παράδοση σε σύγχρονη ερμηνεία. Φυσικά υλικά (τοπική πέτρα, ξύλο, λινό), earthy palette και χειροποίητα στοιχεία δίνουν στο χώρο ζεστασιά και αυθεντικότητα. Ο σχεδιασμός τιμά τον τόπο ενώ παραμένει απόλυτα σύγχρονος και λειτουργικός.',
+    desc:'Σχεδιασμός εσωτερικού χώρου εμπνευσμένος από την ελληνική παράδοση σε σύγχρονη ερμηνεία. Φυσικά υλικά (τοπική πέτρα, ξύλο, λινό), earthy palette και χειροποίητα στοιχεία δίνουν στο χώρο ζεστασιά και αυθεντικότητα.',
     cover:'Image_3_.png',
     imgs:['Image_3_.png','Image_12__style_transfer02.png','Image_2_.png']
   },
   {
-    id:10, cat:'epaggelmatiko', catLabel:'Γραφείο',
+    id:10, cat:'epaggelmatiko', catLabel:'Γραφείο', tall:false,
     title:'PA Creative House',
     location:'Φαρών 155, Καλαμάτα', year:'2024',
     type:'Ανακαίνιση – Interior Design – Επίβλεψη',
-    desc:'Η διαμόρφωση του δικού μας γραφείου στην Καλαμάτα — ένας χώρος που αντικατοπτρίζει την ταυτότητά μας. Λειτουργικός, αισθητικός, εμπνευσμένος. Ανακαίνιση υφιστάμενου χώρου 60 τ.μ. με νέες επιφάνειες, custom έπιπλα, σύγχρονο φωτισμό και ολοκληρωμένη διακόσμηση. Ο χώρος εξυπηρετεί τόσο τις λειτουργικές ανάγκες του γραφείου όσο και τις συναντήσεις με πελάτες.',
+    desc:'Η διαμόρφωση του δικού μας γραφείου στην Καλαμάτα — ένας χώρος που αντικατοπτρίζει την ταυτότητά μας. Λειτουργικός, αισθητικός, εμπνευσμένος. Ανακαίνιση 60 τ.μ. με custom έπιπλα, σύγχρονο φωτισμό και ολοκληρωμένη διακόσμηση.',
     cover:'IMG_0368.jpeg',
     imgs:['IMG_0368.jpeg','IMG_0357.jpeg','IMG_0358.jpeg','IMG_0360.jpeg','IMG_0361.jpeg']
   },
@@ -2194,7 +2197,7 @@ function pfRender(filter){
   if(!grid) return;
   const list = filter === 'all' ? pfProjects : pfProjects.filter(p => p.cat === filter);
   grid.innerHTML = list.map(p => `
-    <div class="pf-card" onclick="openPjd(${p.id})">
+    <div class="pf-card${p.tall ? ' tall' : ''}" onclick="openPjd(${p.id})">
       <img src="${p.cover}" alt="${p.title}" loading="lazy">
       <div class="pf-card-label">
         <div class="pf-card-label-title">${p.title}</div>
@@ -2206,7 +2209,6 @@ function pfRender(filter){
         <div class="pf-card-hover-cta">Δείτε το έργο →</div>
       </div>
     </div>`).join('');
-  // Animate in
   setTimeout(() => {
     grid.querySelectorAll('.pf-card').forEach((c, i) => {
       c.style.opacity = '0'; c.style.transition = 'opacity .4s';
