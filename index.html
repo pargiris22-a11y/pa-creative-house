@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v5.2 | 20260408 -->
+<!-- PA Creative House v5.3 | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -175,11 +175,11 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
 
 .sec-label{display:inline-flex;align-items:center;gap:14px;color:var(--gold);font-size:.68rem;letter-spacing:5px;text-transform:uppercase;font-weight:700;margin-bottom:18px}
 .sec-label::before{content:'';display:block;width:36px;height:1px;background:var(--gold);flex-shrink:0}
-.sec-title{font-family:'Exo 2',sans-serif;font-size:clamp(1.2rem,2.5vw,1.9rem);font-weight:700;line-height:1.1;margin-bottom:52px;max-width:100%;color:#ffffff;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sec-title{font-family:'Exo 2',sans-serif;font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:700;line-height:1.15;margin-bottom:52px;max-width:100%;color:#ffffff;letter-spacing:-.02em;white-space:normal;overflow:visible}
 .sec-title em{color:#ffffff;font-style:normal}
 
 /* ── SERVICES: 12 υπηρεσίες με modal ── */
-.svc-monolith{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line)}
+.svc-monolith{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);background:var(--ink2)}
 .svc-row{border-bottom:1px solid var(--line);padding:32px 36px;display:flex;gap:24px;align-items:flex-start;position:relative;overflow:hidden;transition:background .4s;cursor:pointer;background:var(--ink2);min-height:165px}
 .svc-row:nth-child(3n){border-right:none}
 .svc-row:not(:nth-child(3n)){border-right:1px solid var(--line)}
@@ -193,7 +193,7 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
 .svc-idx{font-family:'Exo 2',sans-serif;font-size:1.2rem;color:var(--gold);font-weight:600;font-style:normal;line-height:1.2;flex-shrink:0;width:36px;margin-top:2px;letter-spacing:0}
 .svc-name{font-family:'Exo 2',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:8px;line-height:1.2;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)}
 .svc-desc{font-size:1.05rem;color:rgba(244,241,234,.7);line-height:1.6;font-weight:400;margin-top:6px}
-.svc-time{display:block;color:var(--gold);font-size:1.05rem;font-weight:400;margin-top:10px;padding-top:8px;border-top:1px solid var(--line)}
+.svc-time{display:block;color:rgba(244,241,234,.7);font-size:1.05rem;font-weight:400;margin-top:10px;padding-top:8px;border-top:1px solid var(--line)}
 .svc-arr{
   position:absolute;right:24px;bottom:20px;
   color:var(--gold);opacity:0;
@@ -204,7 +204,8 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
 }
 .svc-row:hover .svc-arr{opacity:1;transform:none}
 
-/* Pill categoria */
+/* SERVICES SECTION background override */
+#services{background:var(--ink);position:relative;z-index:2}
 .svc-cat{
   display:inline-block;font-size:.58rem;letter-spacing:2px;
   text-transform:uppercase;font-weight:700;
@@ -287,12 +288,12 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
 
 /* ── PROCESS ── */
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:var(--line);margin-top:52px}
-.pstep{background:var(--ink);padding:46px 34px;position:relative;transition:background .4s}
+.pstep{background:var(--ink);padding:46px 34px;position:relative;transition:background .4s;display:flex;flex-direction:column;justify-content:flex-start}
 .pstep:hover{background:var(--ink2)}
 .pstep[data-arrow]::after{content:attr(data-arrow);position:absolute;right:-14px;top:42px;color:var(--gold-d);font-size:1.1rem;z-index:2}
 .pstep-n{font-family:'Cormorant Garamond',serif;font-size:3.2rem;color:rgba(197,160,89,.12);font-weight:700;line-height:1;margin-bottom:14px}
-.pstep-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:600;margin-bottom:10px}
-.pstep-desc{font-size:.84rem;color:var(--cream3);line-height:1.65;font-weight:300}
+.pstep-name{font-family:'Exo 2',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em}
+.pstep-desc{font-size:1.05rem;color:rgba(244,241,234,.7);line-height:1.65;font-weight:400}
 
 /* ── WHY ── */
 .why{background:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -304,7 +305,7 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
 .wchk{width:38px;height:38px;flex-shrink:0;border:1px solid var(--gold-d);display:flex;align-items:center;justify-content:center;margin-top:2px}
 .wchk svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .wpt h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:#ffffff;margin-bottom:6px;letter-spacing:.01em}
-.wpt p{font-size:.92rem;color:rgba(244,241,234,.75);line-height:1.65;font-weight:300}
+.wpt p{font-size:1rem;color:rgba(244,241,234,.7);line-height:1.65;font-weight:400}
 .tmn{background:rgba(197,160,89,.04);border:1px solid var(--line);padding:32px;margin-bottom:14px;position:relative}
 .tmn::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);opacity:.15;position:absolute;top:6px;left:18px;line-height:1}
 .tmn .stars{color:var(--gold);font-size:12px;letter-spacing:2px;display:block;margin-bottom:10px}
@@ -400,7 +401,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 .wa:hover~.wa-tip{opacity:1;transform:none}
 
 /* ── RESPONSIVE ── */
-
+@media(max-width:1200px){
   .svc-row:nth-child(3n){border-right:1px solid var(--line)}
   .svc-row:nth-child(even){border-right:none}
   .svc-row:nth-last-child(2){border-bottom:1px solid var(--line)}
@@ -410,6 +411,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   .map-info{border-right:none;border-bottom:1px solid var(--line);padding:50px 5%}
 }
 
+@media(max-width:900px){
   .burger{display:flex}
   .why-grid{grid-template-columns:1fr}
   .why-l{border-right:none;border-bottom:1px solid var(--line);padding:70px 0 60px}
@@ -427,6 +429,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   .svc-modal{padding:40px 28px}
 }
 
+@media(max-width:600px){
   .hero-stats{flex-direction:column}
   .hstat{border-right:none;border-bottom:1px solid var(--line)}
   .hstat:last-child{border-bottom:none}
@@ -1151,6 +1154,21 @@ window.addEventListener('scroll',()=>document.getElementById('nav').classList.to
 function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobileNav').classList.toggle('open');document.body.style.overflow=document.getElementById('mobileNav').classList.contains('open')?'hidden':''}
 function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
 
+/* FAQ TOGGLE */
+function toggleFaq(btn){
+  var isOpen = btn.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-q.open').forEach(function(b){
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  // Open clicked if it was closed
+  if(!isOpen){
+    btn.classList.add('open');
+    btn.nextElementSibling.classList.add('open');
+  }
+}
+
 /* PARALLAX */
 window.addEventListener('scroll',()=>{const p=document.getElementById('parallax');if(p)p.style.transform=`translateY(${scrollY*.22}px)`},{passive:true});
 
@@ -1250,8 +1268,8 @@ if(document.getElementById('pfGrid')) pfRender('all');
 /* ══ COUNTER ANIMATION FIX ══ */
 function animateCounter(el){
   var target = parseInt(el.getAttribute('data-count'));
-  var suffix = el.textContent.replace(/[0-9]/g,'');
-  var start = 0;
+  var suffix = el.getAttribute('data-suffix') || el.textContent.replace(/[0-9]/g,'');
+  el.setAttribute('data-suffix', suffix);
   var duration = 2000;
   var startTime = null;
   function step(timestamp){
@@ -1273,13 +1291,16 @@ function runCounters(){
     animateCounter(el);
   });
 }
+// Trigger immediately when DOM is ready (stats are always visible on load)
+window.addEventListener('load', function(){ setTimeout(runCounters, 800); });
+// Also via IntersectionObserver as backup
 var counterObserver = new IntersectionObserver(function(entries){
   if(entries[0].isIntersecting){ runCounters(); }
-}, {threshold: 0.1});
+}, {threshold: 0.05});
 var heroStats = document.querySelector('.hero-stats');
 if(heroStats) counterObserver.observe(heroStats);
-// Fallback: run after 1.5s if not yet triggered
-setTimeout(function(){ runCounters(); }, 1500);
+// Hard fallback
+setTimeout(function(){ runCounters(); }, 2000);
 /* ══ /COUNTER ANIMATION FIX ══ */
 </script>
 
@@ -1433,11 +1454,11 @@ body.pa-edit-mode nav{top:120px!important}
 #why .sec-title br{display:block}
 
 /* ══ SCROLL CUE ══ */
-.scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;z-index:10;animation:fadeInUp 2s ease 1.2s both}
-.scroll-cue span{font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:rgba(197,160,89,.75);font-family:'Jost',sans-serif;font-weight:500}
-.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(197,160,89,.8),transparent);animation:scrollPulse 2s ease-in-out infinite}
+.scroll-cue{position:absolute;bottom:40px;right:5%;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;z-index:10;animation:fadeInUp 2s ease 1.2s both}
+.scroll-cue span{font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:rgba(197,160,89,.75);font-family:'Jost',sans-serif;font-weight:500;writing-mode:vertical-rl;text-orientation:mixed}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(197,160,89,.8),transparent);animation:scrollPulse 2s ease-in-out infinite}
 @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
-@keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(14px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media(max-width:768px){.scroll-cue{display:none}}
 </style>
 
