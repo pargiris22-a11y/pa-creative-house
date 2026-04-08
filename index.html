@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v5.3 | 20260408 -->
+<!-- PA Creative House v5.4 | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -304,7 +304,7 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
 .wpt{display:flex;gap:18px;align-items:flex-start;margin-bottom:28px}
 .wchk{width:38px;height:38px;flex-shrink:0;border:1px solid var(--gold-d);display:flex;align-items:center;justify-content:center;margin-top:2px}
 .wchk svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.wpt h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:#ffffff;margin-bottom:6px;letter-spacing:.01em}
+.wpt h4{font-family:'Exo 2',sans-serif;font-size:1.2rem;font-weight:700;color:#ffffff;margin-bottom:6px;letter-spacing:.02em;text-transform:uppercase}
 .wpt p{font-size:1rem;color:rgba(244,241,234,.7);line-height:1.65;font-weight:400}
 .tmn{background:rgba(197,160,89,.04);border:1px solid var(--line);padding:32px;margin-bottom:14px;position:relative}
 .tmn::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);opacity:.15;position:absolute;top:6px;left:18px;line-height:1}
@@ -1291,16 +1291,16 @@ function runCounters(){
     animateCounter(el);
   });
 }
-// Trigger immediately when DOM is ready (stats are always visible on load)
-window.addEventListener('load', function(){ setTimeout(runCounters, 800); });
-// Also via IntersectionObserver as backup
-var counterObserver = new IntersectionObserver(function(entries){
-  if(entries[0].isIntersecting){ runCounters(); }
-}, {threshold: 0.05});
-var heroStats = document.querySelector('.hero-stats');
-if(heroStats) counterObserver.observe(heroStats);
-// Hard fallback
-setTimeout(function(){ runCounters(); }, 2000);
+// Primary: run 1s after DOM ready (animation delay is 0.8s, so 1s is safe)
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(runCounters, 1000); });
+} else {
+  setTimeout(runCounters, 1000);
+}
+// Secondary: also on window load
+window.addEventListener('load', function(){ setTimeout(runCounters, 600); });
+// Hard fallback at 3s
+setTimeout(runCounters, 3000);
 /* ══ /COUNTER ANIMATION FIX ══ */
 </script>
 
