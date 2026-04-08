@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v5.5 | 20260408 -->
+<!-- PA Creative House v5.7 | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -537,13 +537,14 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 }
 .ai-chat-window.open{display:flex}
 .ai-chat-header{
-  padding:12px 18px;border-bottom:1px solid var(--line);
+  padding:14px 18px;border-bottom:1px solid var(--line);
   display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;
+  flex-shrink:0;background:rgba(5,6,10,.6);
 }
 .ai-chat-name{
   display:flex;align-items:center;gap:10px;
-  font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  font-family:'Exo 2',sans-serif;
+  font-size:.7rem;letter-spacing:3px;text-transform:uppercase;
   color:var(--gold);font-weight:700;
 }
 .ai-online{width:7px;height:7px;border-radius:50%;background:#25D366;animation:pulse 2s infinite;flex-shrink:0}
@@ -554,26 +555,27 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   display:flex;flex-direction:column;gap:12px;
   scrollbar-width:thin;scrollbar-color:var(--gold-d) transparent;
 }
-.ai-msg{max-width:88%;line-height:1.65;font-size:.88rem;font-weight:300;padding:11px 14px;border-radius:2px}
+.ai-msg{max-width:90%;line-height:1.7;font-size:.93rem;font-weight:300;padding:12px 16px;border-radius:2px;font-family:'Jost',sans-serif}
 .ai-msg.bot{
-  background:rgba(197,160,89,.08);border:1px solid var(--line);
+  background:rgba(197,160,89,.06);border:1px solid var(--line);
   color:var(--cream2);align-self:flex-start;border-left:2px solid var(--gold);
+  font-size:.93rem;font-weight:300;
 }
 .ai-msg.user{
-  background:rgba(197,160,89,.15);border:1px solid rgba(197,160,89,.25);
-  color:var(--cream);align-self:flex-end;
+  background:rgba(197,160,89,.14);border:1px solid rgba(197,160,89,.25);
+  color:var(--cream);align-self:flex-end;font-size:.93rem;
 }
-.ai-msg.typing{color:var(--cream3);font-style:italic}
+.ai-msg.typing{color:var(--cream3);font-style:italic;font-size:.88rem}
 .ai-input-row{
   display:flex;gap:0;border-top:1px solid var(--line);flex-shrink:0;
 }
 .ai-text-input{
   flex:1;background:transparent;border:none;
-  color:var(--cream);padding:13px 16px;
-  font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;
+  color:var(--cream);padding:14px 16px;
+  font-family:'Jost',sans-serif;font-size:.93rem;font-weight:300;
   outline:none;
 }
-.ai-text-input::placeholder{color:var(--cream3)}
+.ai-text-input::placeholder{color:var(--cream3);font-size:.88rem}
 .ai-send-btn{
   background:var(--gold);color:var(--ink);border:none;
   padding:0 20px;cursor:pointer;transition:background .3s;
@@ -702,10 +704,10 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
     </div>
   </div>
   <div class="hero-stats">
-    <div class="hstat"><h3 data-count="600" data-suffix="+">0+</h3><p>Έργα & Μελέτες</p></div>
-    <div class="hstat"><h3 data-count="12" data-suffix="+">0+</h3><p>Υπηρεσίες</p></div>
-    <div class="hstat"><h3 data-count="5" data-suffix="+">0+</h3><p>Χρόνια Εμπειρίας</p></div>
-    <div class="hstat"><h3 data-count="24" data-suffix="h">0h</h3><p>Χρόνος Απόκρισης</p></div>
+    <div class="hstat"><h3 data-count="600" data-suffix="+">600+</h3><p>Έργα & Μελέτες</p></div>
+    <div class="hstat"><h3 data-count="12" data-suffix="+">12+</h3><p>Υπηρεσίες</p></div>
+    <div class="hstat"><h3 data-count="5" data-suffix="+">5+</h3><p>Χρόνια Εμπειρίας</p></div>
+    <div class="hstat"><h3 data-count="24" data-suffix="h">24h</h3><p>Χρόνος Απόκρισης</p></div>
   </div>
   <div class="scroll-cue" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
     <span>Scroll</span>
@@ -953,7 +955,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <p>Ναι, είναι <strong>υποχρεωτικό</strong> για κάθε αγοραπωλησία ή μίσθωση. Το εκδίδουμε σε <strong>3–5 εργάσιμες ημέρες</strong> μετά από αυτοψία.</p>
+        <p>Ναι, είναι <strong>υποχρεωτικό</strong> για κάθε αγοραπωλησία ή μίσθωση. Το εκδίδουμε σε <strong>2 ημέρες</strong> μετά από αυτοψία.</p>
       </div>
     </div>
 
@@ -973,7 +975,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <p>Επιδοτεί <strong>έως 75%</strong> του κόστους ενεργειακής αναβάθμισης.  ολόκληρο τον φάκελο — από ΠΕΑ έως εκταμίευση.</p>
+        <p>Αναλαμβάνουμε την πλήρη τεχνική υποστήριξη: ΠΕΑ πριν, αίτηση, επιλογή παρεμβάσεων (κουφώματα, μόνωση, θέρμανση, PV), εκταμίευση και ΠΕΑ μετά. Επιδότηση <strong>έως 75%</strong>.</p>
       </div>
     </div>
 
@@ -993,7 +995,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <p>Τίτλος ιδιοκτησίας και συμβόλαιο αγοράς. Κάνουμε αυτοψία και παραδίδουμε το διάγραμμα σε <strong>3–7 εργάσιμες ημέρες</strong>.</p>
+        <p>Τίτλος ιδιοκτησίας και συμβόλαιο αγοράς. Κάνουμε αυτοψία και παραδίδουμε το διάγραμμα σε <strong>15 ημέρες</strong>.</p>
       </div>
     </div>
 
@@ -1252,12 +1254,12 @@ async function handleSubmit(e){
 const aiKB=[
   {keys:['άδεια','οικοδομ','κτίριο','permit'],text:'Για έκδοση οικοδομικής άδειας χρειαζόμαστε τοπογραφικό, τίτλους ιδιοκτησίας και αποτύπωση. Διάρκεια 2–6 μήνες. Γραπτή προσφορά πριν ξεκινήσουμε.',actions:[{text:'Καλέστε μας',href:'tel:+302721090509'},{text:'Αποστολή αιτήματος',href:'#contact'}]},
   {keys:['αυθαίρετ','τακτοποί','παράνομ'],text:'Τακτοποίηση αυθαιρέτων Ν.4495/2017 — ηλεκτρονικά, 1–3 μήνες. Χρειάζεται τοπογραφικό + αποτύπωση. Το πρόστιμο εξαρτάται από τα τ.μ. και τη ζώνη.',actions:[{text:'WhatsApp',href:'https://wa.me/306987034064'},{text:'Αποστολή αιτήματος',href:'#contact'}]},
-  {keys:['πεα','ενεργεια','πιστοποι','κενακ'],text:'ΠΕΑ εντός 3–5 εργάσιμων ημερών μετά αυτοψία. Υποχρεωτικό για αγοραπωλησία ή μίσθωση.',actions:[{text:'Ραντεβού',href:'tel:+302721090509'}]},
-  {keys:['εξοικονομ','επιδοτ','ανακαινίζ'],text:'Εξοικονομώ – Ανακαινίζω:  Επιδότηση έως 75%. Αναλαμβάνουμε ολόκληρο τον φάκελο.',actions:[{text:'Πληροφορίες',href:'#contact'},{text:'WhatsApp',href:'https://wa.me/306987034064'}]},
-  {keys:['τοπογραφ','αποτύπ','κτηματολ'],text:'Τοπογραφικές αποτυπώσεις με GPS/Total Station. Παράδοση 3–7 εργάσιμες. ΚΤΗΜΑΤΟΛΟΓΙΟ, άδειες, μεταβιβάσεις.',actions:[{text:'Επικοινωνία',href:'#contact'}]},
+  {keys:['πεα','ενεργεια','πιστοποι','κενακ'],text:'ΠΕΑ εντός 2 ημερών μετά αυτοψία. Υποχρεωτικό για αγοραπωλησία ή μίσθωση ακινήτου.',actions:[{text:'Ραντεβού',href:'tel:+302721090509'}]},
+  {keys:['εξοικονομ','επιδοτ','ανακαινίζ'],text:'Αναλαμβάνουμε ολόκληρο τον φάκελο: ΠΕΑ πριν, αίτηση, παρεμβάσεις (κουφώματα, μόνωση, θέρμανση, PV), εκταμίευση και ΠΕΑ μετά. Επιδότηση έως 75%.',actions:[{text:'Πληροφορίες',href:'#contact'},{text:'WhatsApp',href:'https://wa.me/306987034064'}]},
+  {keys:['τοπογραφ','αποτύπ','κτηματολ'],text:'Τοπογραφικές αποτυπώσεις με GPS/Total Station. Παράδοση σε 15 ημέρες. Απαραίτητο για κτηματολόγιο, άδειες, μεταβιβάσεις.',actions:[{text:'Επικοινωνία',href:'#contact'}]},
   {keys:['ανακαινίσ','interior','σχεδιασ','design'],text:'Interior Design και ανακαινίσεις — σχεδιάζουμε, αδειοδοτούμε και κατασκευάζουμε. Παράδοση με κλειδί στο χέρι.',actions:[{text:'Δείτε το Portfolio',href:'#portfolio'},{text:'Επικοινωνία',href:'#contact'}]},
   {keys:['κοστ','τιμ','πόσο','χρεώ','αμοιβ'],text:'Δίνουμε γραπτή προσφορά χωρίς δεσμεύσεις πριν ξεκινήσουμε. Καμία κρυφή χρέωση.',actions:[{text:'Ζητήστε προσφορά',href:'#contact'},{text:'Καλέστε μας',href:'tel:+302721090509'}]},
-  {keys:['χρόν','πόσος καιρ','πότε','διάρκ'],text:'ΠΕΑ 3–5 ημέρες · Αυθαίρετο 1–3 μήνες · Άδεια δόμησης 2–6 μήνες · Εξοικονομώ 2–4 μήνες · Τοπογραφικό 3–7 ημέρες.',actions:[{text:'Ξεκινήστε τώρα',href:'#contact'}]},
+  {keys:['χρόν','πόσος καιρ','πότε','διάρκ'],text:'ΠΕΑ 2 ημέρες · Αυθαίρετο 1–3 μήνες · Άδεια δόμησης 2–6 μήνες · Εξοικονομώ 2–4 μήνες · Τοπογραφικό 15 ημέρες.',actions:[{text:'Ξεκινήστε τώρα',href:'#contact'}]},
   {keys:['γραφείο','ώρ','ανοιχτ','πού','διεύθυν'],text:'Φαρών 155, Καλαμάτα. Δευτέρα–Παρασκευή 09:00–17:00. Και μέσω WhatsApp!',actions:[{text:'Google Maps',href:'https://maps.google.com/?q=Φαρών+155,+Καλαμάτα',target:'_blank'},{text:'WhatsApp',href:'https://wa.me/306987034064'}]},
 ];
 
@@ -1267,28 +1269,25 @@ if(document.getElementById('pfGrid')) pfRender('all');
 
 /* ══ COUNTER ══ */
 (function(){
-  function animateCounter(el){
+  var els = document.querySelectorAll('.hstat h3[data-count]');
+  if(!els.length) return;
+  els.forEach(function(el){
     var target = parseInt(el.getAttribute('data-count'), 10);
     var suffix = el.getAttribute('data-suffix') || '';
-    var duration = 2000;
-    var startTime = null;
-    function step(ts){
-      if(!startTime) startTime = ts;
-      var p = Math.min((ts - startTime) / duration, 1);
+    var steps  = 50;
+    var delay  = 40; // ms per step → 2000ms total
+    var step   = 0;
+    el.textContent = '0' + suffix;
+    var timer = setInterval(function(){
+      step++;
+      var p = step / steps;
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.floor(eased * target) + suffix;
-      if(p < 1) requestAnimationFrame(step);
-      else el.textContent = target + suffix;
-    }
-    requestAnimationFrame(step);
-  }
-  // Run immediately — elements exist in DOM at this point
-  document.querySelectorAll('.hstat h3[data-count]').forEach(animateCounter);
-  // Also re-run on load in case above missed anything
-  window.addEventListener('load', function(){
-    document.querySelectorAll('.hstat h3[data-count]').forEach(function(el){
-      if(el.textContent.charAt(0)==='0') animateCounter(el);
-    });
+      el.textContent = Math.round(eased * target) + suffix;
+      if(step >= steps){
+        el.textContent = target + suffix;
+        clearInterval(timer);
+      }
+    }, delay);
   });
 })();
 /* ══ /COUNTER ══ */
