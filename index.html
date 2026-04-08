@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v5.8 | 20260408 -->
+<!-- PA Creative House v5.9 | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -623,28 +623,68 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 }
 
 /* ══ PORTFOLIO v3 — Project Cards + Detail Modal ══ */
-.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:8px}
+.pf-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:3px;margin-top:8px;
+}
 .pf-card{
   position:relative;overflow:hidden;cursor:pointer;
-  background:var(--ink3);aspect-ratio:4/3;
+  background:var(--ink3);
+  aspect-ratio:3/2;
 }
 .pf-card img{
   width:100%;height:100%;object-fit:cover;
-  filter:brightness(.8);
-  transition:transform .6s var(--ease),filter .6s;
+  filter:brightness(.85);
+  transition:transform .55s var(--ease),filter .55s;
 }
-.pf-card:hover img{transform:scale(1.06);filter:brightness(.55)}
-.pf-card-overlay{
+.pf-card:hover img{transform:scale(1.07);filter:brightness(.45)}
+
+/* Always-visible bottom label */
+.pf-card-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:10px 14px;
+  background:linear-gradient(to top,rgba(5,6,10,.82) 0%,transparent 100%);
+  transition:opacity .35s;
+}
+.pf-card-label-title{
+  font-family:'Exo 2',sans-serif;font-size:.82rem;font-weight:700;
+  color:#fff;letter-spacing:.02em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* Hover overlay — slides up */
+.pf-card-hover{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(5,6,10,.95) 0%,rgba(5,6,10,.2) 50%,transparent 100%);
-  padding:20px;display:flex;flex-direction:column;justify-content:flex-end;
-  opacity:0;transition:opacity .4s;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:18px 16px;
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+  pointer-events:none;
 }
-.pf-card:hover .pf-card-overlay{opacity:1}
-.pf-card-cat{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
-.pf-card-title{font-family:'Exo 2',sans-serif;font-size:1rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:3px}
-.pf-card-sub{font-size:.75rem;color:rgba(244,241,234,.65);font-weight:300}
-.pf-card-count{position:absolute;top:12px;right:12px;background:rgba(5,6,10,.7);border:1px solid var(--line);color:var(--gold);font-size:.6rem;letter-spacing:1px;padding:4px 8px;font-weight:700}
+.pf-card:hover .pf-card-hover{opacity:1;transform:none}
+.pf-card:hover .pf-card-label{opacity:0}
+.pf-card-hover-cat{
+  font-size:.58rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;margin-bottom:5px;
+}
+.pf-card-hover-title{
+  font-family:'Exo 2',sans-serif;font-size:.95rem;font-weight:700;
+  color:#fff;line-height:1.2;margin-bottom:4px;
+}
+.pf-card-hover-sub{
+  font-size:.7rem;color:rgba(244,241,234,.6);font-weight:300;margin-bottom:12px;
+}
+.pf-card-hover-cta{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.62rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;
+  border-bottom:1px solid rgba(197,160,89,.4);
+  padding-bottom:2px;width:fit-content;
+  transition:border-color .3s;
+}
+.pf-card:hover .pf-card-hover-cta{border-color:var(--gold)}
 
 /* ── PROJECT DETAIL MODAL ── */
 .pjd-overlay{
@@ -779,7 +819,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   .pjd-hero-caption{padding:0 5%}
 }
 @media(max-width:600px){
-  .pf-grid{grid-template-columns:1fr}
+  .pf-grid{grid-template-columns:repeat(2,1fr)}
   .pjd-gallery-grid{grid-template-columns:1fr}
   .pjd-gallery-grid img:first-child{grid-column:span 1;aspect-ratio:4/3}
 }
@@ -2156,19 +2196,23 @@ function pfRender(filter){
   grid.innerHTML = list.map(p => `
     <div class="pf-card" onclick="openPjd(${p.id})">
       <img src="${p.cover}" alt="${p.title}" loading="lazy">
-      <div class="pf-card-overlay">
-        <div class="pf-card-cat">${p.catLabel}</div>
-        <div class="pf-card-title">${p.title}</div>
-        <div class="pf-card-sub">${p.location} · ${p.year}</div>
+      <div class="pf-card-label">
+        <div class="pf-card-label-title">${p.title}</div>
+      </div>
+      <div class="pf-card-hover">
+        <div class="pf-card-hover-cat">${p.catLabel}</div>
+        <div class="pf-card-hover-title">${p.title}</div>
+        <div class="pf-card-hover-sub">${p.location} · ${p.year}</div>
+        <div class="pf-card-hover-cta">Δείτε το έργο →</div>
       </div>
     </div>`).join('');
-  // Animate cards in
+  // Animate in
   setTimeout(() => {
     grid.querySelectorAll('.pf-card').forEach((c, i) => {
-      c.style.opacity = '0'; c.style.transform = 'scale(.96)'; c.style.transition = 'opacity .5s, transform .5s';
-      setTimeout(() => { c.style.opacity = '1'; c.style.transform = 'scale(1)'; }, i * 50);
+      c.style.opacity = '0'; c.style.transition = 'opacity .4s';
+      setTimeout(() => { c.style.opacity = '1'; }, i * 40);
     });
-  }, 30);
+  }, 20);
 }
 
 function pfFilter(cat, btn){
