@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v6.3 | 20260408 -->
+<!-- PA Creative House v6.4-i18n | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -18,7 +18,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Exo+2:wght@200;300;700;800&family=Jost:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Exo+2:wght@200;300;700;800&family=Jost:wght@200;300;400;500;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -392,7 +392,45 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 .ai-sug{background:rgba(11,15,22,.9);border:1px solid var(--line);color:var(--cream2);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;padding:8px 14px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:all .3s;backdrop-filter:blur(10px)}
 .ai-sug:hover{border-color:var(--gold-d);color:var(--gold)}
 
-/* ── WHATSAPP ── */
+/* ── LANGUAGE SWITCHER ── */
+.lang-switcher{
+  display:flex;align-items:center;gap:3px;margin-right:12px;
+}
+.lang-btn{
+  background:none;border:none;cursor:pointer;
+  font-size:1.1rem;padding:4px 5px;border-radius:4px;
+  opacity:.5;transition:opacity .2s,background .2s;line-height:1;
+}
+.lang-btn:hover{opacity:.85;background:rgba(197,160,89,.1)}
+.lang-btn.active{opacity:1;background:rgba(197,160,89,.15)}
+
+/* Chinese font override */
+:lang(zh) body,
+html[lang="zh"] body{font-family:'Noto Sans SC',sans-serif}
+html[lang="zh"] .nav-logo,
+html[lang="zh"] .sec-title,
+html[lang="zh"] .hero-tagline,
+html[lang="zh"] .svc-name,
+html[lang="zh"] .pstep-name,
+html[lang="zh"] .wpt h4{font-family:'Noto Sans SC',sans-serif;letter-spacing:0}
+
+/* RTL support for Hebrew */
+html[dir="rtl"] .hero-content{text-align:right}
+html[dir="rtl"] .hero-tagline .tline-divider{margin:22px auto 22px 0}
+html[dir="rtl"] .hero-sub{border-left:none;border-right:2px solid var(--gold);padding-left:0;padding-right:20px}
+html[dir="rtl"] .hero-btns{flex-direction:row-reverse}
+html[dir="rtl"] .sec-label::before{display:none}
+html[dir="rtl"] .sec-label::after{content:'';display:block;width:36px;height:1px;background:var(--gold);flex-shrink:0}
+html[dir="rtl"] .nav-links{flex-direction:row-reverse}
+html[dir="rtl"] .hero-eyebrow{flex-direction:row-reverse}
+html[dir="rtl"] .cit{flex-direction:row-reverse}
+html[dir="rtl"] .wpt{flex-direction:row-reverse;text-align:right}
+html[dir="rtl"] .pstep{text-align:right}
+html[dir="rtl"] .faq-q{flex-direction:row-reverse}
+html[dir="rtl"] .contact-wrap{direction:rtl}
+html[dir="rtl"] body{font-family:'Noto Sans SC','Jost',sans-serif}
+
+@media(max-width:900px){.lang-switcher{display:none}}
 .wa{position:fixed;bottom:20px;right:20px;z-index:800;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .3s,box-shadow .3s;animation:waIn 1s 2.5s var(--ease) both}
 .wa:hover{transform:scale(1.12);box-shadow:0 10px 36px rgba(37,211,102,.55)}
 .wa svg{width:28px;height:28px;fill:#fff}
@@ -834,22 +872,30 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 <nav id="nav">
   <a href="#home" class="nav-logo">PA <span>Creative House</span></a>
   <ul class="nav-links">
-    <li><a href="#home">Αρχική</a></li>
-    <li><a href="#services">Υπηρεσίες</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#why">Γιατί Εμάς</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Επικοινωνία</a></li>
+    <li><a href="#home"      data-i18n="nav_home">Αρχική</a></li>
+    <li><a href="#services"  data-i18n="nav_services">Υπηρεσίες</a></li>
+    <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
+    <li><a href="#why"       data-i18n="nav_why">Γιατί Εμάς</a></li>
+    <li><a href="#faq"       data-i18n="nav_faq">FAQ</a></li>
+    <li><a href="#contact"   data-i18n="nav_contact">Επικοινωνία</a></li>
   </ul>
+  <div class="lang-switcher" id="langSwitcher">
+    <button class="lang-btn active" data-lang="el" onclick="setLang('el')" title="Ελληνικά">🇬🇷</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')" title="English">🇬🇧</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLang('fr')" title="Français">🇫🇷</button>
+    <button class="lang-btn" data-lang="de" onclick="setLang('de')" title="Deutsch">🇩🇪</button>
+    <button class="lang-btn" data-lang="he" onclick="setLang('he')" title="עברית">🇮🇱</button>
+    <button class="lang-btn" data-lang="zh" onclick="setLang('zh')" title="中文">🇨🇳</button>
+  </div>
   <a href="tel:+302721090509" class="nav-cta">27210 90509</a>
   <div class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
-  <a href="#home"      onclick="closeMenu()">Αρχική</a>
-  <a href="#services"  onclick="closeMenu()">Υπηρεσίες</a>
-  <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
-  <a href="#why"       onclick="closeMenu()">Γιατί Εμάς</a>
-  <a href="#contact"   onclick="closeMenu()" class="mcta">Επικοινωνία →</a>
+  <a href="#home"      onclick="closeMenu()" data-i18n="nav_home">Αρχική</a>
+  <a href="#services"  onclick="closeMenu()" data-i18n="nav_services">Υπηρεσίες</a>
+  <a href="#portfolio" onclick="closeMenu()" data-i18n="nav_portfolio">Portfolio</a>
+  <a href="#why"       onclick="closeMenu()" data-i18n="nav_why">Γιατί Εμάς</a>
+  <a href="#contact"   onclick="closeMenu()" class="mcta" data-i18n="nav_contact_cta">Επικοινωνία →</a>
 </div>
 
 <!-- HERO -->
@@ -858,31 +904,26 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   <!-- κανάβος αφαιρέθηκε -->
   <div class="hero-vline"></div>
   <div class="hero-content">
-    <span class="hero-eyebrow"><span class="live"></span>Πολιτικός Μηχανικός ΤΕ · Καλαμάτα · Μεσσηνία</span>
+    <span class="hero-eyebrow"><span class="live"></span><span data-i18n="hero_eyebrow">Πολιτικός Μηχανικός ΤΕ · Καλαμάτα · Μεσσηνία</span></span>
 
     <!-- TAGLINE: μία γραμμή το καθένα -->
     <div class="hero-tagline">
-      <span class="tline tline-1">Η περιουσία σας.</span>
+      <span class="tline tline-1" data-i18n="hero_line1">Η περιουσία σας.</span>
       <span class="tline-divider"></span>
-      <span class="tline tline-2">Ευθύνη μας.</span>
+      <span class="tline tline-2" data-i18n="hero_line2">Ευθύνη μας.</span>
     </div>
 
-    <p class="hero-sub">
-      <strong>Παναγιώτης Αργύρης</strong> — Πολιτικός Μηχανικός ΤΕ με 600 ολοκληρωμένα έργα
-      στη Μεσσηνία από το 2020. Αναλαμβάνουμε κάθε υπόθεση ακινήτου από την αρχή ως το τέλος,
-      χωρίς γραφειοκρατικά εμπόδια.
-
-    </p>
+    <p class="hero-sub" data-i18n="hero_sub" data-i18n-html="1"><strong>Παναγιώτης Αργύρης</strong> — Πολιτικός Μηχανικός ΤΕ με 600 ολοκληρωμένα έργα στη Μεσσηνία από το 2020. Αναλαμβάνουμε κάθε υπόθεση ακινήτου από την αρχή ως το τέλος, χωρίς γραφειοκρατικά εμπόδια.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-gold">Ξεκινήστε τη μελέτη σας <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
-      <a href="#portfolio" class="btn-ghost">Δείτε τα έργα μας</a>
+      <a href="#contact" class="btn-gold" data-i18n="hero_btn1" data-i18n-html="1">Ξεκινήστε τη μελέτη σας <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+      <a href="#portfolio" class="btn-ghost" data-i18n="hero_btn2">Δείτε τα έργα μας</a>
     </div>
   </div>
   <div class="hero-stats">
-    <div class="hstat"><h3 data-count="600" data-suffix="+">600+</h3><p>Έργα & Μελέτες</p></div>
-    <div class="hstat"><h3 data-count="12" data-suffix="+">12+</h3><p>Υπηρεσίες</p></div>
-    <div class="hstat"><h3 data-count="5" data-suffix="+">5+</h3><p>Χρόνια Εμπειρίας</p></div>
-    <div class="hstat"><h3 data-count="24" data-suffix="h">24h</h3><p>Χρόνος Απόκρισης</p></div>
+    <div class="hstat"><h3 data-count="600" data-suffix="+">600+</h3><p data-i18n="stat1">Έργα & Μελέτες</p></div>
+    <div class="hstat"><h3 data-count="12" data-suffix="+">12+</h3><p data-i18n="stat2">Υπηρεσίες</p></div>
+    <div class="hstat"><h3 data-count="5" data-suffix="+">5+</h3><p data-i18n="stat3">Χρόνια Εμπειρίας</p></div>
+    <div class="hstat"><h3 data-count="24" data-suffix="h">24h</h3><p data-i18n="stat4">Χρόνος Απόκρισης</p></div>
   </div>
   <div class="scroll-cue" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
     <span>Scroll</span>
@@ -892,8 +933,8 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 
 <!-- SERVICES: 12 υπηρεσίες -->
 <section id="services" class="sec">
-  <span class="sec-label reveal">Υπηρεσίες</span>
-  <h2 class="sec-title reveal">Ολοκληρωμένες λύσεις για <em>κάθε ακίνητο</em></h2>
+  <span class="sec-label reveal" data-i18n="lbl_services">Υπηρεσίες</span>
+  <h2 class="sec-title reveal" data-i18n="svc_title" data-i18n-html="1">Ολοκληρωμένες λύσεις για <em>κάθε ακίνητο</em></h2>
   
   
   
@@ -987,9 +1028,9 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   <img class="cin-img" src="Image_3__style_transfer01.png" alt="Βίλα — PA Creative House">
   <div class="cin-overlay">
     <div class="cin-content">
-      <span class="sec-label">Έργα Αναφοράς</span>
-      <h2>Από το σχέδιο <em>στην πραγματικότητα</em></h2>
-      <p>Κάθε έργο ξεκινά από ένα όραμα. Το ολοκληρώνουμε με ακρίβεια, αισθητική και σεβασμό.</p>
+      <span class="sec-label" data-i18n="lbl_references">Έργα Αναφοράς</span>
+      <h2 data-i18n="cin_title" data-i18n-html="1">Από το σχέδιο <em>στην πραγματικότητα</em></h2>
+      <p data-i18n="cin_sub">Κάθε έργο ξεκινά από ένα όραμα. Το ολοκληρώνουμε με ακρίβεια, αισθητική και σεβασμό.</p>
       <a href="#portfolio" class="btn-gold">Δείτε το Portfolio <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
@@ -998,13 +1039,13 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 <!-- PORTFOLIO -->
 
 <section id="portfolio" class="sec portfolio">
-  <span class="sec-label reveal">Portfolio</span>
-  <h2 class="sec-title reveal">Δείγματα <em>δουλειάς μας</em></h2>
+  <span class="sec-label reveal" data-i18n="lbl_portfolio">Portfolio</span>
+  <h2 class="sec-title reveal" data-i18n="pf_title" data-i18n-html="1">Δείγματα <em>δουλειάς μας</em></h2>
   <div class="ptabs reveal">
-    <button class="ptab active" onclick="pfFilter('all',this)">Όλα</button>
-    <button class="ptab" onclick="pfFilter('katoikia',this)">Κατοικίες</button>
-    <button class="ptab" onclick="pfFilter('anakainisi',this)">Ανακαινίσεις</button>
-    <button class="ptab" onclick="pfFilter('epaggelmatiko',this)">Επαγγελματικά</button>
+    <button class="ptab active" onclick="pfFilter('all',this)" data-i18n="tab_all">Όλα</button>
+    <button class="ptab" onclick="pfFilter('katoikia',this)" data-i18n="tab_residential">Κατοικίες</button>
+    <button class="ptab" onclick="pfFilter('anakainisi',this)" data-i18n="tab_renovation">Ανακαινίσεις</button>
+    <button class="ptab" onclick="pfFilter('epaggelmatiko',this)" data-i18n="tab_commercial">Επαγγελματικά</button>
     <button class="ptab" onclick="pfFilter('interior',this)">Interior</button>
   </div>
   <div class="pf-grid reveal" id="pfGrid"></div>
@@ -1065,13 +1106,13 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 
 <!-- PROCESS -->
 <section id="process" class="sec">
-  <span class="sec-label reveal">Πώς Εργαζόμαστε</span>
-  <h2 class="sec-title reveal">Απλή διαδικασία, <em>εγγυημένο αποτέλεσμα</em></h2>
+  <span class="sec-label reveal" data-i18n="lbl_process">Πώς Εργαζόμαστε</span>
+  <h2 class="sec-title reveal" data-i18n="proc_title" data-i18n-html="1">Απλή διαδικασία, <em>εγγυημένο αποτέλεσμα</em></h2>
   <div class="process-grid">
-    <div class="pstep reveal"     data-arrow="→"><div class="pstep-n">01</div><div class="pstep-name">Αρχική Συνάντηση</div><p class="pstep-desc">Δωρεάν αξιολόγηση. Εκτίμηση κόστους, χρονοδιαγράμματος και βημάτων.</p></div>
-    <div class="pstep reveal rd1" data-arrow="→"><div class="pstep-n">02</div><div class="pstep-name">Τεχνική Ανάλυση</div><p class="pstep-desc">Σύνταξη φακέλου, έλεγχος τίτλων, μελέτη τοπογραφικών και νομικής κατάστασης.</p></div>
-    <div class="pstep reveal rd2" data-arrow="→"><div class="pstep-n">03</div><div class="pstep-name">Υποβολή & Παρακολούθηση</div><p class="pstep-desc">Ηλεκτρονική υποβολή, real-time ενημέρωση για κάθε εξέλιξη.</p></div>
-    <div class="pstep reveal rd3" data-arrow=""><div class="pstep-n">04</div><div class="pstep-name">Παράδοση & Aftercare</div><p class="pstep-desc">Παράδοση εγγράφων και συνεχής υποστήριξη για μελλοντικές ανάγκες.</p></div>
+    <div class="pstep reveal"     data-arrow="→"><div class="pstep-n">01</div><div class="pstep-name" data-i18n="proc1_name">Αρχική Συνάντηση</div><p class="pstep-desc" data-i18n="proc1_desc">Δωρεάν αξιολόγηση. Εκτίμηση κόστους, χρονοδιαγράμματος και βημάτων.</p></div>
+    <div class="pstep reveal rd1" data-arrow="→"><div class="pstep-n">02</div><div class="pstep-name" data-i18n="proc2_name">Τεχνική Ανάλυση</div><p class="pstep-desc" data-i18n="proc2_desc">Σύνταξη φακέλου, έλεγχος τίτλων, μελέτη τοπογραφικών και νομικής κατάστασης.</p></div>
+    <div class="pstep reveal rd2" data-arrow="→"><div class="pstep-n">03</div><div class="pstep-name" data-i18n="proc3_name">Υποβολή & Παρακολούθηση</div><p class="pstep-desc" data-i18n="proc3_desc">Ηλεκτρονική υποβολή, real-time ενημέρωση για κάθε εξέλιξη.</p></div>
+    <div class="pstep reveal rd3" data-arrow=""><div class="pstep-n">04</div><div class="pstep-name" data-i18n="proc4_name">Παράδοση & Aftercare</div><p class="pstep-desc" data-i18n="proc4_desc">Παράδοση εγγράφων και συνεχής υποστήριξη για μελλοντικές ανάγκες.</p></div>
   </div>
 </section>
 
@@ -1079,18 +1120,18 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 <section id="why" class="sec why">
   <div class="why-grid">
     <div class="why-l">
-      <span class="sec-label reveal">Γιατί PA Creative House</span>
-      <h2 class="sec-title reveal">Η εμπιστοσύνη δεν υπόσχεται.<br><em>Αποδεικνύεται.</em></h2>
+      <span class="sec-label reveal" data-i18n="lbl_why">Γιατί PA Creative House</span>
+      <h2 class="sec-title reveal" data-i18n="why_title" data-i18n-html="1">Η εμπιστοσύνη δεν υπόσχεται.<br><em>Αποδεικνύεται.</em></h2>
       <div class="wpts">
-        <div class="wpt reveal"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>600 Ολοκληρωμένα Έργα</h4><p>Μια αδιάλειπτη διαδρομή τεχνικής αρτιότητας και εμπιστοσύνης στη Μεσσηνία.</p></div></div>
-        <div class="wpt reveal rd1"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Τεχνολογία Αιχμής</h4><p>Χρησιμοποιούμε σύγχρονα εργαλεία για ταχύτητα, ακρίβεια και άριστα αποτελέσματα.</p></div></div>
-        <div class="wpt reveal rd2"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Ολοκληρωμένες Λύσεις</h4><p>Αναλαμβάνουμε κάθε στάδιο — από τη μελέτη ως την παράδοση με κλειδί στο χέρι.</p></div></div>
-        <div class="wpt reveal rd3"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Γραπτή Προσφορά, Χωρίς Εκπλήξεις</h4><p>Ξέρετε ακριβώς τι πληρώνετε πριν ξεκινήσουμε. Καμία κρυφή χρέωση.</p></div></div>
+        <div class="wpt reveal"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4 data-i18n="why1_title">600 Ολοκληρωμένα Έργα</h4><p data-i18n="why1_desc">Μια αδιάλειπτη διαδρομή τεχνικής αρτιότητας και εμπιστοσύνης στη Μεσσηνία.</p></div></div>
+        <div class="wpt reveal rd1"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4 data-i18n="why2_title">Τεχνολογία Αιχμής</h4><p data-i18n="why2_desc">Χρησιμοποιούμε σύγχρονα εργαλεία για ταχύτητα, ακρίβεια και άριστα αποτελέσματα.</p></div></div>
+        <div class="wpt reveal rd2"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4 data-i18n="why3_title">Ολοκληρωμένες Λύσεις</h4><p data-i18n="why3_desc">Αναλαμβάνουμε κάθε στάδιο — από τη μελέτη ως την παράδοση με κλειδί στο χέρι.</p></div></div>
+        <div class="wpt reveal rd3"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4 data-i18n="why4_title">Γραπτή Προσφορά, Χωρίς Εκπλήξεις</h4><p data-i18n="why4_desc">Ξέρετε ακριβώς τι πληρώνετε πριν ξεκινήσουμε. Καμία κρυφή χρέωση.</p></div></div>
       </div>
     </div>
     <div class="why-r">
-      <span class="sec-label reveal">Λένε για Εμάς</span>
-      <h2 class="sec-title reveal">Πελάτες που <em>επιστρέφουν</em></h2>
+      <span class="sec-label reveal" data-i18n="lbl_testimonials">Λένε για Εμάς</span>
+      <h2 class="sec-title reveal" data-i18n="tmn_title" data-i18n-html="1">Πελάτες που <em>επιστρέφουν</em></h2>
       <div style="margin-top:44px;display:flex;flex-direction:column;gap:14px">
         <div class="tmn reveal"><span class="stars">★★★★★</span><blockquote>«Από την πρώτη επαφή ως την παράδοση της άδειας, υποδειγματική εξυπηρέτηση. Χωρίς καθυστερήσεις, χωρίς εκπλήξεις.»</blockquote><cite>Δημήτρης Κ. — Ιδιοκτήτης κατοικίας, Καλαμάτα</cite></div>
         <div class="tmn reveal rd1"><span class="stars">★★★★★</span><blockquote>«Το αυθαίρετο που με βασάνιζε χρόνια τακτοποιήθηκε σε 2 μήνες. Επαγγελματισμός υψηλού επιπέδου.»</blockquote><cite>Μαρία Τ. — Κάτοχος ακινήτου, Μεσσήνη</cite></div>
@@ -1121,8 +1162,8 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 </script>
 
 <section id="faq" class="sec faq-section">
-  <span class="sec-label reveal">Συχνές Ερωτήσεις</span>
-  <h2 class="sec-title reveal">Ό,τι θέλετε να <em>γνωρίζετε</em></h2>
+  <span class="sec-label reveal" data-i18n="lbl_faq">Συχνές Ερωτήσεις</span>
+  <h2 class="sec-title reveal" data-i18n="faq_title" data-i18n-html="1">Ό,τι θέλετε να <em>γνωρίζετε</em></h2>
   <div class="faq-grid">
 
     <div class="faq-item reveal">
@@ -1212,8 +1253,8 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 <section id="contact" class="sec">
   <div class="contact-wrap">
     <div>
-      <span class="sec-label reveal">Επικοινωνία</span>
-      <h2 class="sec-title reveal">Πείτε μας το <em>project σας</em></h2>
+      <span class="sec-label reveal" data-i18n="lbl_contact">Επικοινωνία</span>
+      <h2 class="sec-title reveal" data-i18n="contact_title" data-i18n-html="1">Πείτε μας το <em>project σας</em></h2>
       <div class="cinfo">
         <div class="cit reveal"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="cit-lbl">Διεύθυνση</span><span>Φαρών 155, Καλαμάτα 24100</span></div></div>
         <div class="cit reveal rd1"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.88 1.18 2 2 0 012.88 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.68a16 16 0 006.23 6.23l1.05-1.05a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><span class="cit-lbl">Τηλέφωνο</span><a href="tel:+302721090509">27210 90509</a></div></div>
@@ -1222,12 +1263,12 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
       </div>
     </div>
     <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="reveal rd1" onsubmit="handleSubmit(event)">
-      <div class="fg"><label>Ονοματεπώνυμο *</label><input type="text" name="name" placeholder="Το ονοματεπώνυμό σας" required></div>
+      <div class="fg"><label data-i18n="form_name">Ονοματεπώνυμο *</label><input type="text" name="name" data-i18n-placeholder="ph_name" placeholder="Το ονοματεπώνυμό σας" required></div>
       <div class="fgr">
-        <div class="fg"><label>Τηλέφωνο *</label><input type="tel" name="phone" placeholder="69x xxx xxxx" required></div>
-        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="email@example.com"></div>
+        <div class="fg"><label data-i18n="form_phone">Τηλέφωνο *</label><input type="tel" name="phone" placeholder="69x xxx xxxx" required></div>
+        <div class="fg"><label data-i18n="form_email">Email</label><input type="email" name="email" placeholder="email@example.com"></div>
       </div>
-      <div class="fg"><label>Υπηρεσία</label>
+      <div class="fg"><label data-i18n="form_service">Υπηρεσία</label>
         <select name="service">
           <option value="">Επιλέξτε υπηρεσία...</option>
           <option>Οικοδομική Άδεια / Στατική Μελέτη</option>
@@ -1245,7 +1286,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
           <option>Άλλο</option>
         </select>
       </div>
-      <div class="fg"><label>Περιγραφή</label><textarea name="message" placeholder="Περιγράψτε σύντομα το αίτημά σας..."></textarea></div>
+      <div class="fg"><label data-i18n="form_desc">Περιγραφή</label><textarea name="message" data-i18n-placeholder="ph_desc" placeholder="Περιγράψτε σύντομα το αίτημά σας..."></textarea></div>
       <input type="hidden" name="_subject" value="Νέο αίτημα από PA Creative House website">
       <input type="text" name="_gotcha" style="display:none">
       <button type="submit" class="fsub" id="submitBtn">Αποστολή Αιτήματος <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
@@ -1277,7 +1318,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 <!-- FOOTER -->
 <footer>
   <div class="ftop">
-    <div class="fbrand"><span class="flogo">PA <span>Creative House</span></span><p>Η περιουσία σας. Ευθύνη μας. Τεχνικό γραφείο Πολιτικού Μηχανικού ΤΕ — 12 υπηρεσίες, 600 έργα, Καλαμάτα.</p></div>
+    <div class="fbrand"><span class="flogo">PA <span>Creative House</span></span><p data-i18n="footer_desc">Η περιουσία σας. Ευθύνη μας. Τεχνικό γραφείο Πολιτικού Μηχανικού ΤΕ — 12 υπηρεσίες, 600 έργα, Καλαμάτα.</p></div>
     <div class="fcol"><h5>Υπηρεσίες</h5><ul>
       <li><a href="#services">Άδειες Δόμησης</a></li>
       <li><a href="#services">Αυθαίρετα Ν.4495</a></li>
@@ -1347,8 +1388,262 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 <div class="wa-tip">Στείλτε μήνυμα στο WhatsApp</div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* NAV */
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
+/* ══════════════════════════════════════════
+   PA CREATIVE HOUSE — i18n v1.0
+   6 languages: el, en, fr, de, he, zh
+══════════════════════════════════════════ */
+const T = {
+  el:{
+    nav_home:'Αρχική',nav_services:'Υπηρεσίες',nav_portfolio:'Portfolio',
+    nav_why:'Γιατί Εμάς',nav_faq:'FAQ',nav_contact:'Επικοινωνία',nav_contact_cta:'Επικοινωνία →',
+    hero_eyebrow:'Πολιτικός Μηχανικός ΤΕ · Καλαμάτα · Μεσσηνία',
+    hero_line1:'Η περιουσία σας.',hero_line2:'Ευθύνη μας.',
+    hero_sub:'<strong>Παναγιώτης Αργύρης</strong> — Πολιτικός Μηχανικός ΤΕ με 600 ολοκληρωμένα έργα στη Μεσσηνία από το 2020. Αναλαμβάνουμε κάθε υπόθεση ακινήτου από την αρχή ως το τέλος, χωρίς γραφειοκρατικά εμπόδια.',
+    hero_btn1:'Ξεκινήστε τη μελέτη σας <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>',
+    hero_btn2:'Δείτε τα έργα μας',
+    stat1:'Έργα & Μελέτες',stat2:'Υπηρεσίες',stat3:'Χρόνια Εμπειρίας',stat4:'Χρόνος Απόκρισης',
+    lbl_services:'Υπηρεσίες',svc_title:'Ολοκληρωμένες λύσεις για <em>κάθε ακίνητο</em>',
+    lbl_references:'Έργα Αναφοράς',cin_title:'Από το σχέδιο <em>στην πραγματικότητα</em>',
+    cin_sub:'Κάθε έργο ξεκινά από ένα όραμα. Το ολοκληρώνουμε με ακρίβεια, αισθητική και σεβασμό.',
+    lbl_portfolio:'Portfolio',pf_title:'Δείγματα <em>δουλειάς μας</em>',
+    tab_all:'Όλα',tab_residential:'Κατοικίες',tab_renovation:'Ανακαινίσεις',tab_commercial:'Επαγγελματικά',
+    lbl_process:'Πώς Εργαζόμαστε',proc_title:'Απλή διαδικασία, <em>εγγυημένο αποτέλεσμα</em>',
+    proc1_name:'Αρχική Συνάντηση',proc1_desc:'Δωρεάν αξιολόγηση. Εκτίμηση κόστους, χρονοδιαγράμματος και βημάτων.',
+    proc2_name:'Τεχνική Ανάλυση',proc2_desc:'Σύνταξη φακέλου, έλεγχος τίτλων, μελέτη τοπογραφικών και νομικής κατάστασης.',
+    proc3_name:'Υποβολή & Παρακολούθηση',proc3_desc:'Ηλεκτρονική υποβολή, real-time ενημέρωση για κάθε εξέλιξη.',
+    proc4_name:'Παράδοση & Aftercare',proc4_desc:'Παράδοση εγγράφων και συνεχής υποστήριξη για μελλοντικές ανάγκες.',
+    lbl_why:'Γιατί PA Creative House',why_title:'Η εμπιστοσύνη δεν υπόσχεται.<br><em>Αποδεικνύεται.</em>',
+    why1_title:'600 Ολοκληρωμένα Έργα',why1_desc:'Μια αδιάλειπτη διαδρομή τεχνικής αρτιότητας και εμπιστοσύνης στη Μεσσηνία.',
+    why2_title:'Τεχνολογία Αιχμής',why2_desc:'Χρησιμοποιούμε σύγχρονα εργαλεία για ταχύτητα, ακρίβεια και άριστα αποτελέσματα.',
+    why3_title:'Ολοκληρωμένες Λύσεις',why3_desc:'Αναλαμβάνουμε κάθε στάδιο — από τη μελέτη ως την παράδοση με κλειδί στο χέρι.',
+    why4_title:'Γραπτή Προσφορά, Χωρίς Εκπλήξεις',why4_desc:'Ξέρετε ακριβώς τι πληρώνετε πριν ξεκινήσουμε. Καμία κρυφή χρέωση.',
+    lbl_testimonials:'Λένε για Εμάς',tmn_title:'Πελάτες που <em>επιστρέφουν</em>',
+    lbl_faq:'Συχνές Ερωτήσεις',faq_title:'Ό,τι θέλετε να <em>γνωρίζετε</em>',
+    lbl_contact:'Επικοινωνία',contact_title:'Πείτε μας το <em>project σας</em>',
+    form_name:'Ονοματεπώνυμο *',form_phone:'Τηλέφωνο *',form_email:'Email',
+    form_service:'Υπηρεσία',form_desc:'Περιγραφή',
+    ph_name:'Το ονοματεπώνυμό σας',ph_desc:'Περιγράψτε σύντομα το αίτημά σας...',
+    footer_desc:'Η περιουσία σας. Ευθύνη μας. Τεχνικό γραφείο Πολιτικού Μηχανικού ΤΕ — 12 υπηρεσίες, 600 έργα, Καλαμάτα.',
+  },
+  en:{
+    nav_home:'Home',nav_services:'Services',nav_portfolio:'Portfolio',
+    nav_why:'Why Us',nav_faq:'FAQ',nav_contact:'Contact',nav_contact_cta:'Contact →',
+    hero_eyebrow:'Civil Engineer · Kalamata · Messinia',
+    hero_line1:'Your property.',hero_line2:'Our responsibility.',
+    hero_sub:'<strong>Panagiotis Argyris</strong> — Civil Engineer with 600 completed projects in Messinia since 2020. We handle every property matter from start to finish, without bureaucratic obstacles.',
+    hero_btn1:'Start Your Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>',
+    hero_btn2:'View Our Projects',
+    stat1:'Projects & Studies',stat2:'Services',stat3:'Years Experience',stat4:'Response Time',
+    lbl_services:'Services',svc_title:'Complete solutions for <em>every property</em>',
+    lbl_references:'Reference Projects',cin_title:'From design <em>to reality</em>',
+    cin_sub:'Every project starts with a vision. We complete it with precision, aesthetics and respect.',
+    lbl_portfolio:'Portfolio',pf_title:'Samples of <em>our work</em>',
+    tab_all:'All',tab_residential:'Residential',tab_renovation:'Renovation',tab_commercial:'Commercial',
+    lbl_process:'How We Work',proc_title:'Simple process, <em>guaranteed result</em>',
+    proc1_name:'Initial Meeting',proc1_desc:'Free assessment. Estimate of cost, schedule and steps.',
+    proc2_name:'Technical Analysis',proc2_desc:'File preparation, title verification, topographic and legal status study.',
+    proc3_name:'Submission & Monitoring',proc3_desc:'Electronic submission, real-time updates on every development.',
+    proc4_name:'Delivery & Aftercare',proc4_desc:'Document delivery and continuous support for future needs.',
+    lbl_why:'Why PA Creative House',why_title:'Trust is not promised.<br><em>It is proven.</em>',
+    why1_title:'600 Completed Projects',why1_desc:'An uninterrupted track record of technical excellence and trust in Messinia.',
+    why2_title:'Cutting-Edge Technology',why2_desc:'We use modern tools for speed, precision and excellent results.',
+    why3_title:'Complete Solutions',why3_desc:'We handle every stage — from study to turnkey delivery.',
+    why4_title:'Written Quote, No Surprises',why4_desc:'You know exactly what you pay before we start. No hidden charges.',
+    lbl_testimonials:'What They Say',tmn_title:'Clients who <em>return</em>',
+    lbl_faq:'Frequently Asked Questions',faq_title:'Everything you want <em>to know</em>',
+    lbl_contact:'Contact',contact_title:'Tell us about <em>your project</em>',
+    form_name:'Full Name *',form_phone:'Phone *',form_email:'Email',
+    form_service:'Service',form_desc:'Description',
+    ph_name:'Your full name',ph_desc:'Briefly describe your request...',
+    footer_desc:'Your property. Our responsibility. Civil Engineering office — 12 services, 600 projects, Kalamata.',
+  },
+  fr:{
+    nav_home:'Accueil',nav_services:'Services',nav_portfolio:'Portfolio',
+    nav_why:'Pourquoi Nous',nav_faq:'FAQ',nav_contact:'Contact',nav_contact_cta:'Contact →',
+    hero_eyebrow:'Ingénieur Civil · Kalamata · Messénie',
+    hero_line1:'Votre propriété.',hero_line2:'Notre responsabilité.',
+    hero_sub:'<strong>Panagiotis Argyris</strong> — Ingénieur Civil avec 600 projets réalisés en Messénie depuis 2020. Nous prenons en charge chaque affaire immobilière du début à la fin, sans obstacles bureaucratiques.',
+    hero_btn1:'Démarrer Votre Étude <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>',
+    hero_btn2:'Voir Nos Projets',
+    stat1:'Projets & Études',stat2:'Services',stat3:'Années d\'Expérience',stat4:'Temps de Réponse',
+    lbl_services:'Services',svc_title:'Solutions complètes pour <em>chaque propriété</em>',
+    lbl_references:'Projets de Référence',cin_title:'Du projet <em>à la réalité</em>',
+    cin_sub:'Chaque projet commence par une vision. Nous l\'accomplissons avec précision, esthétique et respect.',
+    lbl_portfolio:'Portfolio',pf_title:'Exemples de <em>notre travail</em>',
+    tab_all:'Tout',tab_residential:'Résidentiel',tab_renovation:'Rénovation',tab_commercial:'Commercial',
+    lbl_process:'Comment Nous Travaillons',proc_title:'Processus simple, <em>résultat garanti</em>',
+    proc1_name:'Réunion Initiale',proc1_desc:'Évaluation gratuite. Estimation du coût, du calendrier et des étapes.',
+    proc2_name:'Analyse Technique',proc2_desc:'Constitution du dossier, vérification des titres, étude topographique et juridique.',
+    proc3_name:'Soumission & Suivi',proc3_desc:'Soumission électronique, mises à jour en temps réel sur chaque développement.',
+    proc4_name:'Livraison & Aftercare',proc4_desc:'Remise des documents et soutien continu pour les besoins futurs.',
+    lbl_why:'Pourquoi PA Creative House',why_title:'La confiance ne se promet pas.<br><em>Elle se prouve.</em>',
+    why1_title:'600 Projets Réalisés',why1_desc:'Un parcours ininterrompu d\'excellence technique et de confiance en Messénie.',
+    why2_title:'Technologie de Pointe',why2_desc:'Nous utilisons des outils modernes pour la rapidité, la précision et d\'excellents résultats.',
+    why3_title:'Solutions Complètes',why3_desc:'Nous gérons chaque étape — de l\'étude à la livraison clé en main.',
+    why4_title:'Devis Écrit, Sans Surprises',why4_desc:'Vous savez exactement ce que vous payez avant de commencer. Aucun frais caché.',
+    lbl_testimonials:'Ce Qu\'ils Disent',tmn_title:'Clients qui <em>reviennent</em>',
+    lbl_faq:'Questions Fréquentes',faq_title:'Tout ce que vous voulez <em>savoir</em>',
+    lbl_contact:'Contact',contact_title:'Parlez-nous de <em>votre projet</em>',
+    form_name:'Nom Complet *',form_phone:'Téléphone *',form_email:'Email',
+    form_service:'Service',form_desc:'Description',
+    ph_name:'Votre nom complet',ph_desc:'Décrivez brièvement votre demande...',
+    footer_desc:'Votre propriété. Notre responsabilité. Bureau d\'Ingénierie Civile — 12 services, 600 projets, Kalamata.',
+  },
+  de:{
+    nav_home:'Startseite',nav_services:'Leistungen',nav_portfolio:'Portfolio',
+    nav_why:'Warum Wir',nav_faq:'FAQ',nav_contact:'Kontakt',nav_contact_cta:'Kontakt →',
+    hero_eyebrow:'Bauingenieur · Kalamata · Messenien',
+    hero_line1:'Ihr Eigentum.',hero_line2:'Unsere Verantwortung.',
+    hero_sub:'<strong>Panagiotis Argyris</strong> — Bauingenieur mit 600 abgeschlossenen Projekten in Messenien seit 2020. Wir kümmern uns um jede Immobilienangelegenheit von Anfang bis Ende, ohne bürokratische Hindernisse.',
+    hero_btn1:'Studie Starten <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>',
+    hero_btn2:'Unsere Projekte Ansehen',
+    stat1:'Projekte & Studien',stat2:'Leistungen',stat3:'Jahre Erfahrung',stat4:'Reaktionszeit',
+    lbl_services:'Leistungen',svc_title:'Umfassende Lösungen für <em>jede Immobilie</em>',
+    lbl_references:'Referenzprojekte',cin_title:'Vom Entwurf <em>zur Realität</em>',
+    cin_sub:'Jedes Projekt beginnt mit einer Vision. Wir vollenden es mit Präzision, Ästhetik und Respekt.',
+    lbl_portfolio:'Portfolio',pf_title:'Beispiele <em>unserer Arbeit</em>',
+    tab_all:'Alle',tab_residential:'Wohnen',tab_renovation:'Renovierung',tab_commercial:'Gewerbe',
+    lbl_process:'Wie Wir Arbeiten',proc_title:'Einfacher Prozess, <em>garantiertes Ergebnis</em>',
+    proc1_name:'Erstgespräch',proc1_desc:'Kostenlose Bewertung. Schätzung von Kosten, Zeitplan und Schritten.',
+    proc2_name:'Technische Analyse',proc2_desc:'Aktenaufstellung, Titelprüfung, topografische und rechtliche Studie.',
+    proc3_name:'Einreichung & Überwachung',proc3_desc:'Elektronische Einreichung, Echtzeit-Updates zu jeder Entwicklung.',
+    proc4_name:'Übergabe & Aftercare',proc4_desc:'Dokumentenübergabe und kontinuierliche Unterstützung für zukünftige Bedürfnisse.',
+    lbl_why:'Warum PA Creative House',why_title:'Vertrauen wird nicht versprochen.<br><em>Es wird bewiesen.</em>',
+    why1_title:'600 Abgeschlossene Projekte',why1_desc:'Eine ununterbrochene Geschichte technischer Exzellenz und Vertrauen in Messenien.',
+    why2_title:'Modernste Technologie',why2_desc:'Wir nutzen moderne Werkzeuge für Geschwindigkeit, Präzision und hervorragende Ergebnisse.',
+    why3_title:'Umfassende Lösungen',why3_desc:'Wir übernehmen jede Phase — von der Studie bis zur schlüsselfertigen Übergabe.',
+    why4_title:'Schriftliches Angebot, Keine Überraschungen',why4_desc:'Sie wissen genau, was Sie zahlen, bevor wir beginnen. Keine versteckten Kosten.',
+    lbl_testimonials:'Was Sie Sagen',tmn_title:'Kunden, die <em>zurückkehren</em>',
+    lbl_faq:'Häufig Gestellte Fragen',faq_title:'Alles was Sie <em>wissen möchten</em>',
+    lbl_contact:'Kontakt',contact_title:'Erzählen Sie uns von <em>Ihrem Projekt</em>',
+    form_name:'Vollständiger Name *',form_phone:'Telefon *',form_email:'E-Mail',
+    form_service:'Leistung',form_desc:'Beschreibung',
+    ph_name:'Ihr vollständiger Name',ph_desc:'Beschreiben Sie kurz Ihre Anfrage...',
+    footer_desc:'Ihr Eigentum. Unsere Verantwortung. Bauingenieur-Büro — 12 Leistungen, 600 Projekte, Kalamata.',
+  },
+  he:{
+    nav_home:'בית',nav_services:'שירותים',nav_portfolio:'פורטפוליו',
+    nav_why:'למה אנחנו',nav_faq:'שאלות נפוצות',nav_contact:'צור קשר',nav_contact_cta:'צור קשר ←',
+    hero_eyebrow:'מהנדס אזרחי · קאלאמאטה · מסניה',
+    hero_line1:'הנכס שלכם.',hero_line2:'האחריות שלנו.',
+    hero_sub:'<strong>פנגיוטיס ארגיריס</strong> — מהנדס אזרחי עם 600 פרויקטים שהושלמו במסניה מאז 2020. אנו מטפלים בכל עניין נדל"ן מתחילתו ועד סופו, ללא מכשולים בירוקרטיים.',
+    hero_btn1:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> התחל את המחקר שלך',
+    hero_btn2:'צפה בפרויקטים שלנו',
+    stat1:'פרויקטים ומחקרים',stat2:'שירותים',stat3:'שנות ניסיון',stat4:'זמן תגובה',
+    lbl_services:'שירותים',svc_title:'פתרונות מלאים <em>לכל נכס</em>',
+    lbl_references:'פרויקטי ייחוס',cin_title:'מהתכנון <em>למציאות</em>',
+    cin_sub:'כל פרויקט מתחיל בחזון. אנו מסיימים אותו בדיוק, אסתטיקה וכבוד.',
+    lbl_portfolio:'פורטפוליו',pf_title:'דוגמאות <em>מעבודתנו</em>',
+    tab_all:'הכל',tab_residential:'מגורים',tab_renovation:'שיפוץ',tab_commercial:'מסחרי',
+    lbl_process:'איך אנחנו עובדים',proc_title:'תהליך פשוט, <em>תוצאה מובטחת</em>',
+    proc1_name:'פגישה ראשונית',proc1_desc:'הערכה חינמית. הערכת עלות, לוח זמנים ושלבים.',
+    proc2_name:'ניתוח טכני',proc2_desc:'הכנת תיק, בדיקת כותרות, מחקר טופוגרפי ומשפטי.',
+    proc3_name:'הגשה ומעקב',proc3_desc:'הגשה אלקטרונית, עדכונים בזמן אמת על כל התפתחות.',
+    proc4_name:'מסירה ושירות לאחר',proc4_desc:'מסירת מסמכים ותמיכה מתמשכת לצרכים עתידיים.',
+    lbl_why:'למה PA Creative House',why_title:'אמון לא מבטיחים.<br><em>מוכיחים.</em>',
+    why1_title:'600 פרויקטים שהושלמו',why1_desc:'מסלול רצוף של מצוינות טכנית ואמון במסניה.',
+    why2_title:'טכנולוגיה מתקדמת',why2_desc:'אנו משתמשים בכלים מודרניים למהירות, דיוק ותוצאות מעולות.',
+    why3_title:'פתרונות מלאים',why3_desc:'אנו מטפלים בכל שלב — ממחקר ועד מסירה מפתח ביד.',
+    why4_title:'הצעת מחיר בכתב, ללא הפתעות',why4_desc:'אתם יודעים בדיוק מה אתם משלמים לפני שנתחיל. אין חיובים נסתרים.',
+    lbl_testimonials:'מה הם אומרים',tmn_title:'לקוחות <em>שחוזרים</em>',
+    lbl_faq:'שאלות נפוצות',faq_title:'כל מה שרציתם <em>לדעת</em>',
+    lbl_contact:'צור קשר',contact_title:'ספרו לנו על <em>הפרויקט שלכם</em>',
+    form_name:'שם מלא *',form_phone:'טלפון *',form_email:'אימייל',
+    form_service:'שירות',form_desc:'תיאור',
+    ph_name:'שמכם המלא',ph_desc:'תארו בקצרה את בקשתכם...',
+    footer_desc:'הנכס שלכם. האחריות שלנו. משרד הנדסה אזרחית — 12 שירותים, 600 פרויקטים, קאלאמאטה.',
+  },
+  zh:{
+    nav_home:'首页',nav_services:'服务',nav_portfolio:'作品集',
+    nav_why:'为何选择我们',nav_faq:'常见问题',nav_contact:'联系我们',nav_contact_cta:'联系我们 →',
+    hero_eyebrow:'土木工程师 · 卡拉马塔 · 梅塞尼亚',
+    hero_line1:'您的房产。',hero_line2:'我们的责任。',
+    hero_sub:'<strong>帕纳约蒂斯·阿尔吉里斯</strong> — 土木工程师，自2020年起在梅塞尼亚完成600个项目。我们全程处理每一项房产事务，无官僚障碍。',
+    hero_btn1:'开始您的研究 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>',
+    hero_btn2:'查看我们的项目',
+    stat1:'项目与研究',stat2:'服务项目',stat3:'年经验',stat4:'响应时间',
+    lbl_services:'服务',svc_title:'为<em>每处房产</em>提供完整解决方案',
+    lbl_references:'参考项目',cin_title:'从设计<em>到现实</em>',
+    cin_sub:'每个项目都始于一个愿景。我们以精确、美学和尊重来完成它。',
+    lbl_portfolio:'作品集',pf_title:'我们<em>工作的样本</em>',
+    tab_all:'全部',tab_residential:'住宅',tab_renovation:'翻新',tab_commercial:'商业',
+    lbl_process:'我们如何工作',proc_title:'简单流程，<em>保证结果</em>',
+    proc1_name:'初次会面',proc1_desc:'免费评估。成本、时间表和步骤的估算。',
+    proc2_name:'技术分析',proc2_desc:'档案准备、产权核查、地形和法律状态研究。',
+    proc3_name:'提交与监控',proc3_desc:'电子提交，对每项进展进行实时更新。',
+    proc4_name:'交付与售后',proc4_desc:'文件交付及对未来需求的持续支持。',
+    lbl_why:'为何选择PA Creative House',why_title:'信任不是承诺。<br><em>而是证明。</em>',
+    why1_title:'600个完成项目',why1_desc:'在梅塞尼亚技术卓越和信任的不间断记录。',
+    why2_title:'尖端技术',why2_desc:'我们使用现代工具实现速度、精确度和卓越成果。',
+    why3_title:'完整解决方案',why3_desc:'我们处理每个阶段——从研究到交钥匙交付。',
+    why4_title:'书面报价，无惊喜',why4_desc:'在我们开始之前，您确切知道您支付的费用。没有隐藏收费。',
+    lbl_testimonials:'客户评价',tmn_title:'回头<em>的客户</em>',
+    lbl_faq:'常见问题',faq_title:'您想<em>了解的一切</em>',
+    lbl_contact:'联系我们',contact_title:'告诉我们<em>您的项目</em>',
+    form_name:'全名 *',form_phone:'电话 *',form_email:'电子邮件',
+    form_service:'服务',form_desc:'描述',
+    ph_name:'您的全名',ph_desc:'简要描述您的请求...',
+    footer_desc:'您的房产。我们的责任。土木工程师事务所 — 12项服务，600个项目，卡拉马塔。',
+  }
+};
+
+/* ── setLang ── */
+function setLang(lang){
+  if(!T[lang]) return;
+  const t = T[lang];
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = (lang === 'he') ? 'rtl' : 'ltr';
+  localStorage.setItem('pa_lang', lang);
+
+  // Update text elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(t[key] !== undefined){
+      if(el.getAttribute('data-i18n-html')){
+        el.innerHTML = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
+  });
+
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if(t[key]) el.placeholder = t[key];
+  });
+
+  // Update lang button active state
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+
+  // Translate portfolio projects
+  const langProjects = {
+    en:{catLabel:{katoikia:'Residential',interior:'Interior Design',anakainisi:'Renovation',epaggelmatiko:'Commercial'}},
+    fr:{catLabel:{katoikia:'Résidentiel',interior:'Design Intérieur',anakainisi:'Rénovation',epaggelmatiko:'Commercial'}},
+    de:{catLabel:{katoikia:'Wohngebäude',interior:'Innenarchitektur',anakainisi:'Renovierung',epaggelmatiko:'Gewerbe'}},
+    he:{catLabel:{katoikia:'מגורים',interior:'עיצוב פנים',anakainisi:'שיפוץ',epaggelmatiko:'מסחרי'}},
+    zh:{catLabel:{katoikia:'住宅',interior:'室内设计',anakainisi:'翻新',epaggelmatiko:'商业'}},
+  };
+  if(lang !== 'el' && langProjects[lang]){
+    pfProjects.forEach(p => {
+      p.catLabel = langProjects[lang].catLabel[p.cat] || p.catLabel;
+    });
+    if(document.getElementById('pfGrid')) pfRender('all');
+  } else if(lang === 'el'){
+    const elCats = {katoikia:'Κατοικία',interior:'Interior Design',anakainisi:'Ανακαίνιση',epaggelmatiko:'Επαγγελματικό'};
+    pfProjects.forEach(p=>{ p.catLabel = elCats[p.cat]||p.catLabel; });
+    if(document.getElementById('pfGrid')) pfRender('all');
+  }
+}
+
+// Init: load saved language
+(function(){
+  const saved = localStorage.getItem('pa_lang') || 'el';
+  if(saved !== 'el') setLang(saved);
+})();()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
 function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobileNav').classList.toggle('open');document.body.style.overflow=document.getElementById('mobileNav').classList.contains('open')?'hidden':''}
 function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
 
