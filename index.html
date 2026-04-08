@@ -1,18 +1,15 @@
 <!DOCTYPE html>
+<!-- PA Creative House v5.2 | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="description" content="PA Creative House - Παναγιώτης Αργύρης, Πολιτικός Μηχανικός Καλαμάτα. Άδειες δόμησης, αυθαίρετα Ν.4495, ΠΕΑ, Εξοικονομώ, τοπογραφικά. 600 έργα στη Μεσσηνία.">
 <meta name="keywords" content="πολιτικός μηχανικός καλαμάτα, άδεια δόμησης καλαμάτα, αυθαίρετα μεσσηνία, ΠΕΑ, εξοικονομώ, τοπογραφικό, PA Creative House">
-
 <meta property="og:title" content="PA Creative House | Πολιτικός Μηχανικός Καλαμάτα">
 <meta property="og:description" content="Η περιουσία σας. Ευθύνη μας. 600 έργα στη Μεσσηνία.">
-<meta property="og:image" content="https://pacreativehouse.netlify.app/Image_3__style_transfer01.png">
-<meta property="og:url" content="https://pacreativehouse.netlify.app/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="el_GR">
-
 <title>PA Creative House | Πολιτικός Μηχανικός Καλαμάτα</title>
 
 <script type="application/ld+json">
@@ -24,7 +21,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Exo+2:wght@200;300;700;800&family=Jost:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
-/* ── CSS RESET & VARIABLES ── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --ink:#05060a;--ink2:#0b0f16;--ink3:#101720;
@@ -35,14 +31,11 @@
 }
 html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--cream);font-family:'Jost',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-/* Smooth scrolling offset for sticky nav */
-section { scroll-margin-top: 90px; }
-
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--ink)}::-webkit-scrollbar-thumb{background:var(--gold-d)}
 img{display:block;width:100%;object-fit:cover}
 a{color:inherit;text-decoration:none}
 
-/* ── REVEAL ── */
+/* ── REVEAL: ολόκληρο το στοιχείο εμφανίζεται αθόρυβα, χωρίς slide ── */
 .reveal{opacity:0;transition:opacity .65s var(--ease)}
 .reveal.in{opacity:1}
 .rd1{transition-delay:.08s}.rd2{transition-delay:.16s}.rd3{transition-delay:.24s}.rd4{transition-delay:.32s}
@@ -54,15 +47,42 @@ nav{
   transition:all .5s var(--ease);
 }
 nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(20px)}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:700;letter-spacing:3px;color:var(--gold)}
+
+/* Logo più grande */
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.65rem; /* era 1.3rem */
+  font-weight:700;letter-spacing:3px;color:var(--gold);
+  flex-shrink:0;
+}
 .nav-logo span{color:var(--cream);font-weight:300}
-.nav-links{display:flex;align-items:center;gap:36px;list-style:none;margin-left:auto;margin-right:36px}
-.nav-links a{color:var(--cream2);font-size:.72rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;transition:color .3s;position:relative;padding-bottom:3px}
+
+/* Links spostati più a destra — margin-left auto li spinge, poi un extra gap */
+.nav-links{
+  display:flex;align-items:center;gap:36px;list-style:none;
+  margin-left:auto;   /* spinge tutto a destra */
+  margin-right:36px;  /* spazio prima del CTA */
+}
+.nav-links a{
+  color:var(--cream2);font-size:.72rem;letter-spacing:3px;
+  text-transform:uppercase;font-weight:500;transition:color .3s;
+  position:relative;padding-bottom:3px;
+}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .35s}
 .nav-links a:hover{color:var(--gold)}
 .nav-links a:hover::after{width:100%}
 .nav-cta{background:var(--gold);color:var(--ink);padding:10px 26px;font-weight:700;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;transition:all .3s;flex-shrink:0}
 .nav-cta:hover{background:var(--gold-l);transform:translateY(-2px)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{display:block;width:24px;height:1.5px;background:var(--cream);transition:all .35s}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-nav{position:fixed;inset:0;background:rgba(5,6,10,.98);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateX(-100%);transition:transform .55s var(--ease2)}
+.mobile-nav.open{transform:none}
+.mobile-nav a{display:block;padding:20px 0;font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--cream2);border-bottom:1px solid var(--line);width:260px;text-align:center;transition:color .3s}
+.mobile-nav a.mcta{border:none;margin-top:28px;background:var(--gold);color:var(--ink);font-size:.9rem;font-family:'Jost',sans-serif;letter-spacing:3px;text-transform:uppercase;padding:18px}
+.mobile-nav a:hover{color:var(--gold)}
 
 /* ── HERO ── */
 .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;flex-direction:column;justify-content:center}
@@ -73,193 +93,1831 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
   will-change:transform;
   filter:brightness(.28) saturate(.8);transition:filter 1.5s;
 }
+.hero:hover .hero-parallax{filter:brightness(.36) saturate(.9)}
+/* ΚΑΝΑΒΟΣ ΑΦΑΙΡΕΘΗΚΕ */
 .hero-vline{position:absolute;top:0;right:33%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(197,160,89,.3) 40%,transparent);pointer-events:none}
 .hero-content{position:relative;z-index:2;padding:0 7%;max-width:960px}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:14px;margin-bottom:40px;color:var(--gold);font-size:.68rem;letter-spacing:5px;text-transform:uppercase;font-weight:700;opacity:0;animation:fUp .9s .2s var(--ease) forwards}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:14px;margin-bottom:40px;
+  color:var(--gold);font-size:.68rem;letter-spacing:5px;text-transform:uppercase;font-weight:700;
+  opacity:0;animation:fUp .9s .2s var(--ease) forwards;
+}
 .hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold)}
-.hero-tagline{margin-bottom:20px;opacity:0;animation:fUp 1s .3s var(--ease) forwards;line-height:1}
-.hero-tagline .tline{display:block;font-family:'Exo 2',sans-serif;font-size:clamp(2rem,5.5vw,5.2rem);letter-spacing:-.03em;line-height:.92;white-space:nowrap}
-.hero-tagline .tline-1{font-weight:200;color:var(--cream2)}
-.hero-tagline .tline-1 strong{font-weight:800;color:var(--cream)}
-.hero-tagline .tline-divider{display:block;width:56px;height:1px;background:var(--gold);margin:22px 0}
-.hero-tagline .tline-2{font-weight:300;color:var(--gold);letter-spacing:-.02em}
-.hero-sub{font-size:1rem;color:var(--cream2);line-height:1.8;max-width:480px;border-left:2px solid var(--gold);padding-left:20px;margin-bottom:44px;font-weight:300;opacity:0;animation:fUp 1s .5s var(--ease) forwards}
+.hero-eyebrow .live{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ── TAGLINE: μία σειρά "Your property." κάτω "Our responsibility." ── */
+.hero-tagline{
+  margin-bottom:20px;
+  opacity:0;animation:fUp 1s .3s var(--ease) forwards;
+  line-height:1;
+}
+.hero-tagline .tline{
+  display:block;
+  font-family:'Exo 2',sans-serif;
+  font-size:clamp(2rem,5.5vw,5.2rem);
+  letter-spacing:-.03em;
+  line-height:.92;
+  white-space:nowrap;
+}
+.hero-tagline .tline-1{
+  font-weight:200;
+  color:var(--cream2);
+}
+.hero-tagline .tline-1 strong{
+  font-weight:800;
+  color:var(--cream);
+}
+.hero-tagline .tline-divider{
+  display:block;
+  width:56px;height:1px;
+  background:var(--gold);
+  margin:22px 0;
+}
+.hero-tagline .tline-2{
+  font-weight:300;
+  font-style:normal;
+  color:var(--gold);
+  letter-spacing:-.02em;
+}
+
+/* Sub-descrizione migliorata */
+.hero-sub{
+  font-size:1rem;color:var(--cream2);line-height:1.8;
+  max-width:480px;border-left:2px solid var(--gold);padding-left:20px;
+  margin-bottom:44px;font-weight:300;
+  opacity:0;animation:fUp 1s .5s var(--ease) forwards;
+}
+.hero-sub strong{color:var(--cream);font-weight:600}
+.hero-sub 
+.hero-sub 
+
 .hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fUp 1s .65s var(--ease) forwards}
-.btn-gold{background:var(--gold);color:var(--ink);padding:16px 36px;font-weight:700;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:all .35s;cursor:pointer;border:none}
+.btn-gold{background:var(--gold);color:var(--ink);padding:16px 36px;font-weight:700;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:all .35s}
 .btn-gold:hover{background:var(--gold-l);transform:translateY(-4px);box-shadow:0 18px 44px rgba(197,160,89,.25)}
 .btn-ghost{align-self:center;color:var(--cream2);font-weight:500;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;border-bottom:1px solid rgba(244,241,234,.22);padding-bottom:3px;transition:all .3s}
+.btn-ghost:hover{color:var(--gold);border-color:var(--gold)}
 
-/* ── SERVICES GRID (CLEANED) ── */
-.sec{padding:112px 7%}
-.svc-monolith{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line)}
-.svc-row{
-  border-bottom:1px solid var(--line);border-right:1px solid var(--line);
-  padding:32px 36px;display:flex;gap:24px;align-items:flex-start;position:relative;
-  overflow:hidden;transition:background .4s;cursor:pointer;background:var(--ink2);min-height:140px;
-}
-.svc-row:nth-child(3n){border-right:none}
-.svc-row:hover{background:var(--ink3)}
-.svc-row::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .55s var(--ease2)}
-.svc-row:hover::before{width:100%}
-.svc-idx{font-family:'Exo 2',sans-serif;font-size:1.2rem;color:var(--gold);font-weight:600}
-.svc-name{font-family:'Exo 2',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)}
-.svc-desc{font-size:0.95rem;color:rgba(244,241,234,.7);line-height:1.6;font-weight:300}
+/* STATS — αφαιρέθηκε "100% Επιτυχία Αδειών", αντικαταστάθηκε */
+.hero-stats{position:absolute;bottom:0;left:0;right:0;display:flex;border-top:1px solid var(--line);opacity:0;animation:fUp 1s .8s var(--ease) forwards}
+.hstat{flex:1;padding:26px 36px;border-right:1px solid var(--line);backdrop-filter:blur(8px);background:rgba(5,6,10,.55);transition:background .4s}
+.hstat:last-child{border-right:none}
+.hstat:hover{background:rgba(197,160,89,.07)}
+.hstat h3{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:2.4rem;font-weight:700;line-height:1;margin-bottom:6px}
+.hstat p{font-size:.64rem;letter-spacing:3px;text-transform:uppercase;color:var(--cream3);font-weight:500}
 
-/* ── FAQ ── */
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 60px;margin-top:12px}
-.faq-item{border-bottom:1px solid var(--line)}
-.faq-q{width:100%;background:none;border:none;color:var(--cream);font-family:inherit;font-size:.95rem;padding:22px 0;display:flex;justify-content:space-between;cursor:pointer}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
-.faq-a.open{max-height:300px;padding-bottom:20px}
-.faq-a p{border-left:2px solid var(--gold);padding-left:16px;font-size:.88rem;color:var(--cream2)}
-
-/* ── MODALS ── */
-.svc-modal-bg{position:fixed;inset:0;background:rgba(5,6,10,.92);z-index:1500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
-.svc-modal-bg.open{display:flex}
-.svc-modal{background:var(--ink2);border:1px solid var(--line);max-width:680px;width:90%;padding:56px 52px;position:relative}
-.svc-modal-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--cream3);font-size:1.6rem;cursor:pointer}
-
-/* ── BACK TO TOP ── */
-#backToTop {
-  position:fixed;bottom:30px;left:30px;z-index:900;
-  width:45px;height:45px;background:var(--gold);color:var(--ink);
-  display:none;align-items:center;justify-content:center;
-  border-radius:50%;cursor:pointer;transition:0.3s;
-}
-
+/* scroll-cue defined below in fixes section */
 @keyframes fUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 
-/* Mobile Tweaks */
-@media(max-width:900px){
-  .svc-monolith{grid-template-columns:1fr 1fr}
-  .faq-grid{grid-template-columns:1fr}
+/* ── SEC HELPERS ── */
+.sec{padding:112px 7%}
+
+.sec-label{display:inline-flex;align-items:center;gap:14px;color:var(--gold);font-size:.68rem;letter-spacing:5px;text-transform:uppercase;font-weight:700;margin-bottom:18px}
+.sec-label::before{content:'';display:block;width:36px;height:1px;background:var(--gold);flex-shrink:0}
+.sec-title{font-family:'Exo 2',sans-serif;font-size:clamp(1.2rem,2.5vw,1.9rem);font-weight:700;line-height:1.1;margin-bottom:52px;max-width:100%;color:#ffffff;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sec-title em{color:#ffffff;font-style:normal}
+
+/* ── SERVICES: 12 υπηρεσίες με modal ── */
+.svc-monolith{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line)}
+.svc-row{border-bottom:1px solid var(--line);padding:32px 36px;display:flex;gap:24px;align-items:flex-start;position:relative;overflow:hidden;transition:background .4s;cursor:pointer;background:var(--ink2);min-height:165px}
+.svc-row:nth-child(3n){border-right:none}
+.svc-row:not(:nth-child(3n)){border-right:1px solid var(--line)}
+.svc-row::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .55s var(--ease2)}
+.svc-row:hover{background:var(--ink2)}
+.svc-row:hover::before{width:100%}
+/* Ultimi 2: rimuovi border-bottom */
+.svc-row:nth-last-child(1),.svc-row:nth-last-child(2),.svc-row:nth-last-child(3){border-bottom:none}
+
+/* Numero stile — font serif, non sembra "ΟΙ" */
+.svc-idx{font-family:'Exo 2',sans-serif;font-size:1.2rem;color:var(--gold);font-weight:600;font-style:normal;line-height:1.2;flex-shrink:0;width:36px;margin-top:2px;letter-spacing:0}
+.svc-name{font-family:'Exo 2',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:8px;line-height:1.2;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)}
+.svc-desc{font-size:1.05rem;color:rgba(244,241,234,.7);line-height:1.6;font-weight:400;margin-top:6px}
+.svc-time{display:block;color:var(--gold);font-size:1.05rem;font-weight:400;margin-top:10px;padding-top:8px;border-top:1px solid var(--line)}
+.svc-arr{
+  position:absolute;right:24px;bottom:20px;
+  color:var(--gold);opacity:0;
+  transform:translate(-8px,4px);transition:all .4s;
+  font-size:1rem;font-weight:700;
+  display:flex;align-items:center;gap:5px;
+  font-size:.68rem;letter-spacing:2px;text-transform:uppercase;
 }
-@media(max-width:600px){
-  .svc-monolith{grid-template-columns:1fr}
-  .nav-links{display:none}
+.svc-row:hover .svc-arr{opacity:1;transform:none}
+
+/* Pill categoria */
+.svc-cat{
+  display:inline-block;font-size:.58rem;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;
+  color:var(--gold-d);border:1px solid rgba(197,160,89,.2);
+  padding:3px 8px;margin-bottom:10px;
 }
+
+/* ── MODAL ΥΠΗΡΕΣΙΑΣ ── */
+.svc-modal-bg{
+  position:fixed;inset:0;background:rgba(5,6,10,.92);z-index:1500;
+  display:none;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+  padding:5%;
+}
+.svc-modal-bg.open{display:flex;animation:fadeIn .3s var(--ease)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.svc-modal{
+  background:var(--ink2);border:1px solid var(--line);
+  max-width:680px;width:100%;position:relative;
+  padding:56px 52px;
+  animation:slideUp .4s var(--ease);
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.svc-modal-cat{display:none}
+.svc-modal-title{font-family:'Exo 2',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:500;line-height:1.1;margin-bottom:20px}
+.svc-modal-tagline{font-family:'Exo 2',sans-serif;font-size:1.15rem;font-style:normal;color:var(--gold);margin-bottom:24px;line-height:1.4}
+.svc-modal-body{font-size:.9rem;color:var(--cream2);line-height:1.8;font-weight:300;margin-bottom:32px}
+.svc-modal-close{
+  position:absolute;top:20px;right:24px;
+  background:none;border:none;color:var(--cream3);
+  font-size:1.6rem;cursor:pointer;line-height:1;
+  transition:color .3s;font-family:'Jost',sans-serif;
+}
+.svc-modal-close:hover{color:var(--gold)}
+.svc-modal-cta{display:inline-flex;align-items:center;gap:10px}
+
+/* ── CINEMATIC ── */
+.cinematic{position:relative;overflow:hidden}
+.cin-img{width:100%;height:78vh;object-fit:cover;filter:brightness(.5) saturate(.85);transition:filter 1.5s}
+.cinematic:hover .cin-img{filter:brightness(.62) saturate(.95)}
+.cin-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(5,6,10,.9) 35%,rgba(5,6,10,.15) 75%,transparent);display:flex;align-items:center;padding:0 8%}
+.cin-content{max-width:520px}
+.cin-content h2{font-family:'Exo 2',sans-serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;line-height:1.15;margin-bottom:20px;color:#ffffff;letter-spacing:-.02em;word-break:keep-all;overflow-wrap:break-word}
+.cin-content h2 em{color:#ffffff;font-style:normal}
+.cin-content p{font-size:.93rem;color:var(--cream2);line-height:1.75;font-weight:300;max-width:400px;margin-bottom:30px}
+
+/* ── PORTFOLIO ── */
+.portfolio{background:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ptabs{display:flex;gap:0;margin-bottom:44px;border-bottom:1px solid var(--line)}
+.ptab{padding:14px 26px;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--cream3);cursor:pointer;border:none;background:none;font-family:'Jost',sans-serif;border-bottom:2px solid transparent;transition:all .3s}
+.ptab:hover{color:var(--cream)}
+.ptab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.g-zone-a{margin-bottom:8px}
+.g-zone-a .gi{height:480px;cursor:pointer}
+.g-zone-b{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.g-zone-b .gi{height:320px;cursor:pointer}
+.g-zone-c{display:grid;grid-template-columns:2fr 1fr 1fr 2fr 1fr;gap:8px;margin-bottom:8px}
+.g-zone-c .gi{height:260px;cursor:pointer}
+.g-zone-d{display:grid;grid-template-columns:3fr 2fr;gap:8px}
+.g-zone-d .gi{height:360px;cursor:pointer}
+.gi{position:relative;overflow:hidden;background:var(--ink3)}
+.gi img{width:100%;height:100%;object-fit:cover;filter:saturate(.72) brightness(.78);transition:transform .7s var(--ease),filter .7s}
+.gi:hover img{transform:scale(1.07);filter:saturate(1) brightness(.88)}
+.gi-cap{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,6,10,.92) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:16px 18px}
+.gi:hover .gi-cap{opacity:1}
+.gi-cap span{display:block;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:3px}
+.gi-cap strong{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600}
+
+/* ── LIGHTBOX ── */
+.lb{position:fixed;inset:0;background:rgba(5,6,10,.97);z-index:2000;display:none;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb-img{max-width:88vw;max-height:88vh;object-fit:contain;width:auto}
+.lb-x{position:absolute;top:22px;right:28px;background:none;border:none;color:var(--cream2);font-size:2rem;cursor:pointer;line-height:1;transition:color .3s;font-family:'Jost',sans-serif}
+.lb-x:hover{color:var(--gold)}
+.lb-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(197,160,89,.1);border:1px solid var(--line);color:var(--cream);width:50px;height:50px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;transition:all .3s;user-select:none}
+.lb-btn:hover{background:var(--gold);color:var(--ink)}
+#lb-prev{left:18px}
+#lb-next{right:18px}
+.lb-info{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:.68rem;letter-spacing:3px;color:var(--cream3);text-align:center}
+
+/* ── PROCESS ── */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:var(--line);margin-top:52px}
+.pstep{background:var(--ink);padding:46px 34px;position:relative;transition:background .4s}
+.pstep:hover{background:var(--ink2)}
+.pstep[data-arrow]::after{content:attr(data-arrow);position:absolute;right:-14px;top:42px;color:var(--gold-d);font-size:1.1rem;z-index:2}
+.pstep-n{font-family:'Cormorant Garamond',serif;font-size:3.2rem;color:rgba(197,160,89,.12);font-weight:700;line-height:1;margin-bottom:14px}
+.pstep-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:600;margin-bottom:10px}
+.pstep-desc{font-size:.84rem;color:var(--cream3);line-height:1.65;font-weight:300}
+
+/* ── WHY ── */
+.why{background:var(--ink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr}
+.why-l{padding:90px 68px 90px 0;border-right:1px solid var(--line)}
+.why-r{padding:90px 0 90px 68px}
+.wpts{display:flex;flex-direction:column;gap:30px;margin-top:44px}
+.wpt{display:flex;gap:18px;align-items:flex-start;margin-bottom:28px}
+.wchk{width:38px;height:38px;flex-shrink:0;border:1px solid var(--gold-d);display:flex;align-items:center;justify-content:center;margin-top:2px}
+.wchk svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wpt h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:#ffffff;margin-bottom:6px;letter-spacing:.01em}
+.wpt p{font-size:.92rem;color:rgba(244,241,234,.75);line-height:1.65;font-weight:300}
+.tmn{background:rgba(197,160,89,.04);border:1px solid var(--line);padding:32px;margin-bottom:14px;position:relative}
+.tmn::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);opacity:.15;position:absolute;top:6px;left:18px;line-height:1}
+.tmn .stars{color:var(--gold);font-size:12px;letter-spacing:2px;display:block;margin-bottom:10px}
+.tmn blockquote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--cream2);line-height:1.65;margin-bottom:14px;position:relative;z-index:1}
+.tmn cite{font-size:.66rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:700;font-style:normal}
+
+/* ── CONTACT ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:90px;align-items:start}
+.cinfo{display:flex;flex-direction:column;margin-top:44px}
+.cit{display:flex;gap:18px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--line)}
+.cit:first-child{padding-top:0}
+.cit:last-child{border:none}
+.cit-ico{width:40px;height:40px;flex-shrink:0;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-top:2px}
+.cit-ico svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cit-lbl{font-size:.64rem;letter-spacing:3px;text-transform:uppercase;color:var(--cream3);font-weight:700;display:block;margin-bottom:4px}
+.cit a,.cit span{color:var(--cream);font-size:.93rem;font-weight:300;display:block;transition:color .3s}
+.cit a:hover{color:var(--gold)}
+.fg{margin-bottom:15px}
+.fg label{display:block;font-size:.64rem;letter-spacing:3px;text-transform:uppercase;color:var(--cream3);font-weight:700;margin-bottom:8px}
+.fg input,.fg textarea,.fg select{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--line);color:var(--cream);padding:13px 16px;font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;outline:none;transition:border-color .3s,background .3s;appearance:none}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--cream3)}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold-d);background:rgba(197,160,89,.04)}
+.fg textarea{height:120px;resize:vertical}
+.fg select option{background:var(--ink2)}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fsub{width:100%;background:var(--gold);color:var(--ink);padding:16px;font-family:'Jost',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:all .35s;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:10px}
+.fsub:hover{background:var(--gold-l);transform:translateY(-3px);box-shadow:0 12px 30px rgba(197,160,89,.22)}
+.fsub:disabled{opacity:.6;transform:none;cursor:default}
+.fnote{font-size:.7rem;color:var(--cream3);margin-top:12px;text-align:center;line-height:1.6}
+.form-success{display:none;background:rgba(42,122,75,.15);border:1px solid rgba(42,122,75,.4);padding:20px;text-align:center;font-size:.9rem;color:#5dba82;margin-top:16px}
+.form-success.show{display:block}
+
+/* ── GOOGLE MAPS ── */
+.map-section{background:var(--ink);border-top:1px solid var(--line)}
+.map-inner{display:grid;grid-template-columns:1fr 2fr}
+.map-info{padding:60px 50px;border-right:1px solid var(--line)}
+.map-info h3{font-family:'Exo 2',sans-serif;font-size:2rem;font-weight:700;margin-bottom:24px;line-height:1.1;color:#ffffff;letter-spacing:-.02em}
+.map-info h3 em{color:#ffffff;font-style:normal}
+.map-detail{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.map-detail-ico{width:36px;height:36px;flex-shrink:0;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.map-detail-ico svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.map-detail-label{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--cream3);font-weight:700;display:block;margin-bottom:3px}
+.map-detail a,.map-detail span{color:var(--cream);font-size:.88rem;font-weight:300;display:block;transition:color .3s}
+.map-detail a:hover{color:var(--gold)}
+.map-placeholder{width:100%;height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--ink3)}
+.map-placeholder svg{width:48px;height:48px;stroke:var(--gold-d);fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+.map-placeholder p{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--cream3);text-align:center;max-width:200px;line-height:1.6}
+.map-placeholder a{color:var(--gold);font-size:.78rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-bottom:1px solid var(--gold-d);padding-bottom:2px;transition:color .3s}
+.map-embed{height:400px}
+.map-embed iframe{width:100%;height:100%;border:none;filter:grayscale(100%) invert(90%) hue-rotate(180deg) brightness(.85)}
+
+/* ── FOOTER ── */
+footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 36px}
+.ftop{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:60px;margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid var(--line)}
+.flogo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;letter-spacing:3px;color:var(--gold);display:block;margin-bottom:14px}
+.flogo span{color:var(--cream);font-weight:300}
+.fbrand p{font-size:.84rem;color:var(--cream3);line-height:1.75;font-weight:300;max-width:250px}
+.fcol h5{font-size:.64rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:18px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fcol ul li a{color:var(--cream3);font-size:.86rem;font-weight:300;transition:color .3s}
+.fcol ul li a:hover{color:var(--gold)}
+.fbot{display:flex;align-items:center;justify-content:space-between}
+.fcopy{font-size:.72rem;color:var(--cream3);letter-spacing:1px}
+/* ── AI BAR ── */
+.ai-resp{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);z-index:901;background:rgba(11,15,22,.97);border:1px solid var(--line);padding:20px 24px;max-width:520px;width:88vw;display:none;backdrop-filter:blur(16px)}
+.ai-resp.show{display:block;animation:fUp .4s var(--ease)}
+.ai-resp-lbl{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.ai-resp-lbl::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 1.5s infinite;flex-shrink:0}
+.ai-resp-text{font-size:.88rem;color:var(--cream2);line-height:1.7}
+.ai-resp-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.ai-resp-actions a{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;border:1px solid var(--line);padding:7px 14px;transition:all .3s}
+.ai-resp-actions a:hover{background:var(--gold);color:var(--ink)}
+.ai-bar{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:900;background:rgba(11,15,22,.93);border:1px solid var(--line);border-radius:60px;padding:13px 18px 13px 22px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(16px);box-shadow:0 8px 40px rgba(0,0,0,.6);min-width:340px;max-width:500px;width:88vw;transition:all .4s}
+.ai-bar:focus-within{border-color:var(--gold-d);box-shadow:0 8px 40px rgba(197,160,89,.15)}
+.ai-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse 2s infinite}
+.ai-input{background:none;border:none;color:var(--cream);flex:1;outline:none;font-family:'Jost',sans-serif;font-size:.86rem;font-weight:300}
+.ai-input::placeholder{color:var(--cream3)}
+.ai-send{background:var(--gold);color:var(--ink);border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s}
+.ai-send:hover{background:var(--gold-l);transform:scale(1.1)}
+.ai-send svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ai-x{background:none;border:none;color:var(--cream3);cursor:pointer;font-size:1.1rem;line-height:1;padding:0;transition:color .3s;flex-shrink:0}
+.ai-x:hover{color:var(--gold)}
+.ai-suggestions{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);z-index:901;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:500px;width:88vw}
+.ai-sug{background:rgba(11,15,22,.9);border:1px solid var(--line);color:var(--cream2);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;padding:8px 14px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:all .3s;backdrop-filter:blur(10px)}
+.ai-sug:hover{border-color:var(--gold-d);color:var(--gold)}
+
+/* ── WHATSAPP ── */
+.wa{position:fixed;bottom:20px;right:20px;z-index:800;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .3s,box-shadow .3s;animation:waIn 1s 2.5s var(--ease) both}
+.wa:hover{transform:scale(1.12);box-shadow:0 10px 36px rgba(37,211,102,.55)}
+.wa svg{width:28px;height:28px;fill:#fff}
+@keyframes waIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+.wa-tip{position:fixed;bottom:40px;right:92px;z-index:800;background:rgba(5,6,10,.92);color:var(--cream);font-size:.76rem;padding:8px 14px;white-space:nowrap;border:1px solid var(--line);opacity:0;transform:translateX(8px);transition:all .3s;pointer-events:none}
+.wa:hover~.wa-tip{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+
+  .svc-row:nth-child(3n){border-right:1px solid var(--line)}
+  .svc-row:nth-child(even){border-right:none}
+  .svc-row:nth-last-child(2){border-bottom:1px solid var(--line)}
+  .svc-row:nth-last-child(1){border-bottom:none}
+  .g-zone-c{grid-template-columns:1fr 1fr 1fr}
+  .map-inner{grid-template-columns:1fr}
+  .map-info{border-right:none;border-bottom:1px solid var(--line);padding:50px 5%}
+}
+
+  .burger{display:flex}
+  .why-grid{grid-template-columns:1fr}
+  .why-l{border-right:none;border-bottom:1px solid var(--line);padding:70px 0 60px}
+  .why-r{padding:60px 0}
+  .process-grid{grid-template-columns:repeat(2,1fr)}
+  .pstep[data-arrow]::after{display:none}
+  .contact-wrap{grid-template-columns:1fr;gap:50px}
+  .ftop{grid-template-columns:1fr 1fr}
+  .g-zone-a .gi{height:340px}
+  .g-zone-b{grid-template-columns:1fr 1fr}
+  .g-zone-b .gi:last-child{display:none}
+  .g-zone-c{grid-template-columns:1fr 1fr}
+  .g-zone-d{grid-template-columns:1fr}
+  .cin-overlay{background:linear-gradient(to top,rgba(5,6,10,.92) 40%,transparent);align-items:flex-end;padding:0 6% 50px}
+  .svc-modal{padding:40px 28px}
+}
+
+  .hero-stats{flex-direction:column}
+  .hstat{border-right:none;border-bottom:1px solid var(--line)}
+  .hstat:last-child{border-bottom:none}
+  .sec{padding:80px 5%}
+  .g-zone-b{grid-template-columns:1fr}
+  .g-zone-c{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr}
+  .ftop{grid-template-columns:1fr;gap:36px}
+  .fbot{flex-direction:column;gap:12px;text-align:center}
+  .ai-bar{min-width:0;width:calc(100vw - 40px)}
+  .fgr{grid-template-columns:1fr}
+  .scroll-cue{display:none}
+  .cin-img{height:60vh}
+}
+
+/* ══ ANIMATIONS v2 ══ */
+
+/* Portfolio zoom-in */
+.gi{opacity:0;transform:scale(.92);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.gi.anim-in{opacity:1;transform:scale(1)}
+
+/* Services — αριστερά/δεξιά */
+.svc-row{border-bottom:1px solid var(--line);padding:32px 36px;display:flex;gap:24px;align-items:flex-start;position:relative;overflow:hidden;transition:background .4s;cursor:pointer;background:var(--ink2);min-height:165px}
+.svc-row.anim-in{opacity:1;transform:none}
+.svc-row.anim-in{opacity:1;transform:none}
+
+/* Why checkmarks ένα-ένα */
+.wpt{display:flex;gap:18px;align-items:flex-start;margin-bottom:28px}
+.wpt.anim-in{opacity:1;transform:none}
+.wpt:nth-child(1){transition-delay:.0s}
+.wpt:nth-child(2){transition-delay:.15s}
+.wpt:nth-child(3){transition-delay:.30s}
+.wpt:nth-child(4){transition-delay:.45s}
+
+/* Checkmark draw animation */
+.wchk svg polyline{stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .5s var(--ease)}
+.wpt.anim-in .wchk svg polyline{stroke-dashoffset:0}
+
+/* Testimonials slide-up */
+.tmn{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.tmn.anim-in{opacity:1;transform:none}
+.tmn:nth-child(1){transition-delay:.0s}
+.tmn:nth-child(2){transition-delay:.15s}
+.tmn:nth-child(3){transition-delay:.30s}
+
+/* Stats pulse on count */
+.hstat h3{transition:color .3s}
+.hstat.counting h3{color:var(--gold-l)}
+
+/* ══ FAQ ══ */
+.faq-section{background:var(--ink);border-top:1px solid var(--line)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 60px;margin-top:12px}
+.faq-item{border-bottom:1px solid var(--line);overflow:hidden}
+.faq-q{
+  width:100%;background:none;border:none;
+  color:var(--cream);font-family:'Jost',sans-serif;
+  font-size:.95rem;font-weight:500;
+  text-align:left;padding:22px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  cursor:pointer;transition:color .3s;
+  letter-spacing:.3px;line-height:1.5;
+}
+.faq-q:hover{color:var(--gold)}
+.faq-q.open{color:var(--gold)}
+.faq-icon{
+  width:28px;height:28px;flex-shrink:0;
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .35s;border-radius:0;
+}
+.faq-q.open .faq-icon{background:var(--gold);border-color:var(--gold)}
+.faq-icon svg{width:12px;height:12px;stroke:var(--cream);fill:none;stroke-width:2;stroke-linecap:round;transition:transform .35s}
+.faq-q.open .faq-icon svg{stroke:var(--ink);transform:rotate(45deg)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .45s cubic-bezier(.25,.46,.45,.94),padding .35s;
+  padding:0;
+}
+.faq-a.open{max-height:300px;padding-bottom:20px}
+.faq-a p{
+  font-size:.88rem;color:var(--cream2);line-height:1.8;
+  font-weight:300;border-left:2px solid var(--gold);
+  padding-left:16px;
+}
+.faq-a p strong{color:var(--cream);font-weight:600}
+
+.ai-suggestions-bar{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+  transition:opacity .3s;
+}
+.ai-sug{
+  background:rgba(11,15,22,.92);border:1px solid var(--line);
+  color:var(--cream2);font-size:.65rem;letter-spacing:2px;
+  text-transform:uppercase;padding:7px 13px;cursor:pointer;
+  font-family:'Jost',sans-serif;font-weight:500;transition:all .3s;
+  backdrop-filter:blur(10px);
+}
+.ai-sug:hover{border-color:var(--gold-d);color:var(--gold)}
+.ai-chat-window{
+  width:100%;background:rgba(11,15,22,.97);
+  border:1px solid var(--line);backdrop-filter:blur(20px);
+  display:none;flex-direction:column;
+  max-height:400px;border-radius:2px;
+  box-shadow:0 -8px 40px rgba(0,0,0,.5);
+}
+.ai-chat-window.open{display:flex}
+.ai-chat-header{
+  padding:12px 18px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.ai-chat-name{
+  display:flex;align-items:center;gap:10px;
+  font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;
+}
+.ai-online{width:7px;height:7px;border-radius:50%;background:#25D366;animation:pulse 2s infinite;flex-shrink:0}
+.ai-close-btn{background:none;border:none;color:var(--cream3);cursor:pointer;font-size:1.2rem;line-height:1;transition:color .3s;padding:0}
+.ai-close-btn:hover{color:var(--gold)}
+.ai-messages{
+  flex:1;overflow-y:auto;padding:16px 18px;
+  display:flex;flex-direction:column;gap:12px;
+  scrollbar-width:thin;scrollbar-color:var(--gold-d) transparent;
+}
+.ai-msg{max-width:88%;line-height:1.65;font-size:.88rem;font-weight:300;padding:11px 14px;border-radius:2px}
+.ai-msg.bot{
+  background:rgba(197,160,89,.08);border:1px solid var(--line);
+  color:var(--cream2);align-self:flex-start;border-left:2px solid var(--gold);
+}
+.ai-msg.user{
+  background:rgba(197,160,89,.15);border:1px solid rgba(197,160,89,.25);
+  color:var(--cream);align-self:flex-end;
+}
+.ai-msg.typing{color:var(--cream3);font-style:italic}
+.ai-input-row{
+  display:flex;gap:0;border-top:1px solid var(--line);flex-shrink:0;
+}
+.ai-text-input{
+  flex:1;background:transparent;border:none;
+  color:var(--cream);padding:13px 16px;
+  font-family:'Jost',sans-serif;font-size:.88rem;font-weight:300;
+  outline:none;
+}
+.ai-text-input::placeholder{color:var(--cream3)}
+.ai-send-btn{
+  background:var(--gold);color:var(--ink);border:none;
+  padding:0 20px;cursor:pointer;transition:background .3s;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ai-send-btn:hover{background:var(--gold-l)}
+.ai-send-btn svg{width:15px;height:15px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ai-toggle-btn{
+  background:rgba(11,15,22,.92);border:1px solid var(--line);
+  color:var(--cream2);padding:12px 22px;
+  font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:2px;
+  text-transform:uppercase;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;gap:10px;transition:all .3s;
+  backdrop-filter:blur(16px);width:100%;justify-content:center;
+}
+.ai-toggle-btn:hover{border-color:var(--gold-d);color:var(--gold)}
+.ai-toggle-btn .ai-online{background:var(--gold)}
+
+  .ai-chat-window{max-height:320px}
+}
+
+/* ══ PORTFOLIO CTA ══ */
+.portfolio-cta{
+  margin-top:52px;
+  padding:52px 48px;
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:32px;flex-wrap:wrap;
+  background:rgba(197,160,89,.04);
+  position:relative;overflow:hidden;
+}
+.portfolio-cta::before{
+  content:'';position:absolute;
+  top:0;left:0;width:4px;height:100%;
+  background:var(--gold);
+}
+.portfolio-cta-text h3{font-family:'Exo 2',sans-serif;font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:700;color:#ffffff;margin-bottom:8px;line-height:1.1}
+.portfolio-cta-text h3 em{color:#ffffff;font-style:normal}
+.portfolio-cta-text p{
+  font-size:.88rem;color:var(--cream3);
+  font-weight:300;line-height:1.6;
+}
+
+  .portfolio-cta::before{width:100%;height:3px;top:0;left:0}
+}
+
+/* ══ PORTFOLIO v2 ══ */
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:8px}
+.pf-card{position:relative;overflow:hidden;cursor:pointer;background:var(--ink3);aspect-ratio:4/3}
+.pf-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.75);transition:transform .6s var(--ease),filter .6s}
+.pf-card:hover img{transform:scale(1.06);filter:brightness(.9)}
+.pf-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,6,10,.95) 0%,transparent 55%);padding:20px;display:flex;flex-direction:column;justify-content:flex-end}
+.pf-card-cat{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:5px}
+.pf-card-title{font-family:'Exo 2',sans-serif;font-size:1rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:4px}
+.pf-card-sub{font-size:.75rem;color:rgba(244,241,234,.6);font-weight:300}
+.pf-card-count{position:absolute;top:12px;right:12px;background:rgba(5,6,10,.7);border:1px solid var(--line);color:var(--gold);font-size:.6rem;letter-spacing:1px;padding:4px 8px;font-weight:700}
+.pj-lb{position:fixed;inset:0;background:rgba(5,6,10,.97);z-index:2000;display:none;flex-direction:column}
+.pj-lb.open{display:flex}
+.pj-lb-header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--line);flex-shrink:0}
+.pj-lb-info h3{font-family:'Exo 2',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:4px}
+.pj-lb-info span{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700}
+.pj-lb-close{background:none;border:none;color:var(--cream2);font-size:1.8rem;cursor:pointer;transition:color .3s;line-height:1;padding:0}
+.pj-lb-close:hover{color:var(--gold)}
+.pj-lb-body{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:20px 80px}
+.pj-lb-img{max-width:100%;max-height:100%;object-fit:contain;transition:opacity .3s}
+.pj-lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(197,160,89,.15);border:1px solid var(--line);color:var(--cream);width:52px;height:52px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;transition:all .3s;border-radius:2px}
+.pj-lb-nav:hover{background:var(--gold);color:var(--ink)}
+.pj-lb-prev{left:16px}.pj-lb-next{right:16px}
+.pj-lb-footer{padding:14px 28px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pj-lb-counter{font-size:.72rem;letter-spacing:2px;color:var(--cream3)}
+.pj-lb-thumbs{display:flex;gap:6px;overflow-x:auto;max-width:70%}
+.pj-lb-thumb{width:48px;height:36px;object-fit:cover;flex-shrink:0;cursor:pointer;opacity:.5;transition:opacity .3s;border:1px solid transparent}
+.pj-lb-thumb.active{opacity:1;border-color:var(--gold)}
+@media(max-width:900px){.pf-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.pf-grid{grid-template-columns:1fr}.pj-lb-body{padding:10px 52px}.pj-lb-nav{width:38px;height:38px}.pj-lb-prev{left:6px}.pj-lb-next{right:6px}.pj-lb-thumbs{display:none}}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="nav">
   <a href="#home" class="nav-logo">PA <span>Creative House</span></a>
   <ul class="nav-links">
     <li><a href="#home">Αρχική</a></li>
     <li><a href="#services">Υπηρεσίες</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#why">Γιατί Εμάς</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Επικοινωνία</a></li>
   </ul>
   <a href="tel:+302721090509" class="nav-cta">27210 90509</a>
+  <div class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home"      onclick="closeMenu()">Αρχική</a>
+  <a href="#services"  onclick="closeMenu()">Υπηρεσίες</a>
+  <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+  <a href="#why"       onclick="closeMenu()">Γιατί Εμάς</a>
+  <a href="#contact"   onclick="closeMenu()" class="mcta">Επικοινωνία →</a>
+</div>
 
+<!-- HERO -->
 <section id="home" class="hero">
   <div class="hero-parallax" id="parallax"></div>
+  <!-- κανάβος αφαιρέθηκε -->
+  <div class="hero-vline"></div>
   <div class="hero-content">
-    <span class="hero-eyebrow">Πολιτικός Μηχανικός ΤΕ · Καλαμάτα</span>
+    <span class="hero-eyebrow"><span class="live"></span>Πολιτικός Μηχανικός ΤΕ · Καλαμάτα · Μεσσηνία</span>
+
+    <!-- TAGLINE: μία γραμμή το καθένα -->
     <div class="hero-tagline">
       <span class="tline tline-1">Η περιουσία σας.</span>
       <span class="tline-divider"></span>
       <span class="tline tline-2">Ευθύνη μας.</span>
     </div>
+
     <p class="hero-sub">
-      <strong>Παναγιώτης Αργύρης</strong> — 600 ολοκληρωμένα έργα στη Μεσσηνία. 
-      Αναλαμβάνουμε κάθε υπόθεση ακινήτου χωρίς γραφειοκρατικά εμπόδια.
+      <strong>Παναγιώτης Αργύρης</strong> — Πολιτικός Μηχανικός ΤΕ με 600 ολοκληρωμένα έργα
+      στη Μεσσηνία από το 2020. Αναλαμβάνουμε κάθε υπόθεση ακινήτου από την αρχή ως το τέλος,
+      χωρίς γραφειοκρατικά εμπόδια.
+
     </p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-gold">Ξεκινήστε τη μελέτη σας</a>
+      <a href="#contact" class="btn-gold">Ξεκινήστε τη μελέτη σας <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
       <a href="#portfolio" class="btn-ghost">Δείτε τα έργα μας</a>
     </div>
   </div>
+  <div class="hero-stats">
+    <div class="hstat"><h3 data-count="600">0+</h3><p>Έργα & Μελέτες</p></div>
+    <div class="hstat"><h3 data-count="12">0+</h3><p>Υπηρεσίες</p></div>
+    <div class="hstat"><h3 data-count="6">0+</h3><p>Χρόνια Εμπειρίας</p></div>
+    <div class="hstat"><h3 data-count="24">0h</h3><p>Χρόνος Απόκρισης</p></div>
+  </div>
+  <div class="scroll-cue" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
+<!-- SERVICES: 12 υπηρεσίες -->
 <section id="services" class="sec">
+  <span class="sec-label reveal">Υπηρεσίες</span>
   <h2 class="sec-title reveal">Ολοκληρωμένες λύσεις για <em>κάθε ακίνητο</em></h2>
-  <div class="svc-monolith">
-    <div class="svc-row reveal" onclick="openSvc(0)">
-      <span class="svc-idx">01.</span>
+  
+  
+  
+  <div class="svc-monolith" id="svcGrid">
+    <div class="svc-row anim-in" onclick="openSvc(0)">
+      <span class="svc-idx">1.</span>
       <div class="svc-info">
         <div class="svc-name">Οικοδομικές Άδειες</div>
-        <p class="svc-desc">Πλήρης μελέτη και έκδοση για κατοικίες μέσω e-Άδειες.</p>
-      </div>
+        <p class="svc-desc">Πλήρης μελέτη και έκδοση για κατοικίες και επαγγελματικά κτίρια μέσω e-Άδειες.<span class="svc-time">Χρόνος υλοποίησης: ανάλογα με την περίπτωση</span></p>
+      </div><span class="svc-arr">Περισσότερα →</span>
     </div>
-    <div class="svc-row reveal rd1" onclick="openSvc(1)">
-      <span class="svc-idx">02.</span>
+    <div class="svc-row anim-in" onclick="openSvc(1)">
+      <span class="svc-idx">2.</span>
       <div class="svc-info">
         <div class="svc-name">Τακτοποίηση Αυθαιρέτων</div>
-        <p class="svc-desc">Νομιμοποίηση με τον Ν.4495/17 για ασφαλείς μεταβιβάσεις.</p>
-      </div>
+        <p class="svc-desc">Εντοπίζουμε και τακτοποιούμε κάθε πολεοδομική εκκρεμότητα — εξασφαλίζοντας πλήρη νομιμότητα και ελεύθερη μεταβίβαση του ακινήτου σας.<span class="svc-time">Χρόνος υλοποίησης: 20–30 ημέρες</span></p>
+      </div><span class="svc-arr">Περισσότερα →</span>
     </div>
-    <div class="svc-row reveal rd2" onclick="openSvc(5)">
-      <span class="svc-idx">03.</span>
+    <div class="svc-row anim-in" onclick="openSvc(2)">
+      <span class="svc-idx">3.</span>
+      <div class="svc-info">
+        <div class="svc-name">Ηλεκτρονική Ταυτότητα Κτιρίου</div>
+        <p class="svc-desc">Απαραίτητη για κάθε συμβολαιογραφική πράξη. Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη.<span class="svc-time">Χρόνος υλοποίησης: 5–7 ημέρες</span></p>
+      </div><span class="svc-arr">Περισσότερα →</span>
+    </div>
+    <div class="svc-row anim-in" onclick="openSvc(3)">
+      <span class="svc-idx">4.</span>
+      <div class="svc-info">
+        <div class="svc-name">Τοπογραφικά Διαγράμματα</div>
+        <p class="svc-desc">GPS/Total Station για κτηματολόγιο, οριοθετήσεις και αγοραπωλησίες.<span class="svc-time">Χρόνος υλοποίησης: 15 ημέρες</span></p>
+      </div><span class="svc-arr">Περισσότερα →</span>
+    </div>
+    <div class="svc-row anim-in" onclick="openSvc(4)">
+      <span class="svc-idx">5.</span>
+      <div class="svc-info">
+        <div class="svc-name">Ενεργειακές Επιθεωρήσεις (ΠΕΑ)</div>
+        <p class="svc-desc">Υποχρεωτικό για αγοραπωλησίες και μισθώσεις ακινήτων.<span class="svc-time">Χρόνος υλοποίησης: 2 ημέρες</span></p>
+      </div><span class="svc-arr">Περισσότερα →</span>
+    </div>
+    <div class="svc-row anim-in" onclick="openSvc(5)">
+      <span class="svc-idx">6.</span>
       <div class="svc-info">
         <div class="svc-name">Πρόγραμμα «Εξοικονομώ»</div>
-        <p class="svc-desc">Επιδότηση έως 75% για ενεργειακή αναβάθμιση.</p>
+        <p class="svc-desc">Αναλαμβάνουμε την πλήρη τεχνική υποστήριξη: ΠΕΑ πριν, αίτηση, επιλογή παρεμβάσεων (κουφώματα, μόνωση, θέρμανση, PV), εκταμίευση και ΠΕΑ μετά. Επιδότηση έως 75%.</p>
+      </div><span class="svc-arr">Περισσότερα →</span>
+    </div>
+    <div class="svc-row anim-in" onclick="openSvc(6)">
+      <span class="svc-idx">7.</span>
+      <div class="svc-info">
+        <div class="svc-name">Ανακαίνιση & Κατασκευές</div>
+        <p class="svc-desc">Ολικές και μερικές ανακαινίσεις με πλήρη επίβλεψη. Από τον πρώτο τοίχο ως το κλειδί στο χέρι.</p>
+      </div><span class="svc-arr">Περισσότερα →</span>
+    </div>
+    <div class="svc-row anim-in" onclick="openSvc(7)">
+      <span class="svc-idx">8.</span>
+      <div class="svc-info">
+        <div class="svc-name">Interior Design</div>
+        <p class="svc-desc">Αρχιτεκτονική εσωτερικών χώρων — λειτουργικότητα και αισθητική σε κάθε τετραγωνικό μέτρο.</p>
+      </div><span class="svc-arr">Περισσότερα →</span>
+    </div>
+    <div class="svc-row anim-in" onclick="openSvc(8)">
+      <span class="svc-idx">9.</span>
+      <div class="svc-info">
+        <div class="svc-name">Άδειες Λειτουργίας Καταστημάτων</div>
+        <p class="svc-desc">Έκδοση αδειών λειτουργίας, μελέτες πυρασφάλειας και υγιεινής για καταστήματα και γραφεία.</p>
+      </div><span class="svc-arr">Περισσότερα →</span>
+    </div>
+  </div>
+
+
+
+</section>
+
+<!-- SERVICE MODAL -->
+<div class="svc-modal-bg" id="svcModal" onclick="closeSvcOut(event)">
+  <div class="svc-modal">
+    <button class="svc-modal-close" onclick="closeSvc()">×</button>
+    <span class="svc-modal-cat" id="mCat"></span>
+    <h2 class="svc-modal-title" id="mTitle"></h2>
+    <p class="svc-modal-tagline" id="mTagline"></p>
+    <p class="svc-modal-body" id="mBody"></p>
+    <div class="svc-modal-cta">
+      <a href="#contact" class="btn-gold" onclick="closeSvc()" style="font-size:.75rem;padding:13px 28px">Ζητήστε Προσφορά <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+      <a href="tel:+302721090509" class="btn-ghost" style="margin-left:20px">27210 90509</a>
+    </div>
+  </div>
+</div>
+
+<!-- CINEMATIC -->
+<div class="cinematic reveal">
+  <img class="cin-img" src="Image_3__style_transfer01.png" alt="Βίλα — PA Creative House">
+  <div class="cin-overlay">
+    <div class="cin-content">
+      <span class="sec-label">Έργα Αναφοράς</span>
+      <h2>Από το σχέδιο <em>στην πραγματικότητα</em></h2>
+      <p>Κάθε έργο ξεκινά από ένα όραμα. Το ολοκληρώνουμε με ακρίβεια, αισθητική και σεβασμό.</p>
+      <a href="#portfolio" class="btn-gold">Δείτε το Portfolio <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+
+<section id="portfolio" class="sec portfolio">
+  <span class="sec-label reveal">Portfolio</span>
+  <h2 class="sec-title reveal">Δείγματα <em>δουλειάς μας</em></h2>
+  <div class="ptabs reveal">
+    <button class="ptab active" onclick="pfFilter('all',this)">Όλα</button>
+    <button class="ptab" onclick="pfFilter('katoikia',this)">Κατοικίες</button>
+    <button class="ptab" onclick="pfFilter('anakainisi',this)">Ανακαινίσεις</button>
+    <button class="ptab" onclick="pfFilter('epaggelmatiko',this)">Επαγγελματικά</button>
+    <button class="ptab" onclick="pfFilter('interior',this)">Interior</button>
+  </div>
+  <div class="pf-grid reveal" id="pfGrid"></div>
+  <div class="portfolio-cta reveal">
+    <div class="portfolio-cta-text">
+      <h3>Θέλετε το επόμενο έργο μας<br>να είναι <em>το δικό σας;</em></h3>
+      <p>Επικοινωνήστε μαζί μας για δωρεάν εκτίμηση του project σας.</p>
+    </div>
+    <a href="#contact" class="btn-gold" style="flex-shrink:0">Ξεκινήστε τώρα <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+<div class="pj-lb" id="pjLb">
+  <div class="pj-lb-header">
+    <div class="pj-lb-info"><span id="pjLbCat"></span><h3 id="pjLbTitle"></h3></div>
+    <button class="pj-lb-close" onclick="pjCloseLb()">×</button>
+  </div>
+  <div class="pj-lb-body">
+    <div class="pj-lb-nav pj-lb-prev" onclick="pjNav(-1)">‹</div>
+    <img class="pj-lb-img" id="pjLbImg" src="" alt="">
+    <div class="pj-lb-nav pj-lb-next" onclick="pjNav(1)">›</div>
+  </div>
+  <div class="pj-lb-footer">
+    <span class="pj-lb-counter" id="pjLbCounter">1 / 1</span>
+    <div class="pj-lb-thumbs" id="pjLbThumbs"></div>
+  </div>
+</div>
+
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLbOut(event)">
+  <button class="lb-x" onclick="closeLb()">×</button>
+  <div class="lb-btn" id="lb-prev" onclick="lbNav(-1)">‹</div>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <div class="lb-btn" id="lb-next" onclick="lbNav(1)">›</div>
+  <div class="lb-info" id="lb-info"></div>
+</div>
+
+<!-- PROCESS -->
+<section id="process" class="sec">
+  <span class="sec-label reveal">Πώς Εργαζόμαστε</span>
+  <h2 class="sec-title reveal">Απλή διαδικασία, <em>εγγυημένο αποτέλεσμα</em></h2>
+  <div class="process-grid">
+    <div class="pstep reveal"     data-arrow="→"><div class="pstep-n">01</div><div class="pstep-name">Αρχική Συνάντηση</div><p class="pstep-desc">Δωρεάν αξιολόγηση. Εκτίμηση κόστους, χρονοδιαγράμματος και βημάτων.</p></div>
+    <div class="pstep reveal rd1" data-arrow="→"><div class="pstep-n">02</div><div class="pstep-name">Τεχνική Ανάλυση</div><p class="pstep-desc">Σύνταξη φακέλου, έλεγχος τίτλων, μελέτη τοπογραφικών και νομικής κατάστασης.</p></div>
+    <div class="pstep reveal rd2" data-arrow="→"><div class="pstep-n">03</div><div class="pstep-name">Υποβολή & Παρακολούθηση</div><p class="pstep-desc">Ηλεκτρονική υποβολή, real-time ενημέρωση για κάθε εξέλιξη.</p></div>
+    <div class="pstep reveal rd3" data-arrow=""><div class="pstep-n">04</div><div class="pstep-name">Παράδοση & Aftercare</div><p class="pstep-desc">Παράδοση εγγράφων και συνεχής υποστήριξη για μελλοντικές ανάγκες.</p></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="sec why">
+  <div class="why-grid">
+    <div class="why-l">
+      <span class="sec-label reveal">Γιατί PA Creative House</span>
+      <h2 class="sec-title reveal">Η εμπιστοσύνη δεν υπόσχεται.<br><em>Αποδεικνύεται.</em></h2>
+      <div class="wpts">
+        <div class="wpt reveal"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>600 Ολοκληρωμένα Έργα</h4><p>Μια αδιάλειπτη διαδρομή τεχνικής αρτιότητας και εμπιστοσύνης στη Μεσσηνία.</p></div></div>
+        <div class="wpt reveal rd1"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Τεχνολογία Αιχμής</h4><p>Χρησιμοποιούμε σύγχρονα εργαλεία για ταχύτητα, ακρίβεια και άριστα αποτελέσματα.</p></div></div>
+        <div class="wpt reveal rd2"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Ολοκληρωμένες Λύσεις</h4><p>Αναλαμβάνουμε κάθε στάδιο — από τη μελέτη ως την παράδοση με κλειδί στο χέρι.</p></div></div>
+        <div class="wpt reveal rd3"><div class="wchk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4>Γραπτή Προσφορά, Χωρίς Εκπλήξεις</h4><p>Ξέρετε ακριβώς τι πληρώνετε πριν ξεκινήσουμε. Καμία κρυφή χρέωση.</p></div></div>
+      </div>
+    </div>
+    <div class="why-r">
+      <span class="sec-label reveal">Λένε για Εμάς</span>
+      <h2 class="sec-title reveal">Πελάτες που <em>επιστρέφουν</em></h2>
+      <div style="margin-top:44px;display:flex;flex-direction:column;gap:14px">
+        <div class="tmn reveal"><span class="stars">★★★★★</span><blockquote>«Από την πρώτη επαφή ως την παράδοση της άδειας, υποδειγματική εξυπηρέτηση. Χωρίς καθυστερήσεις, χωρίς εκπλήξεις.»</blockquote><cite>Δημήτρης Κ. — Ιδιοκτήτης κατοικίας, Καλαμάτα</cite></div>
+        <div class="tmn reveal rd1"><span class="stars">★★★★★</span><blockquote>«Το αυθαίρετο που με βασάνιζε χρόνια τακτοποιήθηκε σε 2 μήνες. Επαγγελματισμός υψηλού επιπέδου.»</blockquote><cite>Μαρία Τ. — Κάτοχος ακινήτου, Μεσσήνη</cite></div>
+        <div class="tmn reveal rd2"><span class="stars">★★★★★</span><blockquote>«Εξαιρετική εξυπηρέτηση για Εξοικονομώ. Ανέλαβαν τα πάντα και η έγκριση ήρθε χωρίς κανένα πρόβλημα.»</blockquote><cite>Γιώργης Π. — Ιδιοκτήτης, Καλαμάτα</cite></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="faq" class="sec" style="background:var(--ink2)">
-  <h2 class="sec-title">Συχνές Ερωτήσεις</h2>
+<!-- CONTACT -->
+
+<!-- FAQ SECTION -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Πόσο κοστίζει μια οικοδομική άδεια;","acceptedAnswer":{"@type":"Answer","text":"Το κόστος εξαρτάται από τον τύπο και το μέγεθος του έργου. Δίνουμε πάντα γραπτή προσφορά πριν ξεκινήσουμε, χωρίς κρυφές χρεώσεις."}},
+    {"@type":"Question","name":"Πόσο χρόνο παίρνει η τακτοποίηση αυθαιρέτου;","acceptedAnswer":{"@type":"Answer","text":"Συνήθως 1–3 μήνες ανάλογα την πολυπλοκότητα. Η διαδικασία γίνεται ηλεκτρονικά μέσω του συστήματος e-Άδειες."}},
+    {"@type":"Question","name":"Χρειάζομαι ΠΕΑ για να πουλήσω το σπίτι μου;","acceptedAnswer":{"@type":"Answer","text":"Ναι, το Πιστοποιητικό Ενεργειακής Απόδοσης είναι υποχρεωτικό για κάθε αγοραπωλησία ή μίσθωση ακινήτου. Εκδίδεται σε 3–5 εργάσιμες ημέρες."}},
+    {"@type":"Question","name":"Τι είναι η Ηλεκτρονική Ταυτότητα Κτιρίου;","acceptedAnswer":{"@type":"Answer","text":"Αποτελεί πλέον το απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη μεταβίβαση, γονική παροχή ή αγοραπωλησία ακινήτου. Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη."}},
+    {"@type":"Question","name":"Πώς λειτουργεί το πρόγραμμα Εξοικονομώ;","acceptedAnswer":{"@type":"Answer","text":"Επιδοτεί έως 75% του κόστους ενεργειακής αναβάθμισης (κουφώματα, μόνωση, θέρμανση). Αναλαμβάνουμε ολόκληρο τον φάκελο ως "}},
+    {"@type":"Question","name":"Μπορώ να νομιμοποιήσω αυθαίρετο για να πουλήσω το ακίνητό μου;","acceptedAnswer":{"@type":"Answer","text":"Ναι. Με τον Ν.4495/2017 μπορείτε να τακτοποιήσετε αυθαίρετες κατασκευές και να αποκτήσετε πλήρη νομιμότητα για μεταβίβαση."}},
+    {"@type":"Question","name":"Τι έγγραφα χρειάζονται για τοπογραφικό;","acceptedAnswer":{"@type":"Answer","text":"Τίτλος ιδιοκτησίας και συμβόλαιο αγοράς. Στη συνέχεια κάνουμε αυτοψία και παραδίδουμε το διάγραμμα σε 3–7 εργάσιμες ημέρες."}},
+    {"@type":"Question","name":"Εξυπηρετείτε εκτός Καλαμάτας;","acceptedAnswer":{"@type":"Answer","text":"Ναι, εξυπηρετούμε ολόκληρη τη Μεσσηνία — Καλαμάτα, Μεσσήνη, Κυπαρισσία, Πύλος, Σπάρτη και γύρω περιοχές."}}
+  ]
+}
+</script>
+
+<section id="faq" class="sec faq-section">
+  <span class="sec-label reveal">Συχνές Ερωτήσεις</span>
+  <h2 class="sec-title reveal">Ό,τι θέλετε να <em>γνωρίζετε</em></h2>
   <div class="faq-grid">
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Πόσο κοστίζει μια οικοδομική άδεια; <span>+</span></button>
-      <div class="faq-a"><p>Το κόστος εξαρτάται από το μέγεθος του έργου. Παρέχουμε γραπτή προσφορά χωρίς κρυφές χρεώσεις.</p></div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Πόσο κοστίζει μια οικοδομική άδεια;
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-a">
+        <p>Εξαρτάται από τον τύπο και το μέγεθος του έργου. Δίνουμε πάντα <strong>γραπτή προσφορά</strong> πριν ξεκινήσουμε — χωρίς κρυφές χρεώσεις. Διασφαλίζουμε την ταχύτερη δυνατή έκδοση μέσω του συστήματος <strong>e-Άδειες</strong>.</p>
+      </div>
     </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Πώς λειτουργεί το πρόγραμμα Εξοικονομώ; <span>+</span></button>
-      <div class="faq-a"><p>Επιδοτεί έως 75% του κόστους ενεργειακής αναβάθμισης. Αναλαμβάνουμε ολόκληρο τον φάκελο ως Σύμβουλοι Μηχανικοί, από την αίτηση έως την τελική εκταμίευση.</p></div>
+
+    <div class="faq-item reveal rd1">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Πόσο χρόνο παίρνει η τακτοποίηση αυθαιρέτου;
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-a">
+        <p>Συνήθως <strong>1–3 μήνες</strong> ανάλογα την πολυπλοκότητα. Γίνεται ηλεκτρονικά μέσω e-Άδειες και χρειάζεται τοπογραφικό + αποτύπωση.</p>
+      </div>
     </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Χρειάζομαι ΠΕΑ για να πουλήσω το σπίτι μου;
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-a">
+        <p>Ναι, είναι <strong>υποχρεωτικό</strong> για κάθε αγοραπωλησία ή μίσθωση. Το εκδίδουμε σε <strong>3–5 εργάσιμες ημέρες</strong> μετά από αυτοψία.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal rd1">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Τι είναι η Ηλεκτρονική Ταυτότητα Κτιρίου;
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-a">
+        <p>Αποτελεί πλέον το απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη μεταβίβαση, γονική παροχή ή αγοραπωλησία ακινήτου. <strong>Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη.</strong></p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Πώς λειτουργεί το πρόγραμμα Εξοικονομώ;
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-a">
+        <p>Επιδοτεί <strong>έως 75%</strong> του κόστους ενεργειακής αναβάθμισης.  ολόκληρο τον φάκελο — από ΠΕΑ έως εκταμίευση.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal rd1">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Μπορώ να νομιμοποιήσω αυθαίρετο για να πουλήσω;
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-a">
+        <p>Ναι. Με τον <strong>Ν.4495/2017</strong> μπορείτε να τακτοποιήσετε αυθαίρετες κατασκευές και να αποκτήσετε πλήρη νομιμότητα για μεταβίβαση.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Τι έγγραφα χρειάζονται για τοπογραφικό;
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-a">
+        <p>Τίτλος ιδιοκτησίας και συμβόλαιο αγοράς. Κάνουμε αυτοψία και παραδίδουμε το διάγραμμα σε <strong>3–7 εργάσιμες ημέρες</strong>.</p>
+      </div>
+    </div>
+
+    <div class="faq-item reveal rd1">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Εξυπηρετείτε εκτός Καλαμάτας;
+        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      </button>
+      <div class="faq-a">
+        <p>Ναι, εξυπηρετούμε <strong>ολόκληρη τη Μεσσηνία</strong> — Καλαμάτα, Μεσσήνη, Κυπαρισσία, Πύλο, Σπάρτη και γύρω περιοχές.</p>
+      </div>
+    </div>
+
   </div>
 </section>
+<!-- /FAQ SECTION -->
 
 <section id="contact" class="sec">
-  <div class="faq-grid">
+  <div class="contact-wrap">
     <div>
-      <h2 class="sec-title">Επικοινωνία</h2>
-      <p>Φαρών 155, Καλαμάτα<br>Τηλ: 27210 90509</p>
-      <br>
-      <a href="https://goo.gl/maps/XYZ123" target="_blank" class="btn-ghost">Άνοιγμα στους Χάρτες →</a>
-    </div>
-    <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
-      <div style="display:grid; gap:15px">
-        <input type="text" name="name" placeholder="Όνομα" style="padding:15px; background:var(--ink2); border:1px solid var(--line); color:#fff" required>
-        <input type="email" name="email" placeholder="Email" style="padding:15px; background:var(--ink2); border:1px solid var(--line); color:#fff" required>
-        <textarea name="message" placeholder="Το μήνυμά σας" style="padding:15px; background:var(--ink2); border:1px solid var(--line); color:#fff; height:100px"></textarea>
-        <button type="submit" class="btn-gold">Αποστολή</button>
+      <span class="sec-label reveal">Επικοινωνία</span>
+      <h2 class="sec-title reveal">Πείτε μας το <em>project σας</em></h2>
+      <div class="cinfo">
+        <div class="cit reveal"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="cit-lbl">Διεύθυνση</span><span>Φαρών 155, Καλαμάτα 24100</span></div></div>
+        <div class="cit reveal rd1"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.88 1.18 2 2 0 012.88 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.68a16 16 0 006.23 6.23l1.05-1.05a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><span class="cit-lbl">Τηλέφωνο</span><a href="tel:+302721090509">27210 90509</a></div></div>
+        <div class="cit reveal rd2"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><span class="cit-lbl">Email</span><a href="/cdn-cgi/l/email-protection#325b5c545d72425351405753465b44575a5d4741571c5540"><span class="__cf_email__" data-cfemail="ff96919990bf8f9e9c8d9a9e8b96899a97908a8c9ad1988d">[email&#160;protected]</span></a></div></div>
+        <div class="cit reveal rd3"><div class="cit-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><span class="cit-lbl">Ώρες</span><span>Δευτέρα – Παρασκευή 09:00 – 17:00</span></div></div>
       </div>
+    </div>
+    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="reveal rd1" onsubmit="handleSubmit(event)">
+      <div class="fg"><label>Ονοματεπώνυμο *</label><input type="text" name="name" placeholder="Το ονοματεπώνυμό σας" required></div>
+      <div class="fgr">
+        <div class="fg"><label>Τηλέφωνο *</label><input type="tel" name="phone" placeholder="69x xxx xxxx" required></div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="email@example.com"></div>
+      </div>
+      <div class="fg"><label>Υπηρεσία</label>
+        <select name="service">
+          <option value="">Επιλέξτε υπηρεσία...</option>
+          <option>Οικοδομική Άδεια / Στατική Μελέτη</option>
+          <option>Τακτοποίηση Αυθαιρέτου (Ν.4495/2017)</option>
+          <option>Ηλεκτρονική Ταυτότητα Κτιρίου</option>
+          <option>Εγκρίσεις Μικρής Κλίμακας</option>
+          <option>Τοπογραφικό Διάγραμμα</option>
+          <option>ΠΕΑ / Ενεργειακό Πιστοποιητικό</option>
+          <option>Εξοικονομώ – Ανακαινίζω</option>
+          <option>Τεχνικός Ασφάλειας</option>
+          <option>Interior Design</option>
+          <option>Ανακαίνιση</option>
+          <option>Κατασκευή / Επίβλεψη</option>
+          <option>Άδεια Λειτουργίας Επιχείρησης</option>
+          <option>Άλλο</option>
+        </select>
+      </div>
+      <div class="fg"><label>Περιγραφή</label><textarea name="message" placeholder="Περιγράψτε σύντομα το αίτημά σας..."></textarea></div>
+      <input type="hidden" name="_subject" value="Νέο αίτημα από PA Creative House website">
+      <input type="text" name="_gotcha" style="display:none">
+      <button type="submit" class="fsub" id="submitBtn">Αποστολή Αιτήματος <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></button>
+      <div class="form-success" id="formSuccess">✓ &nbsp; Το αίτημά σας στάλθηκε! Θα επικοινωνήσουμε εντός 24 ωρών.</div>
+      <p class="fnote">Τα δεδομένα σας προστατεύονται · GDPR Compliant</p>
     </form>
   </div>
 </section>
 
-<div id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
+<!-- MAPS -->
+<div class="map-section">
+  <div class="map-inner">
+    <div class="map-info">
+      <span class="sec-label">Βρείτε μας</span>
+      <h3>Επισκεφθείτε το <em>γραφείο μας</em></h3>
+      <div class="map-detail"><div class="map-detail-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="map-detail-label">Διεύθυνση</span><span>Φαρών 155, Καλαμάτα 24100</span></div></div>
+      <div class="map-detail"><div class="map-detail-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.88 1.18 2 2 0 012.88 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.68a16 16 0 006.23 6.23l1.05-1.05a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><span class="map-detail-label">Τηλέφωνο</span><a href="tel:+302721090509">27210 90509</a></div></div>
+      <div class="map-detail"><div class="map-detail-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><span class="map-detail-label">Ώρες</span><span>Δε–Πα 09:00–17:00</span></div></div>
+      <div style="margin-top:28px"><a href="https://maps.google.com/?q=Φαρών+155,+Καλαμάτα" target="_blank" class="btn-gold" style="display:inline-flex;font-size:.72rem;padding:13px 24px">Άνοιγμα στο Google Maps <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+    </div>
+    <div class="map-placeholder" id="mapContainer">
+      <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <p>Φαρών 155<br>Καλαμάτα 24100</p>
+      <a href="https://maps.google.com/?q=Φαρών+155,+Καλαμάτα" target="_blank">Άνοιγμα σε Maps →</a>
+    </div>
+  </div>
+</div>
 
-<script>
-/* Διορθωμένο JavaScript */
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('nav');
-  const btt = document.getElementById('backToTop');
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-  btt.style.display = window.scrollY > 500 ? 'flex' : 'none';
-});
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div class="fbrand"><span class="flogo">PA <span>Creative House</span></span><p>Η περιουσία σας. Ευθύνη μας. Τεχνικό γραφείο Πολιτικού Μηχανικού ΤΕ — 12 υπηρεσίες, 600 έργα, Καλαμάτα.</p></div>
+    <div class="fcol"><h5>Υπηρεσίες</h5><ul>
+      <li><a href="#services">Άδειες Δόμησης</a></li>
+      <li><a href="#services">Αυθαίρετα Ν.4495</a></li>
+      <li><a href="#services">ΠΕΑ / Ενεργειακό</a></li>
+      <li><a href="#services">Εξοικονομώ</a></li>
+      <li><a href="#services">Τοπογραφικά</a></li>
+      <li><a href="#services">Interior Design</a></li>
+    </ul></div>
+    <div class="fcol"><h5>Στοιχεία</h5><ul>
+      <li><a href="#">Φαρών 155, Καλαμάτα</a></li>
+      <li><a href="tel:+302721090509">27210 90509</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#a3cacdc5cce3d3c2c0d1c6c2d7cad5c6cbccd6d0c68dc4d1"><span class="__cf_email__" data-cfemail="adc4c3cbc2edddcccedfc8ccd9c4dbc8c5c2d8dec883cadf">[email&#160;protected]</span></a></li>
+      <li><a href="#">Δε–Πα 09:00–17:00</a></li>
+    </ul></div>
+  </div>
+  <div class="fbot">
+    <span class="fcopy">© 2025 PA Creative House · Παναγιώτης Αργύρης, Πολιτικός Μηχανικός ΤΕ · Καλαμάτα</span>
+    
+  </div>
+</footer>
 
-function toggleFaq(btn) {
-  const ans = btn.nextElementSibling;
-  ans.classList.toggle('open');
-  btn.querySelector('span').textContent = ans.classList.contains('open') ? '-' : '+';
+<!-- WHATSAPP -->
+
+<!-- AI FLOAT -->
+<button class="ai-float" id="aiFloat" onclick="toggleAiPopup()" aria-label="AI Βοηθός">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#05060a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Robot/AI head -->
+    <rect x="3" y="7" width="18" height="13" rx="2"/>
+    <circle cx="8.5" cy="13" r="1.5" fill="#05060a" stroke="none"/>
+    <circle cx="15.5" cy="13" r="1.5" fill="#05060a" stroke="none"/>
+    <path d="M9 17h6"/>
+    <path d="M12 7V4"/>
+    <circle cx="12" cy="3" r="1" fill="#05060a" stroke="none"/>
+    <path d="M3 12H1"/>
+    <path d="M23 12h-2"/>
+  </svg>
+</button>
+<div class="ai-float-tip">Ρωτήστε τον AI Βοηθό μας</div>
+
+<div class="ai-chat-popup" id="aiChatPopup">
+  <div class="ai-chat-header">
+    <div class="ai-chat-name">
+      <span class="ai-online"></span>
+      Βοηθός PA Creative House
+    </div>
+    <button class="ai-close-btn" onclick="toggleAiPopup()">×</button>
+  </div>
+  <div class="ai-popup-sugs">
+    <button class="ai-popup-sug" onclick="quickAsk('Πόσο κοστίζει τακτοποίηση αυθαιρέτου;')">Αυθαίρετα</button>
+    <button class="ai-popup-sug" onclick="quickAsk('Τι χρειάζομαι για ΠΕΑ;')">ΠΕΑ</button>
+    <button class="ai-popup-sug" onclick="quickAsk('Πώς λειτουργεί το Εξοικονομώ;')">Εξοικονομώ</button>
+    <button class="ai-popup-sug" onclick="quickAsk('Πόσο κοστίζει άδεια δόμησης;')">Άδεια δόμησης</button>
+  </div>
+  <div class="ai-messages" id="aiMessages">
+    <div class="ai-msg bot">Γεια σας! Είμαι ο βοηθός του PA Creative House. Πώς μπορώ να σας εξυπηρετήσω;</div>
+  </div>
+  <div class="ai-input-row">
+    <input class="ai-text-input" id="aiTextInput" type="text" placeholder="Γράψτε την ερώτησή σας..." onkeydown="if(event.key==='Enter')sendAiMsg()">
+    <button class="ai-send-btn" onclick="sendAiMsg()">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+<!-- /AI FLOAT -->
+
+<a class="wa" href="https://wa.me/306987034064?text=Καλημέρα%2C%20θα%20ήθελα%20πληροφορίες%20για%20τις%20υπηρεσίες%20σας." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<div class="wa-tip">Στείλτε μήνυμα στο WhatsApp</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* NAV */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
+function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobileNav').classList.toggle('open');document.body.style.overflow=document.getElementById('mobileNav').classList.contains('open')?'hidden':''}
+function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
+
+/* PARALLAX */
+window.addEventListener('scroll',()=>{const p=document.getElementById('parallax');if(p)p.style.transform=`translateY(${scrollY*.22}px)`},{passive:true});
+
+/* REVEAL — fade-in solo, senza translateY */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* COUNTERS */
+
+
+/* GALLERY FILTER */
+function filterG(cat,btn){
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.gi').forEach(i=>{i.style.display=(cat==='all'||i.dataset.cat===cat)?'':'none'});
 }
 
-function openSvc(id) { 
-  alert("Εδώ θα άνοιγε το Modal για την υπηρεσία " + id + ". (Συμπληρώστε το svcData σας)"); 
+/* LIGHTBOX */
+const lbData=[
+  {src:'Image_3__style_transfer01.png',cap:'Βίλα με πισίνα — Καλαμάτα'},
+  {src:'3.png',cap:'Open plan διαμέρισμα'},
+  {src:'4.png',cap:'Πολυτελές διαμέρισμα'},
+  {src:'Image_4__upscale01.png',cap:'Διώροφη κατοικία — Μεσσηνία'},
+  {src:'9.png',cap:'Premium διαμέρισμα'},
+  {src:'12.png',cap:'Σύγχρονη κουζίνα'},
+  {src:'7.png',cap:'3όροφο κτίριο — Καλαμάτα'},
+  {src:'Image_12__style_transfer02.png',cap:'Master bedroom — Βίλα'},
+  {src:'Image_2_.png',cap:'Living & Dining Premium'},
+  {src:'Image_3_.png',cap:'Ελληνική αισθητική'},
+  {src:'IMG_0368.jpeg',cap:'PA Creative House — Γραφείο'},
+];
+let lbI=0;
+function openLb(i){lbI=i;updLb();document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden'}
+function closeLb(){document.getElementById('lb').classList.remove('open');document.body.style.overflow=''}
+function closeLbOut(e){if(e.target===document.getElementById('lb'))closeLb()}
+function lbNav(d){lbI=(lbI+d+lbData.length)%lbData.length;updLb()}
+function updLb(){document.getElementById('lb-img').src=lbData[lbI].src;document.getElementById('lb-info').textContent=lbData[lbI].cap+' — '+(lbI+1)+' / '+lbData.length}
+document.addEventListener('keydown',e=>{if(!document.getElementById('lb').classList.contains('open'))return;if(e.key==='ArrowRight')lbNav(1);if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='Escape')closeLb()});
+
+/* SERVICE MODAL DATA */
+const svcData=[
+  {cat:'Μελέτη & Αδειοδότηση',title:'Οικοδομικές Άδειες',tagline:'Σχεδιάζουμε το μέλλον με απόλυτη ασφάλεια.',body:'Αναλαμβάνουμε την πλήρη μελέτη και έκδοση οικοδομικών αδειών για κατοικίες και επαγγελματικά κτίρια. Διαχειριζόμαστε κάθε στάδιο — από τις αρχιτεκτονικές και στατικές μελέτες έως την ψηφιακή υποβολή στο σύστημα e-Άδειες.\n\nΧρόνος υλοποίησης: ανάλογα με την περίπτωση.'},
+  {cat:'Μελέτη & Αδειοδότηση',title:'Τακτοποίηση Αυθαιρέτων',tagline:'Νομική θωράκιση για το ακίνητό σας.',body:'Εντοπίζουμε και τακτοποιούμε κάθε πολεοδομική εκκρεμότητα, εξασφαλίζοντας πλήρη νομιμότητα και ελεύθερη μεταβίβαση του ακινήτου σας. Η διαδικασία γίνεται ηλεκτρονικά και χρειάζεται τοπογραφικό και αποτύπωση.\n\nΧρόνος υλοποίησης: 20–30 ημέρες.'},
+  {cat:'Μελέτη & Αδειοδότηση',title:'Ηλεκτρονική Ταυτότητα Κτιρίου',tagline:'Η ψηφιακή οργάνωση του ακινήτου σας.',body:'Αποτελεί πλέον το απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη μεταβίβαση, γονική παροχή ή αγοραπωλησία ακινήτου. Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη.\n\nΧρόνος υλοποίησης: 5–7 ημέρες.'},
+  {cat:'Μελέτη & Αδειοδότηση',title:'Τοπογραφικά Διαγράμματα',tagline:'Ακρίβεια στο επίπεδο του χιλιοστού.',body:'Με χρήση σύγχρονου γεωδαιτικού εξοπλισμού GPS/Total Station, ορίζουμε τα όρια της γης σας — απαραίτητα για κτηματολόγιο, οριοθετήσεις και αγοραπωλησίες.\n\nΧρόνος υλοποίησης: 15 ημέρες.'},
+  {cat:'Ενέργεια',title:'Ενεργειακές Επιθεωρήσεις (ΠΕΑ)',tagline:'Η ενεργειακή ακτινογραφία του χώρου σας.',body:'Εκδίδουμε Πιστοποιητικά Ενεργειακής Απόδοσης (ΠΕΑ) — υποχρεωτικά για κάθε αγοραπωλησία ή μίσθωση ακινήτου.\n\nΧρόνος υλοποίησης: 2 ημέρες.'},
+  {cat:'Ενέργεια',title:'Πρόγραμμα «Εξοικονομώ»',tagline:'Μηδενίστε το ενεργειακό κόστος.',body:'Αναλαμβάνουμε την πλήρη τεχνική υποστήριξη: ΠΕΑ πριν την αίτηση, επιλογή παρεμβάσεων (κουφώματα, μόνωση, θέρμανση, φωτοβολταϊκά), παρακολούθηση υλοποίησης, εκταμίευση και ΠΕΑ μετά. Επιδότηση έως 75%.'},
+  {cat:'Κατασκευή',title:'Ανακαίνιση & Κατασκευές',tagline:'Από το σχέδιο στην πραγματικότητα.',body:'Αναλαμβάνουμε ολικές και μερικές ανακαινίσεις καθώς και κατασκευή νέων έργων με πλήρη επίβλεψη. Από τον πρώτο τοίχο μέχρι την τελευταία λεπτομέρεια, παραδίδουμε με κλειδί στο χέρι.'},
+  {cat:'Design',title:'Interior Design',tagline:'Αρχιτεκτονική Εσωτερικών Χώρων.',body:'Μετατρέπουμε τη λειτουργικότητα σε τέχνη, δίνοντας ζωή και χαρακτήρα σε κάθε τετραγωνικό μέτρο. Σχεδιάζουμε χώρους που εμπνέουν και λειτουργούν άψογα.'},
+  {cat:'Αδειοδότηση',title:'Άδειες Λειτουργίας Καταστημάτων',tagline:'Η επιχείρησή σας σε γερές βάσεις.',body:'Αναλαμβάνουμε την έκδοση αδειών λειτουργίας για καταστήματα, γραφεία και επαγγελματικούς χώρους. Μελέτες πυρασφάλειας, υγιεινής και λειτουργικότητας σύμφωνα με την ισχύουσα νομοθεσία.'},
+];
+function openSvc(i){
+  const d=svcData[i];
+  document.getElementById('mCat').textContent=d.cat;
+  document.getElementById('mTitle').textContent=d.title;
+  document.getElementById('mTagline').textContent=d.tagline;
+  document.getElementById('mBody').textContent=d.body;
+  document.getElementById('svcModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSvc(){document.getElementById('svcModal').classList.remove('open');document.body.style.overflow=''}
+function closeSvcOut(e){if(e.target===document.getElementById('svcModal'))closeSvc()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSvc()});
+
+/* FORMSPREE */
+async function handleSubmit(e){
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  const form=document.getElementById('contactForm');
+  btn.innerHTML='Αποστολή...';btn.disabled=true;
+  try{
+    const r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(r.ok){document.getElementById('formSuccess').classList.add('show');form.reset();btn.innerHTML='✓ Εστάλη!';btn.style.background='#2a7a4b';}
+    else{btn.innerHTML='Δοκιμάστε ξανά';btn.disabled=false;}
+  }catch(err){btn.innerHTML='Σφάλμα — Δοκιμάστε ξανά';btn.disabled=false}
 }
 
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('in'); });
+/* AI KB */
+const aiKB=[
+  {keys:['άδεια','οικοδομ','κτίριο','permit'],text:'Για έκδοση οικοδομικής άδειας χρειαζόμαστε τοπογραφικό, τίτλους ιδιοκτησίας και αποτύπωση. Διάρκεια 2–6 μήνες. Γραπτή προσφορά πριν ξεκινήσουμε.',actions:[{text:'Καλέστε μας',href:'tel:+302721090509'},{text:'Αποστολή αιτήματος',href:'#contact'}]},
+  {keys:['αυθαίρετ','τακτοποί','παράνομ'],text:'Τακτοποίηση αυθαιρέτων Ν.4495/2017 — ηλεκτρονικά, 1–3 μήνες. Χρειάζεται τοπογραφικό + αποτύπωση. Το πρόστιμο εξαρτάται από τα τ.μ. και τη ζώνη.',actions:[{text:'WhatsApp',href:'https://wa.me/306987034064'},{text:'Αποστολή αιτήματος',href:'#contact'}]},
+  {keys:['πεα','ενεργεια','πιστοποι','κενακ'],text:'ΠΕΑ εντός 3–5 εργάσιμων ημερών μετά αυτοψία. Υποχρεωτικό για αγοραπωλησία ή μίσθωση.',actions:[{text:'Ραντεβού',href:'tel:+302721090509'}]},
+  {keys:['εξοικονομ','επιδοτ','ανακαινίζ'],text:'Εξοικονομώ – Ανακαινίζω:  Επιδότηση έως 75%. Αναλαμβάνουμε ολόκληρο τον φάκελο.',actions:[{text:'Πληροφορίες',href:'#contact'},{text:'WhatsApp',href:'https://wa.me/306987034064'}]},
+  {keys:['τοπογραφ','αποτύπ','κτηματολ'],text:'Τοπογραφικές αποτυπώσεις με GPS/Total Station. Παράδοση 3–7 εργάσιμες. ΚΤΗΜΑΤΟΛΟΓΙΟ, άδειες, μεταβιβάσεις.',actions:[{text:'Επικοινωνία',href:'#contact'}]},
+  {keys:['ανακαινίσ','interior','σχεδιασ','design'],text:'Interior Design και ανακαινίσεις — σχεδιάζουμε, αδειοδοτούμε και κατασκευάζουμε. Παράδοση με κλειδί στο χέρι.',actions:[{text:'Δείτε το Portfolio',href:'#portfolio'},{text:'Επικοινωνία',href:'#contact'}]},
+  {keys:['κοστ','τιμ','πόσο','χρεώ','αμοιβ'],text:'Δίνουμε γραπτή προσφορά χωρίς δεσμεύσεις πριν ξεκινήσουμε. Καμία κρυφή χρέωση.',actions:[{text:'Ζητήστε προσφορά',href:'#contact'},{text:'Καλέστε μας',href:'tel:+302721090509'}]},
+  {keys:['χρόν','πόσος καιρ','πότε','διάρκ'],text:'ΠΕΑ 3–5 ημέρες · Αυθαίρετο 1–3 μήνες · Άδεια δόμησης 2–6 μήνες · Εξοικονομώ 2–4 μήνες · Τοπογραφικό 3–7 ημέρες.',actions:[{text:'Ξεκινήστε τώρα',href:'#contact'}]},
+  {keys:['γραφείο','ώρ','ανοιχτ','πού','διεύθυν'],text:'Φαρών 155, Καλαμάτα. Δευτέρα–Παρασκευή 09:00–17:00. Και μέσω WhatsApp!',actions:[{text:'Google Maps',href:'https://maps.google.com/?q=Φαρών+155,+Καλαμάτα',target:'_blank'},{text:'WhatsApp',href:'https://wa.me/306987034064'}]},
+];
+
+
+// Portfolio init
+if(document.getElementById('pfGrid')) pfRender('all');
+
+/* ══ COUNTER ANIMATION FIX ══ */
+function animateCounter(el){
+  var target = parseInt(el.getAttribute('data-count'));
+  var suffix = el.textContent.replace(/[0-9]/g,'');
+  var start = 0;
+  var duration = 2000;
+  var startTime = null;
+  function step(timestamp){
+    if(!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp - startTime) / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    var current = Math.floor(eased * target);
+    el.textContent = current + suffix;
+    if(progress < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  }
+  requestAnimationFrame(step);
+}
+var counterDone = false;
+function runCounters(){
+  if(counterDone) return;
+  counterDone = true;
+  document.querySelectorAll('.hstat h3[data-count]').forEach(function(el){
+    animateCounter(el);
+  });
+}
+var counterObserver = new IntersectionObserver(function(entries){
+  if(entries[0].isIntersecting){ runCounters(); }
 }, {threshold: 0.1});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+var heroStats = document.querySelector('.hero-stats');
+if(heroStats) counterObserver.observe(heroStats);
+// Fallback: run after 1.5s if not yet triggered
+setTimeout(function(){ runCounters(); }, 1500);
+/* ══ /COUNTER ANIMATION FIX ══ */
 </script>
+
+
+
+
 
 </body>
 </html>
+
+<!-- ════════════════════════════════════════════
+     PA CREATIVE HOUSE — LIVE EDITOR
+     Ενεργοποίηση: προσθέτεις ?edit=true στο URL
+════════════════════════════════════════════ -->
+<style>
+/* ── EDITOR TOOLBAR ── */
+#pa-editor{
+  display:none;
+  position:fixed;top:0;left:0;right:0;z-index:99999;
+  background:#0e1318;border-bottom:2px solid #c5a059;
+  font-family:'Jost',sans-serif;
+  box-shadow:0 4px 24px rgba(0,0,0,.6);
+}
+#pa-editor.active{display:block}
+
+.pa-ed-bar{
+  display:flex;align-items:center;gap:0;
+  height:52px;padding:0 16px;
+  border-bottom:1px solid rgba(197,160,89,.15);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+}
+.pa-ed-tabs{display:flex;gap:2px;flex-shrink:0}
+.pa-tab{
+  padding:8px 16px;border:none;background:none;
+  color:rgba(244,241,234,.5);font-family:'Jost',sans-serif;
+  font-size:.68rem;letter-spacing:2px;text-transform:uppercase;
+  font-weight:700;cursor:pointer;border-bottom:2px solid transparent;
+  transition:all .2s;white-space:nowrap;
+}
+.pa-tab:hover{color:rgba(244,241,234,.8)}
+.pa-tab.on{color:#c5a059;border-bottom-color:#c5a059}
+
+.pa-ed-sep{width:1px;height:28px;background:rgba(197,160,89,.2);flex-shrink:0;margin:0 8px}
+
+/* Panels */
+.pa-panel{display:none;padding:12px 16px;gap:12px;flex-wrap:wrap;align-items:center;min-height:56px}
+.pa-panel.on{display:flex}
+
+/* Controls */
+.pa-lbl{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(244,241,234,.4);white-space:nowrap}
+.pa-select{
+  background:#141c24;border:1px solid rgba(197,160,89,.25);
+  color:#f4f1ea;padding:6px 10px;font-family:'Jost',sans-serif;
+  font-size:.78rem;outline:none;cursor:pointer;border-radius:2px;
+  min-width:120px;
+}
+.pa-color{width:36px;height:32px;border:1px solid rgba(197,160,89,.25);
+  background:none;cursor:pointer;padding:2px;border-radius:2px}
+.pa-range{width:100px;accent-color:#c5a059}
+.pa-val{font-size:.72rem;color:#c5a059;min-width:36px}
+.pa-btn{
+  padding:8px 16px;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-weight:700;
+  font-size:.68rem;letter-spacing:2px;text-transform:uppercase;
+  border-radius:2px;transition:all .2s;white-space:nowrap;
+}
+.pa-btn-gold{background:#c5a059;color:#05060a}
+.pa-btn-gold:hover{background:#e2c28a}
+.pa-btn-red{background:rgba(139,46,46,.3);color:#e57373;border:1px solid rgba(139,46,46,.4)}
+.pa-btn-red:hover{background:rgba(139,46,46,.5)}
+.pa-btn-ghost{background:none;border:1px solid rgba(197,160,89,.25);color:rgba(244,241,234,.6)}
+.pa-btn-ghost:hover{border-color:#c5a059;color:#c5a059}
+
+/* Editable elements highlight */
+.pa-editable{
+  outline:none;
+  cursor:text;
+  transition:background .2s;
+}
+.pa-editable:hover{background:rgba(197,160,89,.06)!important}
+.pa-editable:focus{
+  background:rgba(197,160,89,.1)!important;
+  outline:2px solid rgba(197,160,89,.4)!important;
+  outline-offset:2px;
+}
+.pa-editable-img{
+  cursor:pointer;position:relative;
+}
+.pa-editable-img::after{
+  content:'🖼 Αλλαγή εικόνας';
+  position:absolute;inset:0;
+  background:rgba(197,160,89,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Jost',sans-serif;font-size:.72rem;
+  letter-spacing:2px;text-transform:uppercase;
+  color:#c5a059;opacity:0;transition:opacity .3s;
+  pointer-events:none;
+}
+.pa-editable-img:hover::after{opacity:1}
+
+/* Status bar */
+.pa-status-bar{
+  padding:5px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:#07090d;
+}
+.pa-status{font-size:.62rem;letter-spacing:2px;color:rgba(197,160,89,.5)}
+.pa-status.saved{color:#5dba82}
+.pa-status.unsaved{color:#e5a550}
+
+/* Shift site content down when editor is open */
+body.pa-edit-mode{padding-top:120px!important}
+body.pa-edit-mode nav{top:120px!important}
+
+@media(max-width:768px){
+  .pa-ed-bar{height:auto;flex-wrap:wrap;padding:8px}
+  body.pa-edit-mode{padding-top:160px!important}
+  body.pa-edit-mode nav{top:160px!important}
+}
+
+/* ── iOS & Mobile fixes ── */
+@media(max-width:768px){
+  .ai-text-input,.fg input,.fg textarea,.fg select{font-size:16px!important}
+  .svc-monolith{grid-template-columns:1fr!important}
+  .svc-row{border-bottom:1px solid var(--line);padding:32px 36px;display:flex;gap:24px;align-items:flex-start;position:relative;overflow:hidden;transition:background .4s;cursor:pointer;background:var(--ink2);min-height:165px}
+}
+
+.ai-float{position:fixed;bottom:88px;right:20px;z-index:800;width:54px;height:54px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(197,160,89,.4);cursor:pointer;transition:transform .3s;border:none}
+.ai-float:hover{transform:scale(1.1)}
+.ai-float-tip{position:fixed;bottom:102px;right:84px;z-index:800;background:rgba(5,6,10,.92);color:var(--cream);font-size:.72rem;padding:7px 12px;white-space:nowrap;border:1px solid var(--line);opacity:0;transform:translateX(6px);transition:all .3s;pointer-events:none;font-family:'Jost',sans-serif;letter-spacing:1px}
+.ai-float:hover~.ai-float-tip,.ai-float-tip:hover{opacity:1;transform:none}
+
+/* AI Chat Popup */
+.ai-chat-popup{
+  position:fixed;bottom:154px;right:20px;z-index:900;
+  width:340px;max-width:calc(100vw - 40px);
+  background:rgba(11,15,22,.97);border:1px solid var(--line);
+  display:none;flex-direction:column;
+  box-shadow:0 -8px 48px rgba(0,0,0,.6);
+  backdrop-filter:blur(20px);
+  animation:slideUpChat .3s var(--ease);
+}
+.ai-chat-popup.open{display:flex}
+@keyframes slideUpChat{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.ai-popup-sugs{display:flex;gap:6px;flex-wrap:wrap;padding:10px 12px 0;border-bottom:1px solid var(--line);padding-bottom:10px}
+.ai-popup-sug{background:rgba(197,160,89,.08);border:1px solid var(--line);color:var(--cream2);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:all .3s}
+.ai-popup-sug:hover{border-color:var(--gold-d);color:var(--gold)}
+
+/* Why section overrides */
+#why .sec-title{font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.25;white-space:normal;max-width:100%}
+#why .sec-title br{display:block}
+
+/* ══ SCROLL CUE ══ */
+.scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;z-index:10;animation:fadeInUp 2s ease 1.2s both}
+.scroll-cue span{font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:rgba(197,160,89,.75);font-family:'Jost',sans-serif;font-weight:500}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(197,160,89,.8),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
+@keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(14px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@media(max-width:768px){.scroll-cue{display:none}}
+</style>
+
+<div id="pa-editor">
+  <!-- TAB BAR -->
+  <div class="pa-ed-bar">
+    <div class="pa-ed-tabs">
+      <button class="pa-tab on" onclick="paTab('text')">✏️ Κείμενα</button>
+      <button class="pa-tab" onclick="paTab('design')">🎨 Χρώματα</button>
+      <button class="pa-tab" onclick="paTab('fonts')">🔤 Γραμματοσειρές</button>
+      <button class="pa-tab" onclick="paTab('contact')">📞 Επικοινωνία</button>
+    </div>
+    <div class="pa-ed-sep"></div>
+    <button class="pa-btn pa-btn-gold" onclick="paSave()">⬇ Αποθήκευση & Λήψη</button>
+    <button class="pa-btn pa-btn-red" style="margin-left:6px" onclick="paExit()">✕ Έξοδος</button>
+    <div class="pa-ed-sep"></div>
+    <span class="pa-status" id="paStatus">● Επεξεργασία — κάνε κλικ σε οποιοδήποτε κείμενο</span>
+  </div>
+
+  <!-- PANEL: ΚΕΙΜΕΝΑ -->
+  <div class="pa-panel on" id="panel-text">
+    <span class="pa-lbl">Κλικ σε οποιοδήποτε κείμενο στη σελίδα για επεξεργασία</span>
+    <div class="pa-ed-sep"></div>
+    <button class="pa-btn pa-btn-ghost" onclick="paUndo()">↩ Αναίρεση</button>
+    <button class="pa-btn pa-btn-ghost" onclick="document.execCommand('bold')"><b>B</b></button>
+    <button class="pa-btn pa-btn-ghost" onclick="document.execCommand('italic')"><i>I</i></button>
+  </div>
+
+  <!-- PANEL: ΧΡΩΜΑΤΑ -->
+  <div class="pa-panel" id="panel-design">
+    <span class="pa-lbl">Gold</span>
+    <input type="color" class="pa-color" id="pc-gold" value="#c5a059" oninput="paColor('--gold',this.value)">
+    <div class="pa-ed-sep"></div>
+    <span class="pa-lbl">Φόντο</span>
+    <input type="color" class="pa-color" id="pc-bg" value="#05060a" oninput="paColor('--ink',this.value)">
+    <div class="pa-ed-sep"></div>
+    <span class="pa-lbl">Κείμενο</span>
+    <input type="color" class="pa-color" id="pc-cream" value="#f4f1ea" oninput="paColor('--cream',this.value)">
+    <div class="pa-ed-sep"></div>
+    <button class="pa-btn pa-btn-ghost" onclick="paResetColors()">↩ Reset χρώματα</button>
+  </div>
+
+  <!-- PANEL: ΓΡΑΜΜΑΤΟΣΕΙΡΕΣ -->
+  <div class="pa-panel" id="panel-fonts">
+    <span class="pa-lbl">Τίτλοι (Exo 2)</span>
+    <select class="pa-select" id="pf-display" onchange="paFont('display',this.value,this.options[this.selectedIndex].dataset.url)">
+      <option value="Exo 2" data-url="Exo+2:wght@200;300;700;800" selected>Exo 2 (τώρα)</option>
+      <option value="Oswald" data-url="Oswald:wght@300;700">Oswald</option>
+      <option value="Barlow" data-url="Barlow:wght@300;700">Barlow</option>
+      <option value="Bebas Neue" data-url="Bebas+Neue">Bebas Neue</option>
+      <option value="Rajdhani" data-url="Rajdhani:wght@400;700">Rajdhani</option>
+      <option value="Montserrat" data-url="Montserrat:wght@200;700">Montserrat</option>
+      <option value="Raleway" data-url="Raleway:wght@200;700">Raleway</option>
+    </select>
+    <div class="pa-ed-sep"></div>
+    <span class="pa-lbl">Κείμενο (Jost)</span>
+    <select class="pa-select" id="pf-body" onchange="paFont('body',this.value,this.options[this.selectedIndex].dataset.url)">
+      <option value="Jost" data-url="Jost:wght@300;400;500;700" selected>Jost (τώρα)</option>
+      <option value="Inter" data-url="Inter:wght@300;400;500;700">Inter</option>
+      <option value="DM Sans" data-url="DM+Sans:wght@300;400;700">DM Sans</option>
+      <option value="Nunito" data-url="Nunito:wght@300;400;700">Nunito</option>
+      <option value="Outfit" data-url="Outfit:wght@300;400;700">Outfit</option>
+    </select>
+    <div class="pa-ed-sep"></div>
+    <span class="pa-lbl">Μέγεθος τίτλων</span>
+    <input type="range" class="pa-range" id="pf-size" min="1.2" max="3" step="0.1" value="2.2"
+      oninput="paFontSize(this.value);document.getElementById('pf-size-val').textContent=this.value+'rem'">
+    <span class="pa-val" id="pf-size-val">2.2rem</span>
+  </div>
+
+  <!-- PANEL: ΕΠΙΚΟΙΝΩΝΙΑ -->
+  <div class="pa-panel" id="panel-contact">
+    <span class="pa-lbl">Τηλέφωνο</span>
+    <input type="text" id="pc-phone" value="27210 90509" class="pa-select" style="min-width:140px" oninput="paUpdateContact()">
+    <span class="pa-lbl">Email</span>
+    <input type="text" id="pc-email" value="info@creativehouse.gr" class="pa-select" style="min-width:200px" oninput="paUpdateContact()">
+    <span class="pa-lbl">WhatsApp</span>
+    <input type="text" id="pc-wa" value="306987034064" class="pa-select" style="min-width:150px" oninput="paUpdateContact()">
+    <span class="pa-lbl">Διεύθυνση</span>
+    <input type="text" id="pc-addr" value="Φαρών 155, Καλαμάτα 24100" class="pa-select" style="min-width:220px" oninput="paUpdateContact()">
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="pa-status-bar">
+    <span class="pa-status unsaved" id="paStatusBar">⚠ Μη αποθηκευμένες αλλαγές</span>
+    <span style="font-size:.6rem;color:rgba(197,160,89,.3);letter-spacing:2px">PA Creative House Live Editor</span>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   PA CREATIVE HOUSE — LIVE EDITOR ENGINE
+════════════════════════════════════════ */
+(function(){
+  const EDIT_KEY = 'pa_editor_active';
+
+  // ── INIT ──
+  function init(){
+    if(new URLSearchParams(location.search).get('edit') !== 'true') return;
+
+    document.getElementById('pa-editor').classList.add('active');
+    document.body.classList.add('pa-edit-mode');
+
+    makeEditable();
+    loadSavedColors();
+    setStatus('● Επεξεργασία ενεργή — κλικ σε οποιοδήποτε κείμενο', false);
+  }
+
+  // ── MAKE ELEMENTS EDITABLE ──
+  function makeEditable(){
+    // Κείμενα που μπορούν να επεξεργαστούν
+    const textSelectors = [
+      '.hero-tagline .tline',
+      '.hero-sub',
+      '.sec-title',
+      '.sec-label',
+      '.svc-name',
+      '.svc-desc',
+      '.svc-modal-title',
+      '.svc-modal-tagline',
+      '.svc-modal-body',
+      '.cin-content h2',
+      '.cin-content p',
+      '.pstep-name',
+      '.pstep-desc',
+      '.wpt h4',
+      '.wpt p',
+      '.tmn blockquote',
+      '.tmn cite',
+      '.faq-q',
+      '.faq-a p',
+      '.portfolio-cta-text h3',
+      '.portfolio-cta-text p',
+      '.cit span',
+      '.cit a',
+      '.fbrand p',
+      '.map-info h3',
+      'footer .fcopy',
+      '.hstat p',
+      '.svc-modal-title',
+      '.svc-modal-tagline',
+      '.svc-modal-body',
+    ];
+
+    textSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        el.contentEditable = 'true';
+        el.classList.add('pa-editable');
+        el.addEventListener('input', () => markUnsaved());
+        el.addEventListener('focus', () => {
+          setStatus('✏ Επεξεργασία: ' + el.tagName.toLowerCase() + ' — πληκτρολογήστε', false);
+        });
+        el.addEventListener('blur', () => {
+          setStatus('● Αλλαγές εκκρεμούν — πατήστε Αποθήκευση', true);
+        });
+      });
+    });
+
+    // Images clickable
+    document.querySelectorAll('.gi img, .cin-img, .hero-parallax').forEach(el => {
+      el.classList.add('pa-editable-img');
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', () => {
+        const url = prompt('URL ή filename εικόνας:', el.src || el.style.backgroundImage);
+        if(url){
+          if(el.tagName === 'IMG') el.src = url;
+          else el.style.backgroundImage = "url('" + url + "')";
+          markUnsaved();
+        }
+      });
+    });
+  }
+
+  // ── TABS ──
+  window.paTab = function(name){
+    document.querySelectorAll('.pa-tab').forEach(t => t.classList.remove('on'));
+    document.querySelectorAll('.pa-panel').forEach(p => p.classList.remove('on'));
+    event.target.classList.add('on');
+    document.getElementById('panel-' + name).classList.add('on');
+  };
+
+  // ── COLORS ──
+  window.paColor = function(varName, val){
+    document.documentElement.style.setProperty(varName, val);
+    // Derivative colors
+    if(varName === '--gold'){
+      document.documentElement.style.setProperty('--gold-d', shadeColor(val, -30));
+      document.documentElement.style.setProperty('--gold-l', shadeColor(val, 30));
+    }
+    if(varName === '--ink'){
+      document.documentElement.style.setProperty('--ink2', shadeColor(val, 8));
+      document.documentElement.style.setProperty('--ink3', shadeColor(val, 12));
+    }
+    markUnsaved();
+  };
+
+  function shadeColor(hex, pct){
+    hex = hex.replace('#','');
+    let r = parseInt(hex.substr(0,2),16);
+    let g = parseInt(hex.substr(2,2),16);
+    let b = parseInt(hex.substr(4,2),16);
+    r = Math.max(0,Math.min(255,r+pct*2));
+    g = Math.max(0,Math.min(255,g+pct*2));
+    b = Math.max(0,Math.min(255,b+pct*2));
+    return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+  }
+
+  window.paResetColors = function(){
+    document.documentElement.style.removeProperty('--gold');
+    document.documentElement.style.removeProperty('--ink');
+    document.documentElement.style.removeProperty('--cream');
+    document.documentElement.style.removeProperty('--ink2');
+    document.documentElement.style.removeProperty('--ink3');
+    document.documentElement.style.removeProperty('--gold-d');
+    document.documentElement.style.removeProperty('--gold-l');
+    document.getElementById('pc-gold').value = '#c5a059';
+    document.getElementById('pc-bg').value = '#05060a';
+    document.getElementById('pc-cream').value = '#f4f1ea';
+    markUnsaved();
+  };
+
+  function loadSavedColors(){
+    const saved = localStorage.getItem('pa_colors');
+    if(!saved) return;
+    try{
+      const cols = JSON.parse(saved);
+      Object.entries(cols).forEach(([k,v]) => {
+        document.documentElement.style.setProperty(k,v);
+      });
+    }catch(e){}
+  }
+
+  // ── FONTS ──
+  const loadedFonts = new Set();
+  window.paFont = function(type, name, url){
+    if(!loadedFonts.has(name)){
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=' + url + '&display=swap';
+      document.head.appendChild(link);
+      loadedFonts.add(name);
+    }
+    if(type === 'display'){
+      document.querySelectorAll('.sec-title,.cin-content h2,.hero-tagline .tline,.svc-name,.svc-idx,.map-info h3,.portfolio-cta-text h3,.svc-modal-title,.svc-modal-tagline,.pstep-name,.wpt h4,.faq-q,.tmn blockquote').forEach(el=>{
+        el.style.fontFamily = "'" + name + "', sans-serif";
+      });
+    } else {
+      document.querySelectorAll('body,p,input,textarea,button').forEach(el=>{
+        el.style.fontFamily = "'" + name + "', sans-serif";
+      });
+    }
+    markUnsaved();
+  };
+
+  window.paFontSize = function(val){
+    document.querySelectorAll('.sec-title').forEach(el=>{
+      el.style.fontSize = val + 'rem';
+    });
+    markUnsaved();
+  };
+
+  // ── CONTACT UPDATE ──
+  window.paUpdateContact = function(){
+    const phone = document.getElementById('pc-phone').value;
+    const email = document.getElementById('pc-email').value;
+    const wa = document.getElementById('pc-wa').value;
+    const addr = document.getElementById('pc-addr').value;
+
+    // Update phone links
+    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+      a.href = 'tel:+' + phone.replace(/\s/g,'');
+      if(a.textContent.match(/\d/)) a.textContent = phone;
+    });
+    // Update email links
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a=>{
+      a.href = 'mailto:' + email;
+      if(a.textContent.includes('@')) a.textContent = email;
+    });
+    // Update WhatsApp
+    document.querySelectorAll('a[href^="https://wa.me/"]').forEach(a=>{
+      a.href = 'https://wa.me/' + wa + '?text=Καλημέρα%2C%20θα%20ήθελα%20πληροφορίες%20για%20τις%20υπηρεσίες%20σας.';
+    });
+    // Update address spans
+    document.querySelectorAll('.cit span, .map-detail span').forEach(el=>{
+      if(el.textContent.includes('Φαρών') || el.textContent.includes('Καλαμάτα')){
+        el.textContent = addr;
+      }
+    });
+    markUnsaved();
+  };
+
+  // ── UNDO ──
+  window.paUndo = function(){ document.execCommand('undo'); };
+
+  // ── STATUS ──
+  function setStatus(msg, unsaved){
+    document.getElementById('paStatus').textContent = msg;
+    const bar = document.getElementById('paStatusBar');
+    if(unsaved){
+      bar.textContent = '⚠ Μη αποθηκευμένες αλλαγές — Πατήστε Αποθήκευση & Λήψη';
+      bar.className = 'pa-status unsaved';
+    } else {
+      bar.textContent = '● Live Editor ενεργός';
+      bar.className = 'pa-status';
+    }
+  }
+
+  function markUnsaved(){ setStatus('● Αλλαγές εκκρεμούν', true); }
+
+  // ── SAVE & DOWNLOAD ──
+  window.paSave = function(){
+    setStatus('⏳ Δημιουργία αρχείου...', false);
+
+    // Αφαιρώ contenteditable και editor classes
+    document.querySelectorAll('.pa-editable').forEach(el=>{
+      el.removeAttribute('contenteditable');
+      el.classList.remove('pa-editable');
+    });
+    document.querySelectorAll('.pa-editable-img').forEach(el=>{
+      el.classList.remove('pa-editable-img');
+    });
+
+    // Αποθηκεύω χρώματα
+    const style = getComputedStyle(document.documentElement);
+    const colors = {};
+    ['--gold','--gold-l','--gold-d','--ink','--ink2','--ink3','--cream'].forEach(v=>{
+      const val = document.documentElement.style.getPropertyValue(v);
+      if(val) colors[v] = val;
+    });
+    localStorage.setItem('pa_colors', JSON.stringify(colors));
+
+    // Παίρνω το HTML
+    let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    // Καθαρίζω editor artifacts
+    html = html.replace(/contenteditable="true"/g, '');
+    html = html.replace(/class="([^"]*)\bpa-editable\b([^"]*)"/g, (m,a,b)=>{
+      const cls = (a+' '+b).trim().replace(/\s+/g,' ');
+      return cls ? 'class="'+cls+'"' : '';
+    });
+    // Αφαιρώ ?edit=true από τυχόν links
+    html = html.replace(/\?edit=true/g, '');
+
+    // Download
+    const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'index.html';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    // Restore editability
+    setTimeout(()=>{
+      makeEditable();
+      setStatus('✓ Αποθηκεύτηκε! Ανέβασε το index.html στο Netlify.', false);
+    }, 500);
+  };
+
+  // ── EXIT ──
+  window.paExit = function(){
+    if(confirm('Να αποθηκεύσεις πριν βγεις;')){
+      paSave();
+      setTimeout(()=>{ window.location.href = window.location.pathname; }, 1000);
+    } else {
+      window.location.href = window.location.pathname;
+    }
+  };
+
+  // Start
+  init();
+})();
+/* ════════════════════════════════════════
+   END PA CREATIVE HOUSE LIVE EDITOR
+════════════════════════════════════════ */
+
+
+/* ══ AI FLOAT v3 ══ */
+(function(){
+  let chatHistory = [];
+
+  window.toggleAiPopup = function(){
+    const popup = document.getElementById('aiChatPopup');
+    popup.classList.toggle('open');
+    if(popup.classList.contains('open')){
+      document.getElementById('aiTextInput').focus();
+      const msgs = document.getElementById('aiMessages');
+      if(msgs) msgs.scrollTop = msgs.scrollHeight;
+    }
+  };
+
+  window.quickAsk = function(q){
+    const popup = document.getElementById('aiChatPopup');
+    if(!popup.classList.contains('open')) popup.classList.add('open');
+    setTimeout(()=>{
+      document.getElementById('aiTextInput').value = q;
+      sendAiMsg();
+    }, 200);
+  };
+
+  function addMsg(text, role){
+    const msgs = document.getElementById('aiMessages');
+    const div = document.createElement('div');
+    div.className = 'ai-msg ' + role;
+    div.textContent = text;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  window.sendAiMsg = async function(){
+    const input = document.getElementById('aiTextInput');
+    const text = input.value.trim();
+    if(!text) return;
+    input.value = '';
+    addMsg(text, 'user');
+    chatHistory.push({role:'user', content:text});
+    const typing = addMsg('...', 'bot typing');
+    try{
+      const res = await fetch('/.netlify/functions/chat',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({message:text, history:chatHistory.slice(-8)})
+      });
+      const data = await res.json();
+      typing.remove();
+      const reply = data.reply || 'Συγγνώμη, δοκιμάστε ξανά.';
+      addMsg(reply, 'bot');
+      chatHistory.push({role:'assistant', content:reply});
+      if(chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
+    }catch(e){
+      typing.remove();
+      addMsg('Κάτι πήγε στραβά. Καλέστε μας στο 27210 90509.', 'bot');
+    }
+  };
+
+  // Κλείσιμο με κλικ έξω
+  document.addEventListener('click', function(e){
+    const popup = document.getElementById('aiChatPopup');
+    const btn = document.getElementById('aiFloat');
+    if(popup && btn && !popup.contains(e.target) && !btn.contains(e.target)){
+      popup.classList.remove('open');
+    }
+  });
+})();
+/* ══ /AI FLOAT v3 ══ */
+
+
+
+/* ══ PORTFOLIO v2 ══ */
+const pfProjects=[
+  {id:1,cat:'katoikia',catLabel:'Κατοικία',title:'Βίλα με Πισίνα',sub:'Καλαμάτα, 2023',cover:'Image_3__style_transfer01.png',imgs:['Image_3__style_transfer01.png','Image_4__upscale01.png','7.png']},
+  {id:2,cat:'interior',catLabel:'Interior Design',title:'Open Plan Διαμέρισμα',sub:'Καλαμάτα, 2023',cover:'3.png',imgs:['3.png','4.png','9.png']},
+  {id:3,cat:'interior',catLabel:'Interior Design',title:'Πολυτελές Διαμέρισμα',sub:'Μεσσήνη, 2022',cover:'4.png',imgs:['4.png','3.png','12.png']},
+  {id:4,cat:'katoikia',catLabel:'Κατοικία',title:'Διώροφη Κατοικία',sub:'Μεσσηνία, 2023',cover:'Image_4__upscale01.png',imgs:['Image_4__upscale01.png','Image_3__style_transfer01.png']},
+  {id:5,cat:'epaggelmatiko',catLabel:'Επαγγελματικό',title:'3όροφο Κτίριο',sub:'Καλαμάτα, 2022',cover:'7.png',imgs:['7.png','Image_4__upscale01.png']},
+  {id:6,cat:'interior',catLabel:'Interior Design',title:'Master Bedroom',sub:'Βίλα Καλαμάτας, 2023',cover:'Image_12__style_transfer02.png',imgs:['Image_12__style_transfer02.png','Image_3_.png','9.png']},
+  {id:7,cat:'interior',catLabel:'Interior Design',title:'Living & Dining',sub:'Premium Διαμέρισμα, 2022',cover:'Image_2_.png',imgs:['Image_2_.png','4.png','12.png']},
+  {id:8,cat:'anakainisi',catLabel:'Ανακαίνιση',title:'Σύγχρονη Κουζίνα',sub:'Καλαμάτα, 2023',cover:'12.png',imgs:['12.png','Image_2_.png','9.png']},
+  {id:9,cat:'interior',catLabel:'Interior Design',title:'Ελληνική Αισθητική',sub:'Κατοικία Μεσσηνίας, 2023',cover:'Image_3_.png',imgs:['Image_3_.png','Image_12__style_transfer02.png']},
+  {id:10,cat:'epaggelmatiko',catLabel:'Γραφείο',title:'PA Creative House',sub:'Φαρών 155, Καλαμάτα',cover:'IMG_0368.jpeg',imgs:['IMG_0368.jpeg']},
+];
+let pjCurrent=null,pjImgIdx=0;
+function pfRender(filter){
+  const grid=document.getElementById('pfGrid');
+  if(!grid)return;
+  const projects=filter==='all'?pfProjects:pfProjects.filter(p=>p.cat===filter);
+  grid.innerHTML=projects.map(p=>`<div class="pf-card" onclick="pjOpenLb(${p.id})" style="opacity:0;transform:scale(.95);transition:opacity .5s,transform .5s"><img src="${p.cover}" alt="${p.title}" loading="lazy"><div class="pf-card-overlay"><div class="pf-card-cat">${p.catLabel}</div><div class="pf-card-title">${p.title}</div><div class="pf-card-sub">${p.sub}</div></div>${p.imgs.length>1?`<div class="pf-card-count">📷 ${p.imgs.length}</div>`:''}</div>`).join('');
+  setTimeout(()=>{grid.querySelectorAll('.pf-card').forEach((c,i)=>{setTimeout(()=>{c.style.opacity='1';c.style.transform='scale(1)'},i*60)})},50);
+}
+function pfFilter(cat,btn){document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');pfRender(cat);}
+function pjOpenLb(id){const p=pfProjects.find(x=>x.id===id);if(!p)return;pjCurrent=p;pjImgIdx=0;document.getElementById('pjLbTitle').textContent=p.title;document.getElementById('pjLbCat').textContent=p.catLabel+' · '+p.sub;pjUpdateImg();pjUpdateThumbs();document.getElementById('pjLb').classList.add('open');document.body.style.overflow='hidden';}
+function pjCloseLb(){document.getElementById('pjLb').classList.remove('open');document.body.style.overflow='';}
+function pjNav(dir){if(!pjCurrent)return;pjImgIdx=(pjImgIdx+dir+pjCurrent.imgs.length)%pjCurrent.imgs.length;pjUpdateImg();pjUpdateThumbs();}
+function pjUpdateImg(){const img=document.getElementById('pjLbImg');img.style.opacity='0';setTimeout(()=>{img.src=pjCurrent.imgs[pjImgIdx];img.style.opacity='1'},150);document.getElementById('pjLbCounter').textContent=(pjImgIdx+1)+' / '+pjCurrent.imgs.length;}
+function pjUpdateThumbs(){document.getElementById('pjLbThumbs').innerHTML=pjCurrent.imgs.map((src,i)=>`<img class="pj-lb-thumb ${i===pjImgIdx?'active':''}" src="${src}" onclick="pjGoTo(${i})" loading="lazy">`).join('');}
+function pjGoTo(i){pjImgIdx=i;pjUpdateImg();pjUpdateThumbs();}
+document.addEventListener('keydown',e=>{if(!document.getElementById('pjLb').classList.contains('open'))return;if(e.key==='ArrowRight')pjNav(1);if(e.key==='ArrowLeft')pjNav(-1);if(e.key==='Escape')pjCloseLb();});
+var pjLbEl=document.getElementById('pjLb'); if(pjLbEl) pjLbEl.addEventListener('click',e=>{if(e.target===pjLbEl)pjCloseLb();});
+/* ══ /PORTFOLIO v2 ══ */
+
+</script>
+<!-- ════ END PA LIVE EDITOR ════ -->
