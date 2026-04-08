@@ -150,8 +150,8 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
   opacity:0;animation:fUp 1s .5s var(--ease) forwards;
 }
 .hero-sub strong{color:var(--cream);font-weight:600}
-.hero-sub .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.hero-sub .tag{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(197,160,89,.3);padding:4px 10px;font-weight:700}
+.hero-sub 
+.hero-sub 
 
 .hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fUp 1s .65s var(--ease) forwards}
 .btn-gold{background:var(--gold);color:var(--ink);padding:16px 36px;font-weight:700;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:all .35s}
@@ -183,14 +183,7 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
 
 /* ── SERVICES: 12 υπηρεσίες με modal ── */
 .svc-monolith{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line)}
-.svc-row{
-  border-bottom:1px solid var(--line);
-  padding:36px 40px;
-  display:flex;gap:28px;align-items:flex-start;
-  position:relative;overflow:hidden;
-  transition:background .4s;cursor:pointer;
-  background:var(--ink2);
-}
+.svc-row{border-bottom:1px solid var(--line);padding:32px 36px;display:flex;gap:24px;align-items:flex-start;position:relative;overflow:hidden;transition:background .4s;cursor:pointer;background:var(--ink2);min-height:120px}
 .svc-row:nth-child(3n){border-right:none}
 .svc-row:not(:nth-child(3n)){border-right:1px solid var(--line)}
 .svc-row::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .55s var(--ease2)}
@@ -202,7 +195,7 @@ nav.scrolled{padding:14px 6%;background:rgba(5,6,10,.95);border-bottom:1px solid
 /* Numero stile — font serif, non sembra "ΟΙ" */
 .svc-idx{font-family:'Exo 2',sans-serif;font-size:1.2rem;color:var(--gold);font-weight:600;font-style:normal;line-height:1.2;flex-shrink:0;width:36px;margin-top:2px;letter-spacing:0}
 .svc-name{font-family:'Exo 2',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:8px;line-height:1.2;text-transform:uppercase;letter-spacing:.08em;color:var(--gold)}
-.svc-desc{font-size:.84rem;color:var(--cream3);line-height:1.7;font-weight:300;max-width:310px}
+.svc-desc{font-size:1.05rem;color:rgba(244,241,234,.7);line-height:1.6;font-weight:300;margin-top:6px}
 .svc-arr{
   position:absolute;right:24px;bottom:20px;
   color:var(--gold);opacity:0;
@@ -458,7 +451,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 .gi.anim-in{opacity:1;transform:scale(1)}
 
 /* Services — αριστερά/δεξιά */
-.svc-row{transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.svc-row{border-bottom:1px solid var(--line);padding:32px 36px;display:flex;gap:24px;align-items:flex-start;position:relative;overflow:hidden;transition:background .4s;cursor:pointer;background:var(--ink2);min-height:120px}
 .svc-row.anim-in{opacity:1;transform:none}
 .svc-row.anim-in{opacity:1;transform:none}
 
@@ -720,6 +713,10 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
     <div class="hstat"><h3 data-count="24">0h</h3><p>Χρόνος Απόκρισης</p></div>
   </div>
   <div class="scroll-cue"><span>scroll</span><div class="sbar"></div></div>
+  <div class="scroll-cue" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
 <!-- SERVICES: 12 υπηρεσίες -->
@@ -728,71 +725,73 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
   <h2 class="sec-title reveal">Ολοκληρωμένες λύσεις για <em>κάθε ακίνητο</em></h2>
   
   
+  
   <div class="svc-monolith" id="svcGrid">
     <div class="svc-row anim-in" onclick="openSvc(0)">
       <span class="svc-idx">1.</span>
       <div class="svc-info">
         <div class="svc-name">Οικοδομικές Άδειες</div>
-        <p class="svc-desc">Πλήρης μελέτη και έκδοση για κατοικίες και επαγγελματικά κτίρια μέσω e-Άδειες.</p>
+        <p class="svc-desc">Πλήρης μελέτη και έκδοση για κατοικίες και επαγγελματικά κτίρια μέσω e-Άδειες.<br><span style="color:var(--gold);font-size:.85rem">Χρόνος υλοποίησης: ανάλογα με την περίπτωση</span></p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(1)">
       <span class="svc-idx">2.</span>
       <div class="svc-info">
         <div class="svc-name">Τακτοποίηση Αυθαιρέτων</div>
-        <p class="svc-desc">Νομική θωράκιση για κάθε πολεοδομική εκκρεμότητα. Χρόνος: 20–30 ημέρες.</p>
+        <p class="svc-desc">Εντοπίζουμε και επιλύουμε κάθε πολεοδομική εκκρεμότητα, διασφαλίζοντας την αξία της περιουσίας σας για κάθε μελλοντική μεταβίβαση.<br><span style="color:var(--gold);font-size:.85rem">Χρόνος υλοποίησης: 20–30 ημέρες</span></p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(2)">
       <span class="svc-idx">3.</span>
       <div class="svc-info">
         <div class="svc-name">Ηλεκτρονική Ταυτότητα Κτιρίου</div>
-        <p class="svc-desc">Απαραίτητη για κάθε συμβολαιογραφική πράξη. Χρόνος: 5–7 ημέρες.</p>
+        <p class="svc-desc">Απαραίτητη για κάθε συμβολαιογραφική πράξη. Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη.<br><span style="color:var(--gold);font-size:.85rem">Χρόνος υλοποίησης: 5–7 ημέρες</span></p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(3)">
       <span class="svc-idx">4.</span>
       <div class="svc-info">
         <div class="svc-name">Τοπογραφικά Διαγράμματα</div>
-        <p class="svc-desc">GPS/Total Station για κτηματολόγιο και οριοθετήσεις. Χρόνος: 15 ημέρες.</p>
+        <p class="svc-desc">GPS/Total Station για κτηματολόγιο, οριοθετήσεις και αγοραπωλησίες.<br><span style="color:var(--gold);font-size:.85rem">Χρόνος υλοποίησης: 15 ημέρες</span></p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(4)">
       <span class="svc-idx">5.</span>
       <div class="svc-info">
         <div class="svc-name">Ενεργειακές Επιθεωρήσεις (ΠΕΑ)</div>
-        <p class="svc-desc">Υποχρεωτικό για αγοραπωλησίες και μισθώσεις. Χρόνος: 3 ημέρες.</p>
+        <p class="svc-desc">Υποχρεωτικό για αγοραπωλησίες και μισθώσεις ακινήτων.<br><span style="color:var(--gold);font-size:.85rem">Χρόνος υλοποίησης: 2 ημέρες</span></p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(5)">
       <span class="svc-idx">6.</span>
       <div class="svc-info">
         <div class="svc-name">Πρόγραμμα «Εξοικονομώ»</div>
-        <p class="svc-desc">Μηδενίστε το ενεργειακό κόστος. Επιδότηση έως 75%, πλήρης διαχείριση φακέλου.</p>
+        <p class="svc-desc">Επιδότηση έως 75% για ενεργειακή αναβάθμιση. Αναλαμβάνουμε ολόκληρο τον φάκελο από την αίτηση ως την εκταμίευση.<br><span style="color:var(--gold);font-size:.85rem">Διάρκεια: ανάλογα με τις παρεμβάσεις</span></p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(6)">
       <span class="svc-idx">7.</span>
       <div class="svc-info">
         <div class="svc-name">Ανακαίνιση & Κατασκευές</div>
-        <p class="svc-desc">Ολικές, μερικές ανακαινίσεις και νέες κατασκευές με πλήρη επίβλεψη.</p>
+        <p class="svc-desc">Ολικές και μερικές ανακαινίσεις με πλήρη επίβλεψη. Από τον πρώτο τοίχο ως το κλειδί στο χέρι.</p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(7)">
       <span class="svc-idx">8.</span>
       <div class="svc-info">
         <div class="svc-name">Interior Design</div>
-        <p class="svc-desc">Αρχιτεκτονική εσωτερικών χώρων — λειτουργικότητα και αισθητική σε κάθε τετραγωνικό.</p>
+        <p class="svc-desc">Αρχιτεκτονική εσωτερικών χώρων — λειτουργικότητα και αισθητική σε κάθε τετραγωνικό μέτρο.</p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(8)">
       <span class="svc-idx">9.</span>
       <div class="svc-info">
         <div class="svc-name">Άδειες Λειτουργίας Καταστημάτων</div>
-        <p class="svc-desc">Έκδοση αδειών λειτουργίας, μελέτες πυρασφάλειας και υγιεινής.</p>
+        <p class="svc-desc">Έκδοση αδειών λειτουργίας, μελέτες πυρασφάλειας και υγιεινής για καταστήματα και γραφεία.</p>
       </div><span class="svc-arr">Περισσότερα →</span>
     </div>
   </div>
+
 
 
 </section>
@@ -1112,7 +1111,7 @@ footer{background:var(--ink2);border-top:1px solid var(--line);padding:52px 7% 3
 
 <!-- AI FLOAT -->
 <button class="ai-float" id="aiFloat" onclick="toggleAiPopup()" aria-label="AI Βοηθός">
-  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+  <span style="font-family:'Exo 2',sans-serif;font-size:.9rem;font-weight:800;color:#05060a;letter-spacing:1px">AI</span>
 </button>
 <div class="ai-float-tip">Ρωτήστε τον AI Βοηθό μας</div>
 
@@ -1161,7 +1160,7 @@ const obs=new IntersectionObserver(e=>{
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 /* COUNTERS */
-/* counters handled by animations v2 */
+
 
 /* GALLERY FILTER */
 function filterG(cat,btn){
@@ -1194,15 +1193,15 @@ document.addEventListener('keydown',e=>{if(!document.getElementById('lb').classL
 
 /* SERVICE MODAL DATA */
 const svcData=[
-  {cat:'Μελέτη & Αδειοδότηση',title:'Οικοδομικές Άδειες',tagline:'Σχεδιάζουμε το μέλλον με απόλυτη ασφάλεια.',body:'Αναλαμβάνουμε την πλήρη μελέτη και έκδοση οικοδομικών αδειών για κατοικίες και επαγγελματικά κτίρια. Διαχειριζόμαστε κάθε στάδιο — από τις αρχιτεκτονικές και στατικές μελέτες έως την ψηφιακή υποβολή στο σύστημα e-Άδειες. Χρόνος υλοποίησης: ανάλογα με την περίπτωση.'},
-  {cat:'Μελέτη & Αδειοδότηση',title:'Τακτοποίηση Αυθαιρέτων',tagline:'Νομική θωράκιση για το ακίνητό σας.',body:'Εντοπίζουμε και επιλύουμε κάθε πολεοδομική εκκρεμότητα, προσφέροντας τακτοποίηση και διασφαλίζοντας την αξία της περιουσίας σας για κάθε μελλοντική μεταβίβαση. Χρόνος υλοποίησης: 20–30 ημέρες.'},
-  {cat:'Μελέτη & Αδειοδότηση',title:'Ηλεκτρονική Ταυτότητα Κτιρίου',tagline:'Η ψηφιακή οργάνωση του ακινήτου σας.',body:'Αποτελεί πλέον το απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη μεταβίβαση, γονική παροχή ή αγοραπωλησία ακινήτου. Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη. Χρόνος υλοποίησης: 5–7 ημέρες.'},
-  {cat:'Μελέτη & Αδειοδότηση',title:'Τοπογραφικά Διαγράμματα',tagline:'Ακρίβεια στο επίπεδο του χιλιοστού.',body:'Με χρήση σύγχρονου γεωδαιτικού εξοπλισμού GPS/Total Station, ορίζουμε τα όρια της γης σας — απαραίτητα για κτηματολόγιο, οριοθετήσεις και αγοραπωλησίες. Χρόνος υλοποίησης: 15 ημέρες.'},
-  {cat:'Ενέργεια',title:'Ενεργειακές Επιθεωρήσεις (ΠΕΑ)',tagline:'Η ενεργειακή ακτινογραφία του χώρου σας.',body:'Εκδίδουμε Πιστοποιητικά Ενεργειακής Απόδοσης (ΠΕΑ) — υποχρεωτικά για αγοραπωλησία ή μίσθωση. Χρόνος υλοποίησης: 3 ημέρες.'},
-  {cat:'Ενέργεια',title:'Πρόγραμμα «Εξοικονομώ»',tagline:'Μηδενίστε το ενεργειακό κόστος.',body:'Αναλαμβάνουμε την πλήρη τεχνική υποστήριξη: ΠΕΑ πριν, αίτηση, επιλογή παρεμβάσεων (κουφώματα, μόνωση, θέρμανση, PV), εκταμίευση και ΠΕΑ μετά. Επιδότηση έως 75%. Διάρκεια: ανάλογα με τις παρεμβάσεις.'},
+  {cat:'Μελέτη & Αδειοδότηση',title:'Οικοδομικές Άδειες',tagline:'Σχεδιάζουμε το μέλλον με απόλυτη ασφάλεια.',body:'Αναλαμβάνουμε την πλήρη μελέτη και έκδοση οικοδομικών αδειών για κατοικίες και επαγγελματικά κτίρια. Διαχειριζόμαστε κάθε στάδιο — από τις αρχιτεκτονικές και στατικές μελέτες έως την ψηφιακή υποβολή στο σύστημα e-Άδειες.\n\nΧρόνος υλοποίησης: ανάλογα με την περίπτωση.'},
+  {cat:'Μελέτη & Αδειοδότηση',title:'Τακτοποίηση Αυθαιρέτων',tagline:'Νομική θωράκιση για το ακίνητό σας.',body:'Εντοπίζουμε και επιλύουμε κάθε πολεοδομική εκκρεμότητα, διασφαλίζοντας την αξία της περιουσίας σας για κάθε μελλοντική μεταβίβαση. Η διαδικασία γίνεται ηλεκτρονικά και χρειάζεται τοπογραφικό και αποτύπωση.\n\nΧρόνος υλοποίησης: 20–30 ημέρες.'},
+  {cat:'Μελέτη & Αδειοδότηση',title:'Ηλεκτρονική Ταυτότητα Κτιρίου',tagline:'Η ψηφιακή οργάνωση του ακινήτου σας.',body:'Αποτελεί πλέον το απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη μεταβίβαση, γονική παροχή ή αγοραπωλησία ακινήτου. Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη.\n\nΧρόνος υλοποίησης: 5–7 ημέρες.'},
+  {cat:'Μελέτη & Αδειοδότηση',title:'Τοπογραφικά Διαγράμματα',tagline:'Ακρίβεια στο επίπεδο του χιλιοστού.',body:'Με χρήση σύγχρονου γεωδαιτικού εξοπλισμού GPS/Total Station, ορίζουμε τα όρια της γης σας — απαραίτητα για κτηματολόγιο, οριοθετήσεις και αγοραπωλησίες.\n\nΧρόνος υλοποίησης: 15 ημέρες.'},
+  {cat:'Ενέργεια',title:'Ενεργειακές Επιθεωρήσεις (ΠΕΑ)',tagline:'Η ενεργειακή ακτινογραφία του χώρου σας.',body:'Εκδίδουμε Πιστοποιητικά Ενεργειακής Απόδοσης (ΠΕΑ) — υποχρεωτικά για κάθε αγοραπωλησία ή μίσθωση ακινήτου.\n\nΧρόνος υλοποίησης: 2 ημέρες.'},
+  {cat:'Ενέργεια',title:'Πρόγραμμα «Εξοικονομώ»',tagline:'Μηδενίστε το ενεργειακό κόστος.',body:'Επιδότηση έως 75% για ενεργειακή αναβάθμιση του σπιτιού σας. Αναλαμβάνουμε ολόκληρο τον φάκελο — από την αρχική αίτηση και την επιλογή παρεμβάσεων (κουφώματα, μόνωση, θέρμανση, PV) ως την τελική εκταμίευση.'},
   {cat:'Κατασκευή',title:'Ανακαίνιση & Κατασκευές',tagline:'Από το σχέδιο στην πραγματικότητα.',body:'Αναλαμβάνουμε ολικές και μερικές ανακαινίσεις καθώς και κατασκευή νέων έργων με πλήρη επίβλεψη. Από τον πρώτο τοίχο μέχρι την τελευταία λεπτομέρεια, παραδίδουμε με κλειδί στο χέρι.'},
   {cat:'Design',title:'Interior Design',tagline:'Αρχιτεκτονική Εσωτερικών Χώρων.',body:'Μετατρέπουμε τη λειτουργικότητα σε τέχνη, δίνοντας ζωή και χαρακτήρα σε κάθε τετραγωνικό μέτρο. Σχεδιάζουμε χώρους που εμπνέουν και λειτουργούν άψογα.'},
-  {cat:'Αδειοδότηση',title:'Άδειες Λειτουργίας Καταστημάτων',tagline:'Η επιχείρησή σας σε γερές βάσεις.',body:'Αναλαμβάνουμε την έκδοση αδειών λειτουργίας για καταστήματα, γραφεία και επαγγελματικούς χώρους. Μελέτες πυρασφάλειας, υγιεινής και λειτουργικότητας.'},
+  {cat:'Αδειοδότηση',title:'Άδειες Λειτουργίας Καταστημάτων',tagline:'Η επιχείρησή σας σε γερές βάσεις.',body:'Αναλαμβάνουμε την έκδοση αδειών λειτουργίας για καταστήματα, γραφεία και επαγγελματικούς χώρους. Μελέτες πυρασφάλειας, υγιεινής και λειτουργικότητας σύμφωνα με την ισχύουσα νομοθεσία.'},
 ];
 function openSvc(i){
   const d=svcData[i];
@@ -1246,6 +1245,37 @@ const aiKB=[
 
 // Portfolio init
 if(document.getElementById('pfGrid')) pfRender('all');
+
+/* ══ COUNTER ANIMATION FIX ══ */
+function animateCounter(el){
+  var target = parseInt(el.getAttribute('data-count'));
+  var suffix = el.textContent.replace(/[0-9]/g,'');
+  var start = 0;
+  var duration = 2000;
+  var startTime = null;
+  function step(timestamp){
+    if(!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp - startTime) / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    var current = Math.floor(eased * target);
+    el.textContent = current + suffix;
+    if(progress < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  }
+  requestAnimationFrame(step);
+}
+var counterDone = false;
+var counterObserver = new IntersectionObserver(function(entries){
+  if(entries[0].isIntersecting && !counterDone){
+    counterDone = true;
+    document.querySelectorAll('.hstat h3[data-count]').forEach(function(el){
+      animateCounter(el);
+    });
+  }
+}, {threshold: 0.3});
+var heroStats = document.querySelector('.hero-stats');
+if(heroStats) counterObserver.observe(heroStats);
+/* ══ /COUNTER ANIMATION FIX ══ */
 </script>
 
 
@@ -1369,7 +1399,7 @@ body.pa-edit-mode nav{top:120px!important}
 @media(max-width:768px){
   .ai-text-input,.fg input,.fg textarea,.fg select{font-size:16px!important}
   .svc-monolith{grid-template-columns:1fr!important}
-  .svc-row{border-right:none!important}
+  .svc-row{border-bottom:1px solid var(--line);padding:32px 36px;display:flex;gap:24px;align-items:flex-start;position:relative;overflow:hidden;transition:background .4s;cursor:pointer;background:var(--ink2);min-height:120px}
 }
 
 .ai-float{position:fixed;bottom:88px;right:20px;z-index:800;width:54px;height:54px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(197,160,89,.4);cursor:pointer;transition:transform .3s;border:none}
@@ -1377,6 +1407,13 @@ body.pa-edit-mode nav{top:120px!important}
 /* Why section overrides */
 #why .sec-title{font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2;white-space:normal}
 #why .sec-title br{display:block}
+
+/* ══ SCROLL CUE ══ */
+.scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;z-index:10;animation:fadeInUp 2s ease 1s both}
+.scroll-cue span{font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:rgba(197,160,89,.7);font-family:'Jost',sans-serif;font-weight:500}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(197,160,89,.7),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.6);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
+@media(max-width:768px){.scroll-cue{display:none}}
 </style>
 
 <div id="pa-editor">
