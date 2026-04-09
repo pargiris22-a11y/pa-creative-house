@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v6.5-i18n | 20260408 -->
+<!-- PA Creative House v6.6-i18n | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -1651,11 +1651,11 @@ function setLang(lang){
   }
 }
 
-// Init: load saved language
-(function(){
-  const saved = localStorage.getItem('pa_lang') || 'el';
-  if(saved !== 'el') setLang(saved);
-})();()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
+// Init: load saved language (runs after pfRender is available)
+// Called at end of file after pfProjects/pfRender are defined
+
+/* NAV SCROLL */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
 function toggleMenu(){document.getElementById('burger').classList.toggle('open');document.getElementById('mobileNav').classList.toggle('open');document.body.style.overflow=document.getElementById('mobileNav').classList.contains('open')?'hidden':''}
 function closeMenu(){document.getElementById('burger').classList.remove('open');document.getElementById('mobileNav').classList.remove('open');document.body.style.overflow=''}
 
@@ -2624,8 +2624,14 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Init
+// Init portfolio
 if(document.getElementById('pfGrid')) pfRender('all');
+
+// Init language (safe here - pfRender is defined)
+(function(){
+  const saved = localStorage.getItem('pa_lang') || 'el';
+  if(saved !== 'el') setLang(saved);
+})();
 /* ══ /PORTFOLIO v3 ══ */
 
 </script>
