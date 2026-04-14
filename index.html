@@ -884,7 +884,30 @@ html[dir="rtl"] body{font-family:'Noto Sans SC','Jost',sans-serif}
 .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(197,160,89,.8),transparent);animation:scrollPulse 2s ease-in-out infinite}
 @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media(max-width:768px){.scroll-cue{display:none}}
+@media(max-width:768px){
+  .scroll-cue{display:none}
+  .nav-links{display:none!important}
+  .burger{display:flex!important}
+  .nav-cta{display:none}
+  .lang-switcher{display:none}
+  #langSwitcher{display:none}
+  .hero-content{padding:0 5%}
+  .hero-h{font-size:clamp(2.4rem,10vw,4rem)}
+  .hero-sub{font-size:.85rem}
+  .hero-btns{flex-direction:column;gap:12px}
+  .svc-row{flex-direction:column;padding:24px 20px}
+  .svc-row .svc-icon{width:40px;height:40px}
+  .cin-row{flex-direction:column}
+  .cin-content{max-width:100%}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .tmn-grid{grid-template-columns:1fr}
+  .pf-grid{grid-template-columns:repeat(2,1fr)!important}
+  .contact-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap}
+  .hstat{min-width:50%}
+  .sec{padding:72px 5%}
+}
 </style>
 </head>
 <body>
@@ -1377,10 +1400,10 @@ html[dir="rtl"] body{font-family:'Noto Sans SC','Jost',sans-serif}
     <button class="ai-close-btn" onclick="toggleAiPopup()">×</button>
   </div>
   <div class="ai-popup-sugs">
-    <button class="ai-popup-sug" onclick="quickAsk('Πόσο κοστίζει τακτοποίηση αυθαιρέτου;')">Αυθαίρετα</button>
-    <button class="ai-popup-sug" onclick="quickAsk('Τι χρειάζομαι για ΠΕΑ;')">ΠΕΑ</button>
-    <button class="ai-popup-sug" onclick="quickAsk('Πώς λειτουργεί το Εξοικονομώ;')">Εξοικονομώ</button>
-    <button class="ai-popup-sug" onclick="quickAsk('Πόσο κοστίζει άδεια δόμησης;')">Άδεια δόμησης</button>
+    <button class="ai-sug-btn">Τι χρειάζομαι για τακτοποίηση αυθαιρέτου;</button>
+    <button class="ai-sug-btn">Πόσο καιρό παίρνει μια οικοδομική άδεια;</button>
+    <button class="ai-sug-btn">Τι είναι η Ηλεκτρονική Ταυτότητα Κτιρίου;</button>
+    <button class="ai-sug-btn">Πώς λειτουργεί το Εξοικονομώ;</button>
   </div>
   <div class="ai-messages" id="aiMessages">
     <div class="ai-msg bot"><span data-i18n="ai_greeting">Γεια σας! Είμαι ο βοηθός του PA Creative House. Πώς μπορώ να σας εξυπηρετήσω;</span></div>
@@ -2478,7 +2501,31 @@ if(document.getElementById('pfGrid'))pfRender('all');
 </script>
 <script>
 /* ══ AI CHAT ══ */
-const AI_SYSTEM = 'Είσαι ο βοηθός του PA Creative House, τεχνικού γραφείου Πολιτικού Μηχανικού στην Καλαμάτα. Απαντάς στα ελληνικά, σύντομα και επαγγελματικά. Για θέματα: οικοδομικές άδειες, αυθαίρετα (Ν.4495/2017), ΠΕΑ, τοπογραφικά, Εξοικονομώ, interior design, ανακαινίσεις. Τηλ: 27210 90509, email: pa@creativehouse.gr';
+const AI_SYSTEM = `Είσαι ο Βοηθός του PA Creative House — τεχνικό γραφείο Πολιτικού Μηχανικού ΤΕ στην Καλαμάτα, Μεσσηνία. Διευθυντής: Παναγιώτης Αργύρης.
+
+ΥΠΗΡΕΣΙΕΣ & ΧΡΟΝΟΙ:
+- Οικοδομικές Άδειες: 2–6 μήνες (ανάλογα πολεοδομία)
+- Τακτοποίηση Αυθαιρέτων (Ν.4495/2017): 20–30 ημέρες
+- Ηλεκτρονική Ταυτότητα Κτιρίου (ΗΤΚ): 5–7 ημέρες
+- Τοπογραφικά Διαγράμματα: 15 ημέρες
+- Πιστοποιητικό Ενεργειακής Απόδοσης (ΠΕΑ): 2 ημέρες
+- Εξοικονομώ: επιδότηση έως 75%, πλήρης υποστήριξη
+- Ανακαίνιση & Κατασκευές: πλήρης επίβλεψη
+- Interior Design: 3D οπτικοποίηση + επίβλεψη
+- Άδειες Λειτουργίας: εστιατόρια, καταστήματα, γραφεία, ξενοδοχεία
+
+ΚΑΝΟΝΕΣ:
+1. Απαντάς ΠΑΝΤΑ στη γλώσσα που σε ρωτούν (ελληνικά, αγγλικά, γαλλικά, γερμανικά κλπ)
+2. ΠΟΤΕ δεν αναφέρεις τιμές ή κόστη — λες "για ακριβή προσφορά επικοινωνήστε μαζί μας"
+3. Δίνεις ουσιαστικές απαντήσεις για διαδικασίες, χρόνους, δικαιολογητικά
+4. Είσαι φιλικός, επαγγελματικός, σύντομος (max 4 προτάσεις)
+5. Αν η ερώτηση δεν αφορά τις υπηρεσίες μας, λες ευγενικά ότι μπορείς να βοηθήσεις μόνο για θέματα ακινήτων
+6. Στο τέλος κάθε απάντησης ΔΕΝ βάζεις τα στοιχεία επικοινωνίας — μόνο αν ρωτηθείς ρητά
+
+ΣΤΟΙΧΕΙΑ (μόνο αν ζητηθούν):
+Τηλ: 27210 90509 | Email: pa@creativehouse.gr | Δε–Πα 09:00–17:00`;
+
+const aiHistory = [];
 
 function toggleAiPopup(){
   const popup = document.getElementById('aiChatPopup');
@@ -2490,30 +2537,37 @@ function toggleAiPopup(){
   }
 }
 
-async function sendAiMessage(){
+async function sendAiMessage(overrideMsg){
   const popup = document.getElementById('aiChatPopup');
   const input = popup ? popup.querySelector('.ai-text-input') : null;
-  if(!input || !input.value.trim()) return;
   
-  const msg = input.value.trim();
-  input.value = '';
+  const msg = overrideMsg || (input ? input.value.trim() : '');
+  if(!msg) return;
+  if(input) input.value = '';
   
-  const msgs = popup.querySelector('.ai-messages');
+  const msgs = popup ? popup.querySelector('.ai-messages') : null;
   if(!msgs) return;
-  
-  // Add user message
+
+  // Hide suggestions after first message
+  const sugs = popup.querySelector('.ai-popup-sugs');
+  if(sugs) sugs.style.display = 'none';
+
+  // User bubble
   const userDiv = document.createElement('div');
   userDiv.className = 'ai-msg user';
   userDiv.textContent = msg;
   msgs.appendChild(userDiv);
   
-  // Add typing indicator
+  // Typing indicator
   const typingDiv = document.createElement('div');
   typingDiv.className = 'ai-msg bot typing';
-  typingDiv.textContent = '...';
+  typingDiv.innerHTML = '<span>.</span><span>.</span><span>.</span>';
   msgs.appendChild(typingDiv);
   msgs.scrollTop = msgs.scrollHeight;
-  
+
+  // Add to history
+  aiHistory.push({role:'user', content: msg});
+
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -2523,48 +2577,52 @@ async function sendAiMessage(){
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 600,
+        max_tokens: 400,
         system: AI_SYSTEM,
-        messages: [{role:'user', content: msg}]
+        messages: aiHistory
       })
     });
-    
+
     const data = await res.json();
     typingDiv.remove();
-    
-    const reply = data.content?.[0]?.text || 
-      'Παρακαλώ επικοινωνήστε μαζί μας στο 27210 90509 ή pa@creativehouse.gr';
-    
+
+    const reply = data.content?.[0]?.text ||
+      'Για περισσότερες πληροφορίες επικοινωνήστε μαζί μας.';
+
+    aiHistory.push({role:'assistant', content: reply});
+
     const botDiv = document.createElement('div');
     botDiv.className = 'ai-msg bot';
-    botDiv.innerHTML = reply.replace(/\n/g, '<br>');
+    botDiv.innerHTML = reply.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
     msgs.appendChild(botDiv);
     msgs.scrollTop = msgs.scrollHeight;
-    
+
   } catch(e) {
-    typingDiv.className = 'ai-msg bot';
-    typingDiv.innerHTML = 'Επικοινωνήστε μαζί μας:<br>📞 27210 90509<br>✉️ pa@creativehouse.gr';
+    typingDiv.remove();
+    const errDiv = document.createElement('div');
+    errDiv.className = 'ai-msg bot';
+    errDiv.innerHTML = 'Κάτι πήγε στραβά. Δοκιμάστε ξανά ή καλέστε μας στο <strong>27210 90509</strong>.';
+    msgs.appendChild(errDiv);
     msgs.scrollTop = msgs.scrollHeight;
   }
 }
 
 document.addEventListener('DOMContentLoaded', function(){
-  // Enter key to send
-  const popupEl = document.getElementById('aiChatPopup');
-  if(popupEl){
-    const inp = popupEl.querySelector('.ai-text-input');
-    if(inp) inp.addEventListener('keydown', function(e){
-      if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendAiMessage(); }
+  const popup = document.getElementById('aiChatPopup');
+  if(!popup) return;
+
+  // Enter to send
+  const inp = popup.querySelector('.ai-text-input');
+  if(inp) inp.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendAiMessage(); }
+  });
+
+  // Suggestion buttons
+  popup.querySelectorAll('.ai-sug-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      sendAiMessage(this.textContent.trim());
     });
-    
-    // Suggestion buttons
-    popupEl.querySelectorAll('.ai-sug-btn').forEach(btn => {
-      btn.addEventListener('click', function(){
-        const inp2 = popupEl.querySelector('.ai-text-input');
-        if(inp2){ inp2.value = this.textContent.trim(); sendAiMessage(); }
-      });
-    });
-  }
+  });
 });
 /* ══ /AI CHAT ══ */
 </script>
