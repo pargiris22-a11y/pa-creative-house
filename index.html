@@ -2400,5 +2400,141 @@ if(document.getElementById('pfGrid')) pfRender('all');
 
 
 
+
+<script>
+/* ══ PORTFOLIO v3 ══ */
+const pfProjects = [
+  {id:1,cat:'katoikia',catLabel:'Κατοικία',tall:false,title:'Βίλα με Πισίνα',location:'Καλαμάτα',year:'2023',type:'Μελέτη – Κατασκευή – Επίβλεψη – Interior Design',desc:'Σύγχρονη πολυτελής βίλα σε ιδιαίτερη τοποθεσία της Καλαμάτας με θέα στο Μεσσηνιακό Κόλπο. Πλήρης αρχιτεκτονική μελέτη, στατική, H/M εγκαταστάσεις και επίβλεψη κατασκευής.',cover:'Image_3__style_transfer01.png',imgs:['Image_3__style_transfer01.png','Image_4__upscale01.png','Image_12__style_transfer02.png','Image_2_.png','7.png']},
+  {id:2,cat:'interior',catLabel:'Interior Design',tall:false,title:'Open Plan Διαμέρισμα',location:'Καλαμάτα',year:'2023',type:'Interior Design – Διακόσμηση – 3D Visualization',desc:'Ολοκληρωμένη αρχιτεκτονική εσωτερικών χώρων για σύγχρονο διαμέρισμα 95 τ.μ. Ανοιχτός χώρος κουζίνας-σαλονιού με μεγιστοποίηση φυσικού φωτός.',cover:'3.png',imgs:['3.png','4.png','9.png','Image_2_.png','12.png']},
+  {id:3,cat:'interior',catLabel:'Interior Design',tall:true,title:'Πολυτελές Διαμέρισμα',location:'Μεσσήνη',year:'2022',type:'Interior Design – Custom Έπιπλα – Φωτισμός',desc:'Premium διαμέρισμα 120 τ.μ. με ολοκληρωμένο σχεδιασμό εσωτερικών χώρων. Ειδικός φωτισμός και premium υλικά.',cover:'4.png',imgs:['4.png','3.png','12.png','9.png']},
+  {id:4,cat:'katoikia',catLabel:'Κατοικία',tall:true,title:'Διώροφη Κατοικία',location:'Μεσσηνία',year:'2023',type:'Αρχιτεκτονική Μελέτη – Οικοδομική Άδεια – Επίβλεψη',desc:'Σύγχρονη διώροφη κατοικία 180 τ.μ. με ενεργειακή κατηγορία Α+. Πλήρης μελέτη και επίβλεψη κατασκευής.',cover:'Image_4__upscale01.png',imgs:['Image_4__upscale01.png','Image_3__style_transfer01.png','7.png']},
+  {id:5,cat:'epaggelmatiko',catLabel:'Επαγγελματικό',tall:false,title:'3όροφο Κτίριο Γραφείων',location:'Καλαμάτα',year:'2022',type:'Αρχιτεκτονική Μελέτη – Στατική – Άδεια – Επίβλεψη',desc:'Σύγχρονο τριώροφο κτίριο γραφείων 540 τ.μ. στο κέντρο της Καλαμάτας. Παράδοση εντός χρονοδιαγράμματος.',cover:'7.png',imgs:['7.png','Image_4__upscale01.png','Image_3__style_transfer01.png']},
+  {id:6,cat:'interior',catLabel:'Interior Design',tall:false,title:'Master Bedroom Suite',location:'Βίλα Καλαμάτας',year:'2023',type:'Interior Design – Custom Furniture – Φωτισμός',desc:'Πολυτελής master bedroom suite 45 τ.μ. με walk-in wardrobe, en suite μπάνιο και φωτισμό ξενοδοχείου 5 αστέρων.',cover:'Image_12__style_transfer02.png',imgs:['Image_12__style_transfer02.png','Image_3_.png','9.png','Image_2_.png']},
+  {id:7,cat:'interior',catLabel:'Interior Design',tall:false,title:'Living & Dining Premium',location:'Καλαμάτα',year:'2022',type:'Interior Design – 3D Visualization – Διακόσμηση',desc:'Ολοκληρωμένος σχεδιασμός χώρου καθημερινότητας σε premium διαμέρισμα με custom τραπεζαρία.',cover:'Image_2_.png',imgs:['Image_2_.png','4.png','12.png','3.png']},
+  {id:8,cat:'anakainisi',catLabel:'Ανακαίνιση',tall:false,title:'Σύγχρονη Κουζίνα',location:'Καλαμάτα',year:'2023',type:'Ανακαίνιση – Custom Κουζίνα – Επίβλεψη',desc:'Ολική ανακαίνιση κουζίνας και τραπεζαρίας. Πλήρης αναμόρφωση σε 18 μέρες με custom ντουλάπια.',cover:'12.png',imgs:['12.png','Image_2_.png','9.png']},
+  {id:9,cat:'interior',catLabel:'Interior Design',tall:true,title:'Ελληνική Αισθητική',location:'Κατοικία Μεσσηνίας',year:'2023',type:'Interior Design – Διακόσμηση – Styling',desc:'Σχεδιασμός εμπνευσμένος από ελληνική παράδοση σε σύγχρονη ερμηνεία. Φυσικά υλικά, earthy palette.',cover:'Image_3_.png',imgs:['Image_3_.png','Image_12__style_transfer02.png','Image_2_.png']},
+  {id:10,cat:'epaggelmatiko',catLabel:'Γραφείο',tall:false,title:'PA Creative House',location:'Φαρών 155, Καλαμάτα',year:'2024',type:'Ανακαίνιση – Interior Design – Επίβλεψη',desc:'Η διαμόρφωση του γραφείου μας — λειτουργικός, αισθητικός, εμπνευσμένος. Ανακαίνιση 60 τ.μ.',cover:'IMG_0368.jpeg',imgs:['IMG_0368.jpeg','IMG_0357.jpeg','IMG_0358.jpeg','IMG_0360.jpeg','IMG_0361.jpeg']},
+];
+let pjdCurrentId=null,pjdImgViewIdx=0,pjdImgViewList=[];
+
+function pfRender(filter){
+  const grid=document.getElementById('pfGrid');if(!grid)return;
+  grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:8px;';
+  const list=filter==='all'?pfProjects:pfProjects.filter(p=>p.cat===filter);
+  const ROW=260;
+  grid.innerHTML=list.map(p=>{
+    const h=p.tall?(ROW*2+3):ROW;
+    const cs=`position:relative;overflow:hidden;cursor:pointer;background:#0b0f16;height:${h}px;${p.tall?'grid-row:span 2;':''}`;
+    const is='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.82);transition:transform .5s,filter .5s;';
+    const ls='position:absolute;bottom:0;left:0;right:0;padding:6px 10px 8px;background:linear-gradient(to top,rgba(5,6,10,.88),transparent);transition:opacity .3s;';
+    const hs='position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:12px 10px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none;';
+    return `<div style="${cs}" onmouseenter="this.querySelector('img').style.cssText='${is}transform:scale(1.06);filter:brightness(.45);';this.querySelector('.pfc-label').style.opacity='0';this.querySelector('.pfc-hover').style.cssText='${hs}opacity:1;transform:none;'" onmouseleave="this.querySelector('img').style.cssText='${is}';this.querySelector('.pfc-label').style.opacity='1';this.querySelector('.pfc-hover').style.cssText='${hs}'" onclick="openPjd(${p.id})">
+      <img src="${p.cover}" alt="${p.title}" loading="lazy" style="${is}">
+      <div class="pfc-label" style="${ls}"><div style="font-family:'Exo 2',sans-serif;font-size:.75rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.title}</div></div>
+      <div class="pfc-hover" style="${hs}">
+        <div style="font-size:.52rem;letter-spacing:2.5px;text-transform:uppercase;color:#c5a059;font-weight:700;margin-bottom:3px;">${p.catLabel}</div>
+        <div style="font-family:'Exo 2',sans-serif;font-size:.85rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:2px;">${p.title}</div>
+        <div style="font-size:.65rem;color:rgba(244,241,234,.6);font-weight:300;margin-bottom:8px;">${p.location} · ${p.year}</div>
+        <div style="font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:#c5a059;font-weight:700;border-bottom:1px solid rgba(197,160,89,.45);padding-bottom:2px;display:inline-block;">Δείτε →</div>
+      </div></div>`;
+  }).join('');
+  setTimeout(()=>{grid.querySelectorAll('div[style*="overflow:hidden"]').forEach((c,i)=>{c.style.opacity='0';setTimeout(()=>{c.style.opacity='1';c.style.transition='opacity .4s';},i*40);});},20);
+}
+
+function pfFilter(cat,btn){document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');pfRender(cat);}
+
+function openPjd(id){
+  const p=pfProjects.find(x=>x.id===id);if(!p)return;pjdCurrentId=id;
+  document.getElementById('pjdBreadCat').textContent=p.catLabel;
+  document.getElementById('pjdCatBadge').textContent=p.catLabel;
+  document.getElementById('pjdTitle').textContent=p.title;
+  document.getElementById('pjdHeroImg').src=p.cover;
+  document.getElementById('pjdDesc').innerHTML=`<p>${p.desc}</p>`;
+  document.getElementById('pjdInfoPanel').innerHTML=`
+    <div class="pjd-info-item"><span class="pjd-info-label">Τύπος Έργου</span><span class="pjd-info-value">${p.type}</span></div>
+    <div class="pjd-info-item"><span class="pjd-info-label">Τοποθεσία</span><span class="pjd-info-value">${p.location}</span></div>
+    <div class="pjd-info-item"><span class="pjd-info-label">Έτος</span><span class="pjd-info-value">${p.year}</span></div>`;
+  pjdImgViewList=p.imgs;
+  document.getElementById('pjdGalleryGrid').innerHTML=p.imgs.map((src,i)=>`<img src="${src}" alt="${p.title} ${i+1}" loading="lazy" onclick="openPjdImg(${i})">`).join('');
+  const idx=pfProjects.findIndex(x=>x.id===id);
+  const prev=pfProjects[idx-1],next=pfProjects[idx+1];
+  const pb=document.getElementById('pjdPrevBtn'),nb=document.getElementById('pjdNextBtn');
+  if(prev){pb.style.visibility='visible';document.getElementById('pjdPrevTitle').textContent=prev.title;}else pb.style.visibility='hidden';
+  if(next){nb.style.visibility='visible';document.getElementById('pjdNextTitle').textContent=next.title;}else nb.style.visibility='hidden';
+  const ov=document.getElementById('pjdOverlay');ov.classList.add('open');ov.scrollTop=0;document.body.style.overflow='hidden';
+}
+function closePjd(){document.getElementById('pjdOverlay').classList.remove('open');document.body.style.overflow='';}
+function pjdNavTo(dir){const idx=pfProjects.findIndex(x=>x.id===pjdCurrentId);const t=pfProjects[idx+dir];if(t)openPjd(t.id);}
+function openPjdImg(idx){pjdImgViewIdx=idx;document.getElementById('pjdImgViewSrc').src=pjdImgViewList[idx];document.getElementById('pjdImgView').classList.add('open');}
+function closePjdImg(){document.getElementById('pjdImgView').classList.remove('open');}
+function pjdImgNav(dir){pjdImgViewIdx=(pjdImgViewIdx+dir+pjdImgViewList.length)%pjdImgViewList.length;document.getElementById('pjdImgViewSrc').src=pjdImgViewList[pjdImgViewIdx];}
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('pjdImgView').classList.contains('open')){if(e.key==='ArrowRight')pjdImgNav(1);if(e.key==='ArrowLeft')pjdImgNav(-1);if(e.key==='Escape')closePjdImg();return;}
+  if(document.getElementById('pjdOverlay').classList.contains('open')){if(e.key==='ArrowRight')pjdNavTo(1);if(e.key==='ArrowLeft')pjdNavTo(-1);if(e.key==='Escape')closePjd();}
+});
+if(document.getElementById('pfGrid'))pfRender('all');
+(function(){const saved=localStorage.getItem('pa_lang')||'el';if(saved!=='el')setLang(saved);})();
+/* ══ /PORTFOLIO v3 ══ */
+</script>
+<script>
+/* ══ AI CHAT ══ */
+function toggleAiPopup(){
+  const popup=document.getElementById('aiChatPopup');
+  if(!popup)return;
+  popup.classList.toggle('open');
+  if(popup.classList.contains('open')){
+    const input=popup.querySelector('.ai-text-input');
+    if(input)input.focus();
+  }
+}
+
+function sendAiMessage(){
+  const popup=document.getElementById('aiChatPopup');
+  const input=popup?.querySelector('.ai-text-input');
+  if(!input||!input.value.trim())return;
+  const msg=input.value.trim();
+  input.value='';
+  
+  const msgs=popup.querySelector('.ai-messages');
+  msgs.innerHTML+=`<div class="ai-msg user">${msg}</div>`;
+  msgs.innerHTML+=`<div class="ai-msg bot typing">...</div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+  
+  const CLAUDE_KEY='';
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',max_tokens:500,
+      system:'Είσαι ο βοηθός του PA Creative House, τεχνικού γραφείου Πολιτικού Μηχανικού στην Καλαμάτα. Απαντάς σύντομα και επαγγελματικά στα ελληνικά για θέματα αδειών, αυθαιρέτων, ΠΕΑ, τοπογραφικών, Εξοικονομώ και interior design.',
+      messages:[{role:'user',content:msg}]
+    })
+  }).then(r=>r.json()).then(d=>{
+    const typing=msgs.querySelector('.typing');
+    if(typing)typing.remove();
+    const reply=d.content?.[0]?.text||'Παρακαλώ επικοινωνήστε μαζί μας στο 27210 90509.';
+    msgs.innerHTML+=`<div class="ai-msg bot">${reply}</div>`;
+    msgs.scrollTop=msgs.scrollHeight;
+  }).catch(()=>{
+    const typing=msgs.querySelector('.typing');
+    if(typing)typing.textContent='Επικοινωνήστε μαζί μας στο 27210 90509 ή info@creativehouse.gr';
+  });
+}
+
+// Handle Enter key
+document.addEventListener('DOMContentLoaded',function(){
+  const inp=document.querySelector('#aiChatPopup .ai-text-input');
+  if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendAiMessage();}});
+  
+  // Suggestion buttons
+  document.querySelectorAll('.ai-sug-btn').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      const inp2=document.querySelector('#aiChatPopup .ai-text-input');
+      if(inp2){inp2.value=this.textContent;sendAiMessage();}
+    });
+  });
+});
+/* ══ /AI CHAT ══ */
+</script>
 </body>
 </html>
