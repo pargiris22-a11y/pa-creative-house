@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- PA Creative House v6.6-i18n | 20260410 -->
+<!-- PA Creative House v6.6-i18n | 20260408 -->
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -438,8 +438,6 @@ html[dir="rtl"] .contact-wrap{direction:rtl}
 html[dir="rtl"] body{font-family:'Noto Sans SC','Jost',sans-serif}
 
 @media(max-width:900px){.lang-switcher{display:none}}
-body>em,body>strong,body>br{display:none!important}
-
 .wa{position:fixed;bottom:20px;right:20px;z-index:800;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .3s,box-shadow .3s;animation:waIn 1s 2.5s var(--ease) both}
 .wa:hover{transform:scale(1.12);box-shadow:0 10px 36px rgba(37,211,102,.55)}
 .wa svg{width:28px;height:28px;fill:#fff}
@@ -873,6 +871,20 @@ body>em,body>strong,body>br{display:none!important}
   .pjd-gallery-grid{grid-template-columns:1fr}
   .pjd-gallery-grid img:first-child{grid-column:span 1;aspect-ratio:4/3}
 }
+
+
+.ai-float{position:fixed;bottom:88px;right:20px;z-index:800;width:54px;height:54px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(197,160,89,.4);cursor:pointer;transition:transform .3s;border:none}
+.ai-float:hover{transform:scale(1.1)}
+.ai-float-tip{position:fixed;bottom:102px;right:84px;z-index:800;background:rgba(5,6,10,.92);color:var(--cream);font-size:.72rem;padding:7px 12px;white-space:nowrap;border:1px solid var(--line);opacity:0;transform:translateX(6px);transition:all .3s;pointer-events:none;font-family:'Jost',sans-serif;letter-spacing:1px}
+.ai-float:hover~.ai-float-tip,.ai-float-tip:hover{opacity:1;transform:none}
+.ai-chat-popup{position:fixed;bottom:154px;right:20px;z-index:900;width:340px;max-width:calc(100vw - 40px);background:rgba(11,15,22,.97);border:1px solid var(--line);display:none;flex-direction:column;box-shadow:0 -8px 48px rgba(0,0,0,.6);backdrop-filter:blur(20px)}
+.ai-chat-popup.open{display:flex}
+.scroll-cue{position:absolute;bottom:40px;right:5%;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;z-index:10;animation:fadeInUp 2s ease 1.2s both}
+.scroll-cue span{font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:rgba(197,160,89,.75);font-family:'Jost',sans-serif;font-weight:500;writing-mode:vertical-rl;text-orientation:mixed}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(197,160,89,.8),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(max-width:768px){.scroll-cue{display:none}}
 </style>
 </head>
 <body>
@@ -964,7 +976,7 @@ body>em,body>strong,body>br{display:none!important}
       <span class="svc-idx">2.</span>
       <div class="svc-info">
         <div class="svc-name" data-i18n="s2_name">Τακτοποίηση Αυθαιρέτων</div>
-        <p class="svc-desc" data-i18n="s2_desc">Εντοπίζουμε και τακτοποιούμε κάθε πολεοδομική εκκρεμότητα — εξασφαλίζοντας πλήρη νομιμότητα και ελεύθερη μεταβίβαση του ακινήτου σας.<span class="svc-time" data-i18n="s2_time">Χρόνος υλοποίησης: 1–3 μήνες</span></p>
+        <p class="svc-desc" data-i18n="s2_desc">Εντοπίζουμε και τακτοποιούμε κάθε πολεοδομική εκκρεμότητα — εξασφαλίζοντας πλήρη νομιμότητα και ελεύθερη μεταβίβαση του ακινήτου σας.<span class="svc-time" data-i18n="s2_time">Χρόνος υλοποίησης: 20–30 ημέρες</span></p>
       </div><span class="svc-arr" data-i18n="svc_more">Περισσότερα →</span>
     </div>
     <div class="svc-row anim-in" onclick="openSvc(2)">
@@ -1181,83 +1193,67 @@ body>em,body>strong,body>br{display:none!important}
   <div class="faq-grid">
 
     <div class="faq-item reveal">
-      <button class="faq-q" onclick="toggleFaq(this)"" data-i18n="faq1_q">
+      <button class="faq-q" onclick="toggleFaq(this)" data-i18n="faq1_q">
         Πόσο κοστίζει μια οικοδομική άδεια;
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <p data-i18n="faq1_a" data-i18n-html="1">Εξαρτάται από τον τύπο και το μέγεθος του έργου. Δίνουμε πάντα <strong>γραπτή προσφορά</strong> πριν ξεκινήσουμε — χωρίς κρυφές χρεώσεις. Διασφαλίζουμε την ταχύτερη δυνατή έκδοση μέσω του συστήματος <strong>e-Άδειες</strong>.</p>
-      </div>
+      <div class="faq-a"><p data-i18n="faq1_a" data-i18n-html="1">Εξαρτάται από τον τύπο και το μέγεθος του έργου. Δίνουμε πάντα <strong>γραπτή προσφορά</strong> πριν ξεκινήσουμε — χωρίς κρυφές χρεώσεις. Διασφαλίζουμε την ταχύτερη δυνατή έκδοση μέσω του συστήματος <strong>e-Άδειες</strong>.</p></div>
     </div>
 
     <div class="faq-item reveal rd1">
-      <button class="faq-q" onclick="toggleFaq(this)"" data-i18n="faq2_q">
+      <button class="faq-q" onclick="toggleFaq(this)" data-i18n="faq2_q">
         Πόσο χρόνο παίρνει η τακτοποίηση αυθαιρέτου;
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <p data-i18n="faq2_a" data-i18n-html="1">Συνήθως <strong>1–3 μήνες</strong> ανάλογα την πολυπλοκότητα. Γίνεται ηλεκτρονικά μέσω e-Άδειες και χρειάζεται τοπογραφικό + αποτύπωση.</p>
-      </div>
+      <div class="faq-a"><p data-i18n="faq2_a" data-i18n-html="1">Συνήθως <strong>1–3 μήνες</strong> ανάλογα την πολυπλοκότητα. Γίνεται ηλεκτρονικά μέσω e-Άδειες και χρειάζεται τοπογραφικό + αποτύπωση.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q" onclick="toggleFaq(this)"" data-i18n="faq3_q">
+      <button class="faq-q" onclick="toggleFaq(this)" data-i18n="faq3_q">
         Χρειάζομαι ΠΕΑ για να πουλήσω το σπίτι μου;
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <p data-i18n="faq3_a" data-i18n-html="1">Ναι, είναι <strong>υποχρεωτικό</strong> για κάθε αγοραπωλησία ή μίσθωση. Το εκδίδουμε σε <strong>2 ημέρες</strong> μετά από αυτοψία.</p>
-      </div>
+      <div class="faq-a"><p data-i18n="faq3_a" data-i18n-html="1">Ναι, είναι <strong>υποχρεωτικό</strong> για κάθε αγοραπωλησία ή μίσθωση. Το εκδίδουμε σε <strong>2 ημέρες</strong> μετά από αυτοψία.</p></div>
     </div>
 
     <div class="faq-item reveal rd1">
-      <button class="faq-q" onclick="toggleFaq(this)"" data-i18n="faq4_q">
+      <button class="faq-q" onclick="toggleFaq(this)" data-i18n="faq4_q">
         Τι είναι η Ηλεκτρονική Ταυτότητα Κτιρίου;
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <p data-i18n="faq4_a" data-i18n-html="1">Αποτελεί πλέον το απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη μεταβίβαση, γονική παροχή ή αγοραπωλησία ακινήτου. <strong>Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη.</strong></p>
-      </div>
+      <div class="faq-a"><p data-i18n="faq4_a" data-i18n-html="1">Αποτελεί πλέον το απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη μεταβίβαση, γονική παροχή ή αγοραπωλησία ακινήτου. <strong>Χωρίς αυτήν, καμία πράξη δεν είναι έγκυρη.</strong></p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q" onclick="toggleFaq(this)"" data-i18n="faq5_q">
+      <button class="faq-q" onclick="toggleFaq(this)" data-i18n="faq5_q">
         Πώς λειτουργεί το πρόγραμμα Εξοικονομώ;
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <p data-i18n="faq5_a" data-i18n-html="1">Αναλαμβάνουμε την πλήρη τεχνική υποστήριξη: ΠΕΑ πριν, αίτηση, επιλογή παρεμβάσεων (κουφώματα, μόνωση, θέρμανση, PV), εκταμίευση και ΠΕΑ μετά. Επιδότηση <strong>έως 75%</strong>.</p>
-      </div>
+      <div class="faq-a"><p data-i18n="faq5_a" data-i18n-html="1">Αναλαμβάνουμε την πλήρη τεχνική υποστήριξη: ΠΕΑ πριν, αίτηση, επιλογή παρεμβάσεων (κουφώματα, μόνωση, θέρμανση, PV), εκταμίευση και ΠΕΑ μετά. Επιδότηση <strong>έως 75%</strong>.</p></div>
     </div>
 
     <div class="faq-item reveal rd1">
-      <button class="faq-q" onclick="toggleFaq(this)"" data-i18n="faq6_q">
+      <button class="faq-q" onclick="toggleFaq(this)" data-i18n="faq6_q">
         Μπορώ να νομιμοποιήσω αυθαίρετο για να πουλήσω;
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <p data-i18n="faq6_a" data-i18n-html="1">Ναι. Με τον <strong>Ν.4495/2017</strong> μπορείτε να τακτοποιήσετε αυθαίρετες κατασκευές και να αποκτήσετε πλήρη νομιμότητα για μεταβίβαση.</p>
-      </div>
+      <div class="faq-a"><p data-i18n="faq6_a" data-i18n-html="1">Ναι. Με τον <strong>Ν.4495/2017</strong> μπορείτε να τακτοποιήσετε αυθαίρετες κατασκευές και να αποκτήσετε πλήρη νομιμότητα για μεταβίβαση.</p></div>
     </div>
 
     <div class="faq-item reveal">
-      <button class="faq-q" onclick="toggleFaq(this)"" data-i18n="faq7_q">
+      <button class="faq-q" onclick="toggleFaq(this)" data-i18n="faq7_q">
         Τι έγγραφα χρειάζονται για τοπογραφικό;
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <p data-i18n="faq7_a" data-i18n-html="1">Τίτλος ιδιοκτησίας και συμβόλαιο αγοράς. Κάνουμε αυτοψία και παραδίδουμε το διάγραμμα σε <strong>15 ημέρες</strong>.</p>
-      </div>
+      <div class="faq-a"><p data-i18n="faq7_a" data-i18n-html="1">Τίτλος ιδιοκτησίας και συμβόλαιο αγοράς. Κάνουμε αυτοψία και παραδίδουμε το διάγραμμα σε <strong>15 ημέρες</strong>.</p></div>
     </div>
 
     <div class="faq-item reveal rd1">
-      <button class="faq-q" onclick="toggleFaq(this)"" data-i18n="faq8_q">
+      <button class="faq-q" onclick="toggleFaq(this)" data-i18n="faq8_q">
         Εξυπηρετείτε εκτός Καλαμάτας;
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <p data-i18n="faq8_a" data-i18n-html="1">Ναι, εξυπηρετούμε <strong>ολόκληρη τη Μεσσηνία</strong> — Καλαμάτα, Μεσσήνη, Κυπαρισσία, Πύλο, Σπάρτη και γύρω περιοχές.</p>
-      </div>
+      <div class="faq-a"><p data-i18n="faq8_a" data-i18n-html="1">Ναι, εξυπηρετούμε <strong>ολόκληρη τη Μεσσηνία</strong> — Καλαμάτα, Μεσσήνη, Κυπαρισσία, Πύλο, Σπάρτη και γύρω περιοχές.</p></div>
     </div>
 
   </div>
@@ -1283,7 +1279,7 @@ body>em,body>strong,body>br{display:none!important}
         <div class="fg"><label data-i18n="form_email">Email</label><input type="email" name="email" placeholder="email@example.com"></div>
       </div>
       <div class="fg"><label data-i18n="form_service">Υπηρεσία</label>
-        <select name="service" id="svcSelect">
+        <select name="service">
           <option value="">Επιλέξτε υπηρεσία...</option>
           <option>Οικοδομική Άδεια / Στατική Μελέτη</option>
           <option>Τακτοποίηση Αυθαιρέτου (Ν.4495/2017)</option>
@@ -1438,24 +1434,6 @@ const T = {
     form_service:'Υπηρεσία',form_desc:'Περιγραφή',
     ph_name:'Το ονοματεπώνυμό σας',ph_desc:'Περιγράψτε σύντομα το αίτημά σας...',
     footer_desc:'Η περιουσία σας. Ευθύνη μας. Τεχνικό γραφείο Πολιτικού Μηχανικού ΤΕ — 12 υπηρεσίες, 600 έργα, Καλαμάτα.',
-    s2_time:'Χρόνος υλοποίησης: 1–3 μήνες',
-    faq1_q:'Πόσο κοστίζει μια οικοδομική άδεια;',
-    faq2_q:'Πόσο χρόνο παίρνει η τακτοποίηση αυθαιρέτου;',
-    faq3_q:'Χρειάζομαι ΠΕΑ για να πουλήσω το σπίτι μου;',
-    faq4_q:'Τι είναι η Ηλεκτρονική Ταυτότητα Κτιρίου;',
-    faq5_q:'Πώς λειτουργεί το πρόγραμμα Εξοικονομώ;',
-    faq6_q:'Μπορώ να νομιμοποιήσω αυθαίρετο για να πουλήσω;',
-    faq7_q:'Τι έγγραφα χρειάζονται για τοπογραφικό;',
-    faq8_q:'Εξυπηρετείτε εκτός Καλαμάτας;',
-    faq1_a:'Εξαρτάται από τον τύπο και το μέγεθος. Δίνουμε πάντα γραπτή προσφορά.',
-    faq2_a:'Συνήθως <strong>1–3 μήνες</strong> ανάλογα την πολυπλοκότητα.',
-    faq3_a:'Ναι, είναι <strong>υποχρεωτικό</strong> για κάθε αγοραπωλησία ή μίσθωση.',
-    faq4_a:'Απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη πράξη ακινήτου. Εκδίδεται σε 5–7 ημέρες.',
-    faq5_a:'Πλήρης τεχνική υποστήριξη: ΠΕΑ πριν, αίτηση, παρεμβάσεις, εκταμίευση, ΠΕΑ μετά. Επιδότηση έως 75%.',
-    faq6_a:'Ναι. Με τον <strong>Ν.4495/2017</strong> μπορείτε να νομιμοποιήσετε αυθαίρετο.',
-    faq7_a:'Τίτλος ιδιοκτησίας και συμβόλαιο. Κάνουμε αυτοψία και αναλαμβάνουμε τα υπόλοιπα.',
-    faq8_a:'Ναι, <strong>ολόκληρη τη Μεσσηνία</strong>: Μεσσήνη, Μάνη, Κορώνη, Κυπαρισσία.',
-    svc_opts:['Επιλέξτε υπηρεσία...','Οικοδομική Άδεια','Τακτοποίηση Αυθαιρέτου (Ν.4495/2017)','Ηλεκτρονική Ταυτότητα','Τοπογραφικό','ΠΕΑ - Ενεργειακό','Εξοικονομώ','Ανακαίνιση & Κατασκευή','Interior Design','Άδεια Λειτουργίας','Άλλο'],
     s1_name:'Οικοδομικές Άδειες',
     s2_name:'Τακτοποίηση Αυθαιρέτων',
     s3_name:'Ηλεκτρονική Ταυτότητα Κτιρίου',
@@ -1507,6 +1485,24 @@ const T = {
     ai_name:'Βοηθός PA Creative House',
     ai_greeting:'Γεια σας! Πώς μπορώ να σας εξυπηρετήσω;',
     ai_placeholder:'Γράψτε την ερώτησή σας...',
+    faq1_q:'Πόσο κοστίζει μια οικοδομική άδεια;',
+    faq2_q:'Πόσο χρόνο παίρνει η τακτοποίηση αυθαιρέτου;',
+    faq3_q:'Χρειάζομαι ΠΕΑ για να πουλήσω το σπίτι μου;',
+    faq4_q:'Τι είναι η Ηλεκτρονική Ταυτότητα Κτιρίου;',
+    faq5_q:'Πώς λειτουργεί το πρόγραμμα Εξοικονομώ;',
+    faq6_q:'Μπορώ να νομιμοποιήσω αυθαίρετο για να πουλήσω;',
+    faq7_q:'Τι έγγραφα χρειάζονται για τοπογραφικό;',
+    faq8_q:'Εξυπηρετείτε εκτός Καλαμάτας;',
+    faq1_a:'Εξαρτάται από τον τύπο και το μέγεθος του έργου. Δίνουμε πάντα γραπτή προσφορά.',
+    faq2_a:'Συνήθως <strong>20–30 ημέρες</strong> ανάλογα την πολυπλοκότητα.',
+    faq3_a:'Ναι, είναι <strong>υποχρεωτικό</strong> για κάθε αγοραπωλησία ή μίσθωση.',
+    faq4_a:'Απαραίτητο ψηφιακό έγγραφο για κάθε νόμιμη πράξη ακινήτου. Εκδίδεται σε 5–7 ημέρες.',
+    faq5_a:'Πλήρης τεχνική υποστήριξη: ΠΕΑ πριν, αίτηση, παρεμβάσεις, εκταμίευση, ΠΕΑ μετά. Επιδότηση έως 75%.',
+    faq6_a:'Ναι. Με τον <strong>Ν.4495/2017</strong> μπορείτε να νομιμοποιήσετε αυθαίρετο.',
+    faq7_a:'Τίτλος ιδιοκτησίας και συμβόλαιο. Κάνουμε αυτοψία και αναλαμβάνουμε τα υπόλοιπα.',
+    faq8_a:'Ναι, <strong>ολόκληρη τη Μεσσηνία</strong>: Μεσσήνη, Μάνη, Κορώνη, Κυπαρισσία.',
+    s2_time:'Χρόνος υλοποίησης: 20–30 ημέρες',
+    svc_opts:['Επιλέξτε υπηρεσία...','Οικοδομική Άδεια / Στατική Μελέτη','Τακτοποίηση Αυθαιρέτου (Ν.4495/2017)','Ηλεκτρονική Ταυτότητα Κτιρίου','Τοπογραφικό Διάγραμμα','ΠΕΑ - Ενεργειακό Πιστοποιητικό','Πρόγραμμα Εξοικονομώ','Ανακαίνιση & Κατασκευή','Interior Design','Άδεια Λειτουργίας','Άλλο'],
   },
   en:{
     nav_home:'Home',nav_services:'Services',nav_portfolio:'Portfolio',
@@ -1539,24 +1535,6 @@ const T = {
     form_service:'Service',form_desc:'Description',
     ph_name:'Your full name',ph_desc:'Briefly describe your request...',
     footer_desc:'Your property. Our responsibility. Civil Engineering office — 12 services, 600 projects, Kalamata.',
-    s2_time:'Implementation time: 1–3 months',
-    faq1_q:'How much does a building permit cost?',
-    faq2_q:'How long does illegal building legalization take?',
-    faq3_q:'Do I need an EPC to sell my property?',
-    faq4_q:'What is the Electronic Building Identity?',
-    faq5_q:'How does the Exoikonomo program work?',
-    faq6_q:'Can I legalize an old unauthorized building?',
-    faq7_q:'What documents are needed for a survey?',
-    faq8_q:'Do you serve areas outside Kalamata?',
-    faq1_a:'It depends on type and size. We always provide a written quote first.',
-    faq2_a:'Usually <strong>1–3 months</strong> depending on complexity.',
-    faq3_a:'Yes, it is <strong>mandatory</strong> for every property sale or lease.',
-    faq4_a:'The essential digital document for every legal property transaction. Issued in 5–7 days.',
-    faq5_a:'Full technical support: EPC before, application, interventions, disbursement, EPC after. Subsidy up to 75%.',
-    faq6_a:'Yes. Under <strong>Law 4495/2017</strong> you can legalize and freely transfer it.',
-    faq7_a:'Property title and purchase contract. We visit the site and handle the rest.',
-    faq8_a:'Yes, <strong>all of Messinia</strong>: Messini, Mani, Koroni, Kyparissia.',
-    svc_opts:['Select a service...','Building Permit','Illegal Building Legalization (L.4495/2017)','Electronic Building Identity','Topographic Survey','Energy Certificate (EPC)','Exoikonomo Program','Renovation & Construction','Interior Design','Operating License','Other'],
     s1_name:'Building Permits',
     s2_name:'Unauthorized Building Legalization',
     s3_name:'Electronic Building Identity',
@@ -1608,6 +1586,24 @@ const T = {
     ai_name:'PA Creative House Assistant',
     ai_greeting:'Hello! How can I help you?',
     ai_placeholder:'Type your question...',
+    faq1_q:'How much does a building permit cost?',
+    faq2_q:'How long does illegal building legalization take?',
+    faq3_q:'Do I need an EPC to sell my property?',
+    faq4_q:'What is the Electronic Building Identity?',
+    faq5_q:'How does the Exoikonomo program work?',
+    faq6_q:'Can I legalize an old unauthorized building?',
+    faq7_q:'What documents are needed for a topographic survey?',
+    faq8_q:'Do you serve areas outside Kalamata?',
+    faq1_a:'It depends on the type and size. We always provide a written quote first.',
+    faq2_a:'Usually <strong>20–30 days</strong> depending on the complexity.',
+    faq3_a:'Yes, it is <strong>mandatory</strong> for every property sale or lease.',
+    faq4_a:'The essential digital document for every legal property transaction. Issued in 5–7 days.',
+    faq5_a:'Full technical support: EPC before, application, interventions, disbursement, EPC after. Subsidy up to 75%.',
+    faq6_a:'Yes. Under <strong>Law 4495/2017</strong> you can legalize and freely transfer it.',
+    faq7_a:'Property title and purchase contract. We visit the site and handle the rest.',
+    faq8_a:'Yes, <strong>all of Messinia</strong>: Messini, Mani, Koroni, Kyparissia.',
+    s2_time:'Implementation time: 20–30 days',
+    svc_opts:['Select a service...','Building Permit / Structural Study','Illegal Building Legalization (L.4495/2017)','Electronic Building Identity','Topographic Survey','Energy Performance Certificate (EPC)','Exoikonomo Program','Renovation & Construction','Interior Design','Operating License','Other'],
   },
   fr:{
     nav_home:'Accueil',nav_services:'Services',nav_portfolio:'Portfolio',
@@ -1640,24 +1636,6 @@ const T = {
     form_service:'Service',form_desc:'Description',
     ph_name:'Votre nom complet',ph_desc:'Décrivez brièvement votre demande...',
     footer_desc:'Votre propriété. Notre responsabilité. Bureau d\'Ingénierie Civile — 12 services, 600 projets, Kalamata.',
-    s2_time:'Délai: 1–3 mois',
-    faq1_q:'Combien coûte un permis de construire?',
-    faq2_q:'Combien de temps prend la légalisation?',
-    faq3_q:'Ai-je besoin d\'un DPE pour vendre?',
-    faq4_q:'Qu\'est-ce que l\'Identité Électronique du Bâtiment?',
-    faq5_q:'Comment fonctionne le programme Exoikonomo?',
-    faq6_q:'Puis-je légaliser une ancienne construction?',
-    faq7_q:'Quels documents pour un levé topographique?',
-    faq8_q:'Intervenez-vous en dehors de Kalamata?',
-    faq1_a:'Cela dépend du type et de la taille. Nous fournissons toujours un devis écrit.',
-    faq2_a:'Généralement <strong>1–3 mois</strong> selon la complexité.',
-    faq3_a:'Oui, il est <strong>obligatoire</strong> pour toute vente ou location.',
-    faq4_a:'Document numérique essentiel pour tout acte immobilier. Délivré en 5–7 jours.',
-    faq5_a:'Support complet: DPE avant, demande, interventions, déblocage, DPE après. Subvention jusqu\'à 75%.',
-    faq6_a:'Oui. En vertu de la <strong>Loi 4495/2017</strong> vous pouvez la légaliser.',
-    faq7_a:'Titre de propriété et acte d\'achat. Nous visitons et gérons le reste.',
-    faq8_a:'Oui, <strong>toute la Messénie</strong>: Messini, Magne, Coróni, Kyparissia.',
-    svc_opts:['Sélectionner...','Permis de Construire','Légalisation (L.4495/2017)','Identité Électronique','Levé Topographique','DPE Énergétique','Programme Exoikonomo','Rénovation & Construction','Design Intérieur','Licence d\'Exploitation','Autre'],
     s1_name:'Permis de Construire',
     s2_name:'Légalisation de Constructions',
     s3_name:'Identité Électronique du Bâtiment',
@@ -1709,6 +1687,24 @@ const T = {
     ai_name:'Assistant PA Creative House',
     ai_greeting:'Bonjour ! Comment puis-je vous aider ?',
     ai_placeholder:'Écrivez votre question...',
+    faq1_q:'Combien coûte un permis de construire?',
+    faq2_q:'Combien de temps prend la légalisation?',
+    faq3_q:'Ai-je besoin d\'un DPE pour vendre?',
+    faq4_q:'Qu\'est-ce que l\'Identité Électronique du Bâtiment?',
+    faq5_q:'Comment fonctionne le programme Exoikonomo?',
+    faq6_q:'Puis-je légaliser une ancienne construction?',
+    faq7_q:'Quels documents pour un levé topographique?',
+    faq8_q:'Intervenez-vous en dehors de Kalamata?',
+    faq1_a:'Cela dépend du type et de la taille. Nous fournissons toujours un devis écrit.',
+    faq2_a:'Généralement <strong>20–30 jours</strong> selon la complexité.',
+    faq3_a:'Oui, il est <strong>obligatoire</strong> pour toute vente ou location.',
+    faq4_a:'Document numérique essentiel pour tout acte immobilier. Délivré en 5–7 jours.',
+    faq5_a:'Support technique complet: DPE avant, demande, interventions, déblocage, DPE après. Subvention jusqu\'à 75%.',
+    faq6_a:'Oui. En vertu de la <strong>Loi 4495/2017</strong> vous pouvez la légaliser.',
+    faq7_a:'Titre de propriété et acte d\'achat. Nous visitons le site et gérons le reste.',
+    faq8_a:'Oui, <strong>toute la Messénie</strong>: Messini, Magne, Coróni, Kyparissia.',
+    s2_time:'Délai: 20–30 jours',
+    svc_opts:['Sélectionner un service...','Permis de Construire','Légalisation de Construction (L.4495/2017)','Identité Électronique du Bâtiment','Levé Topographique','Diagnostic Énergétique (DPE)','Programme Exoikonomo','Rénovation & Construction','Design Intérieur','Licence d\'Exploitation','Autre'],
   },
   de:{
     nav_home:'Startseite',nav_services:'Leistungen',nav_portfolio:'Portfolio',
@@ -1741,24 +1737,6 @@ const T = {
     form_service:'Leistung',form_desc:'Beschreibung',
     ph_name:'Ihr vollständiger Name',ph_desc:'Beschreiben Sie kurz Ihre Anfrage...',
     footer_desc:'Ihr Eigentum. Unsere Verantwortung. Bauingenieur-Büro — 12 Leistungen, 600 Projekte, Kalamata.',
-    s2_time:'Umsetzungszeit: 1–3 Monate',
-    faq1_q:'Was kostet eine Baugenehmigung?',
-    faq2_q:'Wie lange dauert die Legalisierung?',
-    faq3_q:'Brauche ich einen Energieausweis zum Verkauf?',
-    faq4_q:'Was ist die Elektronische Gebäudeidentität?',
-    faq5_q:'Wie funktioniert das Exoikonomo-Programm?',
-    faq6_q:'Kann ich ein altes unbefugtes Gebäude legalisieren?',
-    faq7_q:'Welche Dokumente für eine Vermessung?',
-    faq8_q:'Sind Sie außerhalb Kalamata tätig?',
-    faq1_a:'Es hängt von Art und Größe ab. Wir geben immer ein schriftliches Angebot.',
-    faq2_a:'Normalerweise <strong>1–3 Monate</strong>, je nach Komplexität.',
-    faq3_a:'Ja, er ist <strong>Pflicht</strong> für jeden Verkauf oder jede Vermietung.',
-    faq4_a:'Das unverzichtbare digitale Dokument für jede Transaktion. In 5–7 Tagen ausgestellt.',
-    faq5_a:'Vollständige Unterstützung: Energieausweis vorher, Antrag, Maßnahmen, Auszahlung, nachher. Förderung bis 75%.',
-    faq6_a:'Ja. Nach <strong>Gesetz 4495/2017</strong> können Sie es legalisieren.',
-    faq7_a:'Grundbucheintrag und Kaufvertrag. Wir besuchen das Objekt und übernehmen den Rest.',
-    faq8_a:'Ja, <strong>ganz Messenien</strong>: Messini, Mani, Koroni, Kyparissia.',
-    svc_opts:['Service auswählen...','Baugenehmigung','Legalisierung (G.4495/2017)','Elektronische Gebäudeidentität','Topografische Vermessung','Energieausweis','Exoikonomo-Programm','Renovierung & Bau','Interior Design','Betriebslizenz','Sonstiges'],
     s1_name:'Baugenehmigungen',
     s2_name:'Legalisierung unbefugter Bauten',
     s3_name:'Elektronische Gebäudeidentität',
@@ -1810,6 +1788,24 @@ const T = {
     ai_name:'PA Creative House Assistent',
     ai_greeting:'Guten Tag! Wie kann ich Ihnen helfen?',
     ai_placeholder:'Schreiben Sie Ihre Frage...',
+    faq1_q:'Was kostet eine Baugenehmigung?',
+    faq2_q:'Wie lange dauert die Legalisierung?',
+    faq3_q:'Brauche ich einen Energieausweis zum Verkauf?',
+    faq4_q:'Was ist die Elektronische Gebäudeidentität?',
+    faq5_q:'Wie funktioniert das Exoikonomo-Programm?',
+    faq6_q:'Kann ich ein altes unbefugtes Gebäude legalisieren?',
+    faq7_q:'Welche Dokumente für eine Vermessung?',
+    faq8_q:'Sind Sie außerhalb Kalamata tätig?',
+    faq1_a:'Es hängt von Art und Größe ab. Wir geben immer ein schriftliches Angebot.',
+    faq2_a:'Normalerweise <strong>20–30 Tage</strong>, je nach Komplexität.',
+    faq3_a:'Ja, er ist <strong>Pflicht</strong> für jeden Verkauf oder jede Vermietung.',
+    faq4_a:'Das unverzichtbare digitale Dokument für jede Transaktion. In 5–7 Tagen ausgestellt.',
+    faq5_a:'Vollständige technische Unterstützung: Energieausweis vorher, Antrag, Maßnahmen, Auszahlung, nachher. Förderung bis 75%.',
+    faq6_a:'Ja. Nach <strong>Gesetz 4495/2017</strong> können Sie es legalisieren.',
+    faq7_a:'Grundbucheintrag und Kaufvertrag. Wir besuchen das Objekt und übernehmen den Rest.',
+    faq8_a:'Ja, <strong>ganz Messenien</strong>: Messini, Mani, Koroni, Kyparissia.',
+    s2_time:'Umsetzungszeit: 20–30 Tage',
+    svc_opts:['Service auswählen...','Baugenehmigung / Statische Studie','Legalisierung (G.4495/2017)','Elektronische Gebäudeidentität','Topografische Vermessung','Energieausweis','Exoikonomo-Programm','Renovierung & Bau','Interior Design','Betriebslizenz','Sonstiges'],
   },
   he:{
     nav_home:'בית',nav_services:'שירותים',nav_portfolio:'פורטפוליו',
@@ -1842,24 +1838,6 @@ const T = {
     form_service:'שירות',form_desc:'תיאור',
     ph_name:'שמכם המלא',ph_desc:'תארו בקצרה את בקשתכם...',
     footer_desc:'הנכס שלכם. האחריות שלנו. משרד הנדסה אזרחית — 12 שירותים, 600 פרויקטים, קאלאמאטה.',
-    s2_time:'זמן יישום: 1–3 חודשים',
-    faq1_q:'כמה עולה היתר בנייה?',
-    faq2_q:'כמה זמן לוקחת הסדרת הבנייה?',
-    faq3_q:'האם אני צריך תעודת אנרגיה למכירה?',
-    faq4_q:'מה היא הזהות הדיגיטלית של הבניין?',
-    faq5_q:'איך עובדת תוכנית Exoikonomo?',
-    faq6_q:'האם ניתן להסדיר בנייה ישנה?',
-    faq7_q:'אילו מסמכים נדרשים לסקר טופוגרפי?',
-    faq8_q:'האם אתם משרתים מחוץ לקאלאמאטה?',
-    faq1_a:'תלוי בסוג ובגודל. אנו תמיד מספקים הצעת מחיר בכתב.',
-    faq2_a:'בדרך כלל <strong>1–3 חודשים</strong> בהתאם למורכבות.',
-    faq3_a:'כן, היא <strong>חובה</strong> לכל מכירה או השכרה.',
-    faq4_a:'המסמך הדיגיטלי החיוני לכל עסקה. מונפק תוך 5–7 ימים.',
-    faq5_a:'תמיכה מלאה: תעודת אנרגיה לפני, בקשה, התערבויות, שחרור כספים, אחרי. סובסידיה עד 75%.',
-    faq6_a:'כן. בהתאם ל<strong>חוק 4495/2017</strong> ניתן להסדיר אותה.',
-    faq7_a:'שטר בעלות וחוזה. אנו מבקרים ומטפלים בשאר.',
-    faq8_a:'כן, <strong>כל מסניה</strong>: מסיני, מאני, קורוני, קיפאריסיה.',
-    svc_opts:['בחר שירות...','היתר בנייה','הסדרת בנייה (ח.4495/2017)','זהות דיגיטלית','סקר טופוגרפי','תעודת אנרגיה','Exoikonomo','שיפוץ ובנייה','עיצוב פנים','רישיון עסק','אחר'],
     s1_name:'היתרי בנייה',
     s2_name:'הסדרת בנייה בלתי חוקית',
     s3_name:'זהות דיגיטלית של בניין',
@@ -1911,6 +1889,24 @@ const T = {
     ai_name:'עוזר PA Creative House',
     ai_greeting:'שלום! כיצד אוכל לסייע לכם?',
     ai_placeholder:'כתבו את שאלתכם...',
+    faq1_q:'כמה עולה היתר בנייה?',
+    faq2_q:'כמה זמן לוקחת הסדרת הבנייה?',
+    faq3_q:'האם אני צריך תעודת אנרגיה למכירה?',
+    faq4_q:'מה היא הזהות הדיגיטלית של הבניין?',
+    faq5_q:'איך עובדת תוכנית Exoikonomo?',
+    faq6_q:'האם ניתן להסדיר בנייה ישנה?',
+    faq7_q:'אילו מסמכים נדרשים לסקר טופוגרפי?',
+    faq8_q:'האם אתם משרתים מחוץ לקאלאמאטה?',
+    faq1_a:'תלוי בסוג ובגודל. אנו תמיד מספקים הצעת מחיר בכתב.',
+    faq2_a:'בדרך כלל <strong>20–30 ימים</strong> בהתאם למורכבות.',
+    faq3_a:'כן, היא <strong>חובה</strong> לכל מכירה או השכרה.',
+    faq4_a:'המסמך הדיגיטלי החיוני לכל עסקה. מונפק תוך 5–7 ימים.',
+    faq5_a:'תמיכה טכנית מלאה: תעודת אנרגיה לפני, בקשה, התערבויות, שחרור כספים, אחרי. סובסידיה עד 75%.',
+    faq6_a:'כן. בהתאם ל<strong>חוק 4495/2017</strong> ניתן להסדיר אותה.',
+    faq7_a:'שטר בעלות וחוזה. אנו מבקרים ומטפלים בשאר.',
+    faq8_a:'כן, <strong>כל מסניה</strong>: מסיני, מאני, קורוני, קיפאריסיה.',
+    s2_time:'זמן יישום: 20–30 ימים',
+    svc_opts:['בחר שירות...','היתר בנייה','הסדרת בנייה (ח.4495/2017)','זהות דיגיטלית','סקר טופוגרפי','תעודת אנרגיה','תוכנית Exoikonomo','שיפוץ ובנייה','עיצוב פנים','רישיון עסק','אחר'],
   },
   zh:{
     nav_home:'首页',nav_services:'服务',nav_portfolio:'作品集',
@@ -1943,24 +1939,6 @@ const T = {
     form_service:'服务',form_desc:'描述',
     ph_name:'您的全名',ph_desc:'简要描述您的请求...',
     footer_desc:'您的房产。我们的责任。土木工程师事务所 — 12项服务，600个项目，卡拉马塔。',
-    s2_time:'实施时间：1–3个月',
-    faq1_q:'建筑许可证需要多少钱？',
-    faq2_q:'违建合法化需要多长时间？',
-    faq3_q:'我需要能源证书才能出售房产吗？',
-    faq4_q:'什么是建筑电子身份证？',
-    faq5_q:'Exoikonomo计划如何运作？',
-    faq6_q:'我可以合法化旧的违建吗？',
-    faq7_q:'地形测量需要哪些文件？',
-    faq8_q:'您在卡拉马塔以外也提供服务吗？',
-    faq1_a:'取决于项目类型和规模。我们开始前始终提供书面报价。',
-    faq2_a:'通常需要<strong>1–3个月</strong>，具体取决于复杂程度。',
-    faq3_a:'是的，每次买卖或租赁都是<strong>强制要求</strong>的。',
-    faq4_a:'每项合法房产交易必备的数字文件，5–7天内颁发。',
-    faq5_a:'全面支持：申请前能源证书、申请、措施、拨款、申请后证书。补贴高达75%。',
-    faq6_a:'是的。根据<strong>第4495/2017号法律</strong>可以合法化并自由转让。',
-    faq7_a:'产权证明和购买合同。我们进行现场勘察并处理其余事宜。',
-    faq8_a:'是的，<strong>整个梅塞尼亚</strong>：梅西尼、马尼、科罗尼、基帕里西亚。',
-    svc_opts:['请选择服务...','建筑许可证','违建合法化','建筑电子身份证','地形测量','能源证书','节能计划','装修与建设','室内设计','营业执照','其他'],
     s1_name:'建筑许可证',
     s2_name:'违建合法化',
     s3_name:'建筑电子身份证',
@@ -2012,6 +1990,24 @@ const T = {
     ai_name:'PA Creative House 助手',
     ai_greeting:'您好！有什么可以帮助您的？',
     ai_placeholder:'请输入您的问题...',
+    faq1_q:'建筑许可证需要多少钱？',
+    faq2_q:'违建合法化需要多长时间？',
+    faq3_q:'我需要能源证书才能出售房产吗？',
+    faq4_q:'什么是建筑电子身份证？',
+    faq5_q:'Exoikonomo计划如何运作？',
+    faq6_q:'我可以合法化旧的违建吗？',
+    faq7_q:'地形测量需要哪些文件？',
+    faq8_q:'您在卡拉马塔以外也提供服务吗？',
+    faq1_a:'取决于项目类型和规模。我们开始前始终提供书面报价。',
+    faq2_a:'通常需要<strong>20–30天</strong>，具体取决于复杂程度。',
+    faq3_a:'是的，每次买卖或租赁都是<strong>强制要求</strong>的。',
+    faq4_a:'每项合法房产交易必备的数字文件，5–7天内颁发。',
+    faq5_a:'全面技术支持：申请前能源证书、申请、措施、拨款、申请后证书。补贴高达75%。',
+    faq6_a:'是的。根据<strong>第4495/2017号法律</strong>可以合法化并自由转让。',
+    faq7_a:'产权证明和购买合同。我们进行现场勘察并处理其余事宜。',
+    faq8_a:'是的，<strong>整个梅塞尼亚</strong>：梅西尼、马尼、科罗尼、基帕里西亚。',
+    s2_time:'实施时间：20–30天',
+    svc_opts:['请选择服务...','建筑许可证','违建合法化 (第4495/2017号法律)','建筑电子身份证','地形测量','能源绩效证书','节能计划','装修与建设','室内设计','营业执照','其他'],
   },
 };
 
@@ -2042,7 +2038,7 @@ function setLang(lang){
     if(t[key]) el.placeholder = t[key];
   });
 
-  // Translate service dropdown
+  // Update service dropdown options
   var sel = document.getElementById('svcSelect');
   if(sel && t.svc_opts) {
     Array.from(sel.options).forEach(function(opt, i) {
@@ -2050,7 +2046,7 @@ function setLang(lang){
     });
   }
 
-    // Update lang button active state
+  // Update lang button active state
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
@@ -2352,28 +2348,39 @@ const aiKB=[
 // Portfolio init
 if(document.getElementById('pfGrid')) pfRender('all');
 
-/* ══ COUNTER ══ */
+/* ══ COUNTER — animated count-up on scroll ══ */
 (function(){
-  var els = document.querySelectorAll('.hstat h3[data-count]');
-  if(!els.length) return;
-  els.forEach(function(el){
-    var target = parseInt(el.getAttribute('data-count'), 10);
-    var suffix = el.getAttribute('data-suffix') || '';
-    var steps  = 50;
-    var delay  = 40; // ms per step → 2000ms total
-    var step   = 0;
-    el.textContent = '0' + suffix;
-    var timer = setInterval(function(){
-      step++;
-      var p = step / steps;
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(eased * target) + suffix;
-      if(step >= steps){
-        el.textContent = target + suffix;
-        clearInterval(timer);
+  var counted = false;
+  function animCount(){
+    if(counted) return;
+    var els = document.querySelectorAll('.hstat h3[data-count]');
+    if(!els.length) return;
+    counted = true;
+    els.forEach(function(el){
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var duration = 1800;
+      var start = null;
+      function step(ts){
+        if(!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target) + suffix;
+        if(progress < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
       }
-    }, delay);
-  });
+      requestAnimationFrame(step);
+    });
+  }
+  // Trigger on scroll into view
+  var stats = document.querySelector('.hero-stats');
+  if(stats && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting) animCount();
+    }, {threshold: 0.3}).observe(stats);
+  } else {
+    setTimeout(animCount, 800);
+  }
 })();
 /* ══ /COUNTER ══ */
 </script>
@@ -2382,164 +2389,5 @@ if(document.getElementById('pfGrid')) pfRender('all');
 
 
 
-
-<script>
-/* ══ PORTFOLIO v3 ══ */
-const pfProjects = [
-  {
-    id:1, cat:'katoikia', catLabel:'Κατοικία', tall:false,
-    title:'Βίλα με Πισίνα',
-    location:'Καλαμάτα', year:'2023',
-    type:'Μελέτη – Κατασκευή – Επίβλεψη – Interior Design',
-    desc:'Σύγχρονη πολυτελής βίλα σε ιδιαίτερη τοποθεσία της Καλαμάτας με θέα στο Μεσσηνιακό Κόλπο. Το έργο περιλάμβανε πλήρη αρχιτεκτονική μελέτη, στατική μελέτη, H/M εγκαταστάσεις και επίβλεψη κατασκευής.',
-    cover:'Image_3__style_transfer01.png',
-    imgs:['Image_3__style_transfer01.png','Image_4__upscale01.png','Image_12__style_transfer02.png','Image_2_.png','7.png']
-  },
-  {
-    id:2, cat:'interior', catLabel:'Interior Design', tall:false,
-    title:'Open Plan Διαμέρισμα',
-    location:'Καλαμάτα', year:'2023',
-    type:'Interior Design – Διακόσμηση – 3D Visualization',
-    desc:'Ολοκληρωμένη αρχιτεκτονική εσωτερικών χώρων για σύγχρονο διαμέρισμα 95 τ.μ.',
-    cover:'3.png',
-    imgs:['3.png','4.png','9.png','Image_2_.png','12.png']
-  },
-  {
-    id:3, cat:'interior', catLabel:'Interior Design', tall:true,
-    title:'Πολυτελές Διαμέρισμα',
-    location:'Μεσσήνη', year:'2022',
-    type:'Interior Design – Custom Έπιπλα – Φωτισμός',
-    desc:'Premium διαμέρισμα 120 τ.μ. με ολοκληρωμένο σχεδιασμό εσωτερικών χώρων.',
-    cover:'4.png',
-    imgs:['4.png','3.png','12.png','9.png']
-  },
-  {
-    id:4, cat:'katoikia', catLabel:'Κατοικία', tall:true,
-    title:'Διώροφη Κατοικία',
-    location:'Μεσσηνία', year:'2023',
-    type:'Αρχιτεκτονική Μελέτη – Οικοδομική Άδεια – Επίβλεψη',
-    desc:'Σύγχρονη διώροφη κατοικία 180 τ.μ. με εξαιρετική ενεργειακή απόδοση (κατηγορία Α+).',
-    cover:'Image_4__upscale01.png',
-    imgs:['Image_4__upscale01.png','Image_3__style_transfer01.png','7.png']
-  },
-  {
-    id:5, cat:'epaggelmatiko', catLabel:'Επαγγελματικό', tall:false,
-    title:'3όροφο Κτίριο Γραφείων',
-    location:'Καλαμάτα', year:'2022',
-    type:'Αρχιτεκτονική Μελέτη – Στατική – Άδεια – Επίβλεψη',
-    desc:'Σύγχρονο τριώροφο κτίριο γραφείων στο κέντρο της Καλαμάτας, 540 τ.μ.',
-    cover:'7.png',
-    imgs:['7.png','Image_4__upscale01.png','Image_3__style_transfer01.png']
-  },
-  {
-    id:6, cat:'interior', catLabel:'Interior Design', tall:false,
-    title:'Master Bedroom Suite',
-    location:'Βίλα Καλαμάτας', year:'2023',
-    type:'Interior Design – Custom Furniture – Φωτισμός',
-    desc:'Πολυτελής master bedroom suite 45 τ.μ. με walk-in wardrobe και luxury en suite μπάνιο.',
-    cover:'Image_12__style_transfer02.png',
-    imgs:['Image_12__style_transfer02.png','Image_3_.png','9.png','Image_2_.png']
-  },
-  {
-    id:7, cat:'interior', catLabel:'Interior Design', tall:false,
-    title:'Living & Dining Premium',
-    location:'Καλαμάτα', year:'2022',
-    type:'Interior Design – 3D Visualization – Διακόσμηση',
-    desc:'Ολοκληρωμένος σχεδιασμός χώρου καθημερινότητας σε premium διαμέρισμα.',
-    cover:'Image_2_.png',
-    imgs:['Image_2_.png','4.png','12.png','3.png']
-  },
-  {
-    id:8, cat:'anakainisi', catLabel:'Ανακαίνιση', tall:false,
-    title:'Σύγχρονη Κουζίνα',
-    location:'Καλαμάτα', year:'2023',
-    type:'Ανακαίνιση – Custom Κουζίνα – Επίβλεψη',
-    desc:'Ολική ανακαίνιση κουζίνας και τραπεζαρίας. Πλήρης αναμόρφωση σε 18 μέρες.',
-    cover:'12.png',
-    imgs:['12.png','Image_2_.png','9.png']
-  },
-  {
-    id:9, cat:'interior', catLabel:'Interior Design', tall:true,
-    title:'Ελληνική Αισθητική',
-    location:'Κατοικία Μεσσηνίας', year:'2023',
-    type:'Interior Design – Διακόσμηση – Styling',
-    desc:'Σχεδιασμός εμπνευσμένος από την ελληνική παράδοση σε σύγχρονη ερμηνεία.',
-    cover:'Image_3_.png',
-    imgs:['Image_3_.png','Image_12__style_transfer02.png','Image_2_.png']
-  },
-  {
-    id:10, cat:'epaggelmatiko', catLabel:'Γραφείο', tall:false,
-    title:'PA Creative House',
-    location:'Φαρών 155, Καλαμάτα', year:'2024',
-    type:'Ανακαίνιση – Interior Design – Επίβλεψη',
-    desc:'Η διαμόρφωση του γραφείου μας — λειτουργικός, αισθητικός, εμπνευσμένος.',
-    cover:'IMG_0368.jpeg',
-    imgs:['IMG_0368.jpeg','IMG_0357.jpeg','IMG_0358.jpeg','IMG_0360.jpeg','IMG_0361.jpeg']
-  },
-];
-let pjdCurrentId=null,pjdImgViewIdx=0,pjdImgViewList=[];
-
-function pfRender(filter){
-  const grid=document.getElementById('pfGrid');if(!grid)return;
-  grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:8px;';
-  const list=filter==='all'?pfProjects:pfProjects.filter(p=>p.cat===filter);
-  const ROW=260;
-  grid.innerHTML=list.map(p=>{
-    const h=p.tall?(ROW*2+3):ROW;
-    const cs=`position:relative;overflow:hidden;cursor:pointer;background:#0b0f16;height:${h}px;${p.tall?'grid-row:span 2;':''}`;
-    const is='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.82);transition:transform .5s,filter .5s;';
-    const ls='position:absolute;bottom:0;left:0;right:0;padding:6px 10px 8px;background:linear-gradient(to top,rgba(5,6,10,.88),transparent);transition:opacity .3s;';
-    const hs='position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:12px 10px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none;';
-    return `<div style="${cs}" onmouseenter="this.querySelector('img').style.cssText='${is}transform:scale(1.06);filter:brightness(.45);';this.querySelector('.pfc-label').style.opacity='0';this.querySelector('.pfc-hover').style.cssText='${hs}opacity:1;transform:none;'" onmouseleave="this.querySelector('img').style.cssText='${is}';this.querySelector('.pfc-label').style.opacity='1';this.querySelector('.pfc-hover').style.cssText='${hs}'" onclick="openPjd(${p.id})">
-      <img src="${p.cover}" alt="${p.title}" loading="lazy" style="${is}">
-      <div class="pfc-label" style="${ls}"><div style="font-family:'Exo 2',sans-serif;font-size:.75rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.title}</div></div>
-      <div class="pfc-hover" style="${hs}">
-        <div style="font-size:.52rem;letter-spacing:2.5px;text-transform:uppercase;color:#c5a059;font-weight:700;margin-bottom:3px;">${p.catLabel}</div>
-        <div style="font-family:'Exo 2',sans-serif;font-size:.85rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:2px;">${p.title}</div>
-        <div style="font-size:.65rem;color:rgba(244,241,234,.6);font-weight:300;margin-bottom:8px;">${p.location} · ${p.year}</div>
-        <div style="font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:#c5a059;font-weight:700;border-bottom:1px solid rgba(197,160,89,.45);padding-bottom:2px;display:inline-block;">Δείτε το έργο →</div>
-      </div></div>`;
-  }).join('');
-  setTimeout(()=>{grid.querySelectorAll('div[style*="overflow:hidden"]').forEach((c,i)=>{c.style.opacity='0';setTimeout(()=>{c.style.opacity='1';c.style.transition='opacity .4s';},i*40);});},20);
-}
-function pfFilter(cat,btn){document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');pfRender(cat);}
-function openPjd(id){
-  const p=pfProjects.find(x=>x.id===id);if(!p)return;pjdCurrentId=id;
-  document.getElementById('pjdBreadCat').textContent=p.catLabel;
-  document.getElementById('pjdCatBadge').textContent=p.catLabel;
-  document.getElementById('pjdTitle').textContent=p.title;
-  document.getElementById('pjdHeroImg').src=p.cover;
-  document.getElementById('pjdDesc').innerHTML=`<p>${p.desc}</p>`;
-  document.getElementById('pjdInfoPanel').innerHTML=`
-    <div class="pjd-info-item"><span class="pjd-info-label">Τύπος Έργου</span><span class="pjd-info-value">${p.type}</span></div>
-    <div class="pjd-info-item"><span class="pjd-info-label">Τοποθεσία</span><span class="pjd-info-value">${p.location}</span></div>
-    <div class="pjd-info-item"><span class="pjd-info-label">Έτος</span><span class="pjd-info-value">${p.year}</span></div>`;
-  pjdImgViewList=p.imgs;
-  document.getElementById('pjdGalleryGrid').innerHTML=p.imgs.map((src,i)=>`<img src="${src}" alt="${p.title} ${i+1}" loading="lazy" onclick="openPjdImg(${i})">`).join('');
-  const idx=pfProjects.findIndex(x=>x.id===id);
-  const prev=pfProjects[idx-1],next=pfProjects[idx+1];
-  const pb=document.getElementById('pjdPrevBtn'),nb=document.getElementById('pjdNextBtn');
-  if(prev){pb.style.visibility='visible';document.getElementById('pjdPrevTitle').textContent=prev.title;}else pb.style.visibility='hidden';
-  if(next){nb.style.visibility='visible';document.getElementById('pjdNextTitle').textContent=next.title;}else nb.style.visibility='hidden';
-  const ov=document.getElementById('pjdOverlay');ov.classList.add('open');ov.scrollTop=0;document.body.style.overflow='hidden';
-}
-function closePjd(){document.getElementById('pjdOverlay').classList.remove('open');document.body.style.overflow='';}
-function pjdNavTo(dir){const idx=pfProjects.findIndex(x=>x.id===pjdCurrentId);const t=pfProjects[idx+dir];if(t)openPjd(t.id);}
-function openPjdImg(idx){pjdImgViewIdx=idx;document.getElementById('pjdImgViewSrc').src=pjdImgViewList[idx];document.getElementById('pjdImgView').classList.add('open');}
-function closePjdImg(){document.getElementById('pjdImgView').classList.remove('open');}
-function pjdImgNav(dir){pjdImgViewIdx=(pjdImgViewIdx+dir+pjdImgViewList.length)%pjdImgViewList.length;document.getElementById('pjdImgViewSrc').src=pjdImgViewList[pjdImgViewIdx];}
-document.addEventListener('keydown',e=>{
-  if(document.getElementById('pjdImgView').classList.contains('open')){
-    if(e.key==='ArrowRight')pjdImgNav(1);if(e.key==='ArrowLeft')pjdImgNav(-1);if(e.key==='Escape')closePjdImg();return;
-  }
-  if(document.getElementById('pjdOverlay').classList.contains('open')){
-    if(e.key==='ArrowRight')pjdNavTo(1);if(e.key==='ArrowLeft')pjdNavTo(-1);if(e.key==='Escape')closePjd();
-  }
-});
-if(document.getElementById('pfGrid'))pfRender('all');
-(function(){const saved=localStorage.getItem('pa_lang')||'el';if(saved!=='el')setLang(saved);})();
-/* ══ /PORTFOLIO v3 ══ */
-
-</script>
 </body>
 </html>
