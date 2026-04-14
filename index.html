@@ -1291,7 +1291,7 @@ html[dir="rtl"] body{font-family:'Noto Sans SC','Jost',sans-serif}
       <div class="cinfo">
         <div class="cit reveal"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="cit-lbl" data-i18n="lbl_address">Διεύθυνση</span><span>Φαρών 155, Καλαμάτα 24100</span></div></div>
         <div class="cit reveal rd1"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.88 1.18 2 2 0 012.88 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.68a16 16 0 006.23 6.23l1.05-1.05a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><span class="cit-lbl" data-i18n="lbl_phone">Τηλέφωνο</span><a href="tel:+302721090509">27210 90509</a></div></div>
-        <div class="cit reveal rd2"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><span class="cit-lbl" data-i18n="lbl_email_lbl">Email</span><a href="/cdn-cgi/l/email-protection#325b5c545d72425351405753465b44575a5d4741571c5540"><span class="__cf_email__" data-cfemail="ff96919990bf8f9e9c8d9a9e8b96899a97908a8c9ad1988d">[email&#160;protected]</span></a></div></div>
+        <div class="cit reveal rd2"><div class="cit-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><span class="cit-lbl" data-i18n="lbl_email_lbl">Email</span><a href="mailto:pa@creativehouse.gr" class="cit-email-link" data-user="pa" data-domain="creativehouse.gr" style="color:inherit">pa@creativehouse.gr</a></div></div>
         <div class="cit reveal rd3"><div class="cit-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><span class="cit-lbl" data-i18n="lbl_hours">Ώρες</span><span data-i18n="hours_long">Δευτέρα – Παρασκευή 09:00 – 17:00</span></div></div>
       </div>
     </div>
@@ -1363,7 +1363,7 @@ html[dir="rtl"] body{font-family:'Noto Sans SC','Jost',sans-serif}
     <div class="fcol"><h5 data-i18n="ft_details">Στοιχεία</h5><ul>
       <li><a href="#">Φαρών 155, Καλαμάτα</a></li>
       <li><a href="tel:+302721090509">27210 90509</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#a3cacdc5cce3d3c2c0d1c6c2d7cad5c6cbccd6d0c68dc4d1"><span class="__cf_email__" data-cfemail="adc4c3cbc2edddcccedfc8ccd9c4dbc8c5c2d8dec883cadf">[email&#160;protected]</span></a></li>
+      <li><a href="mailto:pa@creativehouse.gr" class="cit-email-link" data-user="pa" data-domain="creativehouse.gr" style="color:inherit">pa@creativehouse.gr</a></li>
       <li><a href="#">Δε–Πα 09:00–17:00</a></li>
     </ul></div>
   </div>
@@ -2625,6 +2625,14 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 /* ══ /AI CHAT ══ */
+</script>
+<script>
+// Rebuild email links to bypass email protection systems
+document.querySelectorAll('.cit-email-link[data-user]').forEach(function(a){
+  var email = a.getAttribute('data-user') + '@' + a.getAttribute('data-domain');
+  a.href = 'mailto:' + email;
+  a.textContent = email;
+});
 </script>
 </body>
 </html>
