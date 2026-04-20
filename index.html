@@ -1016,11 +1016,11 @@ img{transition:opacity .5s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
 /* ═══ PHASE 2: WOW FACTOR ═══ */
 
 /* Animated blueprint grid in hero */
-.hero-blueprint{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:.12;overflow:hidden}
+.hero-blueprint{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:.28;overflow:hidden}
 .hero-blueprint svg{position:absolute;inset:0;width:100%;height:100%}
-.hero-blueprint .bp-line{stroke:#c5a059;stroke-width:.5;fill:none;stroke-dasharray:2000;stroke-dashoffset:2000;animation:drawLine 4s ease-out forwards}
-.hero-blueprint .bp-rect{stroke:#c5a059;stroke-width:.5;fill:none;stroke-dasharray:800;stroke-dashoffset:800;animation:drawRect 3s ease-out forwards}
-.hero-blueprint .bp-circle{stroke:#c5a059;stroke-width:.5;fill:none;stroke-dasharray:600;stroke-dashoffset:600;animation:drawCircle 3.5s ease-out forwards}
+.hero-blueprint .bp-line{stroke:#c5a059;stroke-width:1;fill:none;stroke-dasharray:2000;stroke-dashoffset:2000;animation:drawLine 4s ease-out forwards;filter:drop-shadow(0 0 2px rgba(197,160,89,.5))}
+.hero-blueprint .bp-rect{stroke:#c5a059;stroke-width:1;fill:none;stroke-dasharray:800;stroke-dashoffset:800;animation:drawRect 3s ease-out forwards;filter:drop-shadow(0 0 2px rgba(197,160,89,.5))}
+.hero-blueprint .bp-circle{stroke:#c5a059;stroke-width:1;fill:none;stroke-dasharray:600;stroke-dashoffset:600;animation:drawCircle 3.5s ease-out forwards;filter:drop-shadow(0 0 3px rgba(197,160,89,.6))}
 .hero-blueprint .bp-line:nth-child(1){animation-delay:.2s}
 .hero-blueprint .bp-line:nth-child(2){animation-delay:.4s}
 .hero-blueprint .bp-line:nth-child(3){animation-delay:.6s}
@@ -1034,11 +1034,11 @@ img{transition:opacity .5s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
 @keyframes drawCircle{to{stroke-dashoffset:0}}
 
 /* Dimension labels on blueprint */
-.hero-blueprint .bp-text{fill:#c5a059;font-family:'Jost',sans-serif;font-size:10px;opacity:0;animation:fadeIn 1s ease-out forwards}
+.hero-blueprint .bp-text{fill:#c5a059;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;opacity:0;animation:fadeIn 1s ease-out forwards;letter-spacing:1px}
 .hero-blueprint .bp-text:nth-of-type(1){animation-delay:2.2s}
 .hero-blueprint .bp-text:nth-of-type(2){animation-delay:2.4s}
 .hero-blueprint .bp-text:nth-of-type(3){animation-delay:2.6s}
-@keyframes fadeIn{to{opacity:.6}}
+@keyframes fadeIn{to{opacity:.85}}
 
 /* Portfolio Ken Burns zoom */
 #pfGrid > div img{transition:transform 3s cubic-bezier(.2,.7,.3,1),filter .5s ease!important;will-change:transform}
@@ -1174,17 +1174,31 @@ html.lenis{height:auto}
       <line class="bp-line" x1="100" y1="600" x2="1100" y2="600"/>
       <line class="bp-line" x1="200" y1="100" x2="200" y2="700"/>
       <line class="bp-line" x1="1000" y1="100" x2="1000" y2="700"/>
-      <line class="bp-line" x1="600" y1="200" x2="600" y2="600"/>
+      <line class="bp-line" x1="600" y1="100" x2="600" y2="700"/>
+      <!-- Internal walls -->
+      <line class="bp-line" x1="200" y1="400" x2="600" y2="400"/>
+      <line class="bp-line" x1="600" y1="400" x2="1000" y2="400"/>
+      <line class="bp-line" x1="400" y1="200" x2="400" y2="400"/>
+      <line class="bp-line" x1="800" y1="400" x2="800" y2="600"/>
       <!-- Rectangles (rooms) -->
-      <rect class="bp-rect" x="230" y="230" width="340" height="340"/>
-      <rect class="bp-rect" x="630" y="230" width="340" height="340"/>
-      <!-- Circle (column/detail) -->
-      <circle class="bp-circle" cx="400" cy="400" r="40"/>
-      <circle class="bp-circle" cx="800" cy="400" r="40"/>
+      <rect class="bp-rect" x="230" y="230" width="160" height="160"/>
+      <rect class="bp-rect" x="410" y="230" width="180" height="160"/>
+      <rect class="bp-rect" x="630" y="230" width="340" height="160"/>
+      <rect class="bp-rect" x="230" y="420" width="360" height="160"/>
+      <rect class="bp-rect" x="810" y="420" width="160" height="160"/>
+      <!-- Circles (columns/details) -->
+      <circle class="bp-circle" cx="310" cy="310" r="30"/>
+      <circle class="bp-circle" cx="500" cy="310" r="30"/>
+      <circle class="bp-circle" cx="800" cy="310" r="30"/>
+      <circle class="bp-circle" cx="410" cy="500" r="30"/>
+      <circle class="bp-circle" cx="890" cy="500" r="30"/>
       <!-- Dimension text -->
-      <text class="bp-text" x="400" y="195" text-anchor="middle">A4.20</text>
-      <text class="bp-text" x="800" y="195" text-anchor="middle">B5.80</text>
-      <text class="bp-text" x="190" y="400" text-anchor="end">3.40m</text>
+      <text class="bp-text" x="310" y="195" text-anchor="middle">A 4.20</text>
+      <text class="bp-text" x="500" y="195" text-anchor="middle">B 5.80</text>
+      <text class="bp-text" x="800" y="195" text-anchor="middle">C 3.40</text>
+      <text class="bp-text" x="190" y="315" text-anchor="end">3.40</text>
+      <text class="bp-text" x="190" y="505" text-anchor="end">2.80</text>
+      <text class="bp-text" x="1010" y="505" text-anchor="start">1.60</text>
     </svg>
   </div>
   
@@ -1531,7 +1545,10 @@ html.lenis{height:auto}
         <div class="cit reveal rd3"><div class="cit-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><span class="cit-lbl" data-i18n="lbl_hours">Ώρες</span><span data-i18n="hours_long">Δευτέρα – Παρασκευή 09:00 – 17:00</span></div></div>
       </div>
     </div>
-    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="reveal rd1" onsubmit="handleSubmit(event)">
+    <form id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" netlify>
+    <input type="hidden" name="form-name" value="contact"/>
+    <p style="display:none"><label>Don't fill: <input name="bot-field"/></label></p>
+    
       <div class="fg"><label data-i18n="form_name">Ονοματεπώνυμο *</label><input type="text" name="name" data-i18n-placeholder="ph_name" placeholder="Το ονοματεπώνυμό σας" required></div>
       <div class="fgr">
         <div class="fg"><label data-i18n="form_phone">Τηλέφωνο *</label><input type="tel" name="phone" placeholder="69x xxx xxxx" required></div>
@@ -3106,6 +3123,39 @@ document.querySelectorAll('.cit-email-link[data-user]').forEach(function(a){
 
 })();
 /* ═══ /PHASE 2 ═══ */
+</script>
+<script>
+// Handle form submission with feedback
+document.addEventListener('DOMContentLoaded', function(){
+  var form = document.getElementById('contactForm');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var formData = new FormData(form);
+    var btn = form.querySelector('button[type="submit"]');
+    var originalText = btn ? btn.innerHTML : '';
+    if(btn){ btn.innerHTML = 'Αποστολή...'; btn.disabled = true; }
+    
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(function(){
+      if(btn){ btn.innerHTML = '✓ Αποστάλθηκε! Θα επικοινωνήσουμε σύντομα.'; btn.style.background='#2d7a3a'; }
+      form.reset();
+      setTimeout(function(){
+        if(btn){ btn.innerHTML = originalText; btn.disabled = false; btn.style.background=''; }
+      }, 5000);
+    })
+    .catch(function(err){
+      if(btn){ btn.innerHTML = '✗ Σφάλμα. Καλέστε μας: 27210 90509'; btn.style.background='#a73a3a'; }
+      setTimeout(function(){
+        if(btn){ btn.innerHTML = originalText; btn.disabled = false; btn.style.background=''; }
+      }, 5000);
+    });
+  });
+});
 </script>
 </body>
 </html>
